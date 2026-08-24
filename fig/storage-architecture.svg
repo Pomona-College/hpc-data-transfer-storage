@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 720" width="680" height="720" font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#003366"/>
+    </marker>
+    <filter id="shadow" x="-4%" y="-4%" width="108%" height="112%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- Title Box -->
+  <g filter="url(#shadow)">
+    <rect x="20" y="300" width="160" height="70" rx="8" fill="#004B87" stroke="#003366" stroke-width="2"/>
+    <text x="100" y="328" text-anchor="middle" fill="#fff" font-size="15" font-weight="bold">HPC Storage</text>
+    <text x="100" y="348" text-anchor="middle" fill="#fff" font-size="15" font-weight="bold">Hierarchy</text>
+  </g>
+
+  <!-- Arrows from title to each card -->
+  <!-- Arrow to /rhome -->
+  <path d="M 180,320 L 210,320 Q 220,320 220,310 L 220,65 Q 220,55 230,55 L 250,55" fill="none" stroke="#003366" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <!-- Arrow to /bigdata -->
+  <path d="M 180,330 L 210,330 Q 220,330 220,320 L 220,195 Q 220,185 230,195 L 250,195" fill="none" stroke="#003366" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <!-- Arrow to gocryptfs -->
+  <path d="M 180,335 L 250,335" fill="none" stroke="#003366" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <!-- Arrow to /scratch -->
+  <path d="M 180,340 L 210,340 Q 220,340 220,350 L 220,475 Q 220,485 230,475 L 250,475" fill="none" stroke="#003366" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <!-- Arrow to /tmpfs -->
+  <path d="M 180,350 L 210,350 Q 220,350 220,360 L 220,615 Q 220,625 230,615 L 250,615" fill="none" stroke="#003366" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+  <!-- Card 1: /rhome (Gold) -->
+  <g filter="url(#shadow)">
+    <rect x="260" y="15" width="400" height="120" rx="8" fill="#D4A843" stroke="#004B87" stroke-width="2"/>
+    <!-- Header area -->
+    <rect x="260" y="15" width="400" height="36" rx="8" fill="#C49A38" stroke="none"/>
+    <rect x="260" y="35" width="400" height="16" fill="#C49A38" stroke="none"/>
+    <text x="275" y="39" fill="#000" font-size="15" font-weight="bold">/rhome</text>
+    <text x="390" y="39" fill="#000" font-size="12" font-style="italic">Home Directory</text>
+    <!-- Separator -->
+    <line x1="275" y1="50" x2="645" y2="50" stroke="#004B87" stroke-width="0.8" stroke-opacity="0.4"/>
+    <!-- Details -->
+    <text x="285" y="72" fill="#000" font-size="13">1TB shared with /bigdata/lab/</text>
+    <text x="285" y="92" fill="#000" font-size="13">Weekly snapshots</text>
+    <text x="285" y="112" fill="#000" font-size="13">Data: PUBLIC + PROPRIETARY</text>
+    <!-- Icons -->
+    <text x="270" y="72" fill="#000" font-size="12">📦</text>
+    <text x="270" y="92" fill="#000" font-size="12">💾</text>
+    <text x="270" y="112" fill="#000" font-size="12">🏷</text>
+  </g>
+
+  <!-- Card 2: /bigdata (Gold) -->
+  <g filter="url(#shadow)">
+    <rect x="260" y="155" width="400" height="120" rx="8" fill="#D4A843" stroke="#004B87" stroke-width="2"/>
+    <rect x="260" y="155" width="400" height="36" rx="8" fill="#C49A38" stroke="none"/>
+    <rect x="260" y="175" width="400" height="16" fill="#C49A38" stroke="none"/>
+    <text x="275" y="179" fill="#000" font-size="15" font-weight="bold">/bigdata/lab/</text>
+    <text x="400" y="179" fill="#000" font-size="12" font-style="italic">Lab Shared Storage</text>
+    <line x1="275" y1="190" x2="645" y2="190" stroke="#004B87" stroke-width="0.8" stroke-opacity="0.4"/>
+    <text x="285" y="212" fill="#000" font-size="13">1TB shared with /rhome</text>
+    <text x="285" y="232" fill="#000" font-size="13">Weekly snapshots</text>
+    <text x="285" y="252" fill="#000" font-size="13">Data: PUBLIC + PROPRIETARY</text>
+    <text x="270" y="212" fill="#000" font-size="12">📦</text>
+    <text x="270" y="232" fill="#000" font-size="12">💾</text>
+    <text x="270" y="252" fill="#000" font-size="12">🏷</text>
+  </g>
+
+  <!-- Card 3: gocryptfs (Red) -->
+  <g filter="url(#shadow)">
+    <rect x="260" y="295" width="400" height="120" rx="8" fill="#DC3545" stroke="#003366" stroke-width="2"/>
+    <rect x="260" y="295" width="400" height="36" rx="8" fill="#C42D3D" stroke="none"/>
+    <rect x="260" y="315" width="400" height="16" fill="#C42D3D" stroke="none"/>
+    <text x="275" y="319" fill="#fff" font-size="15" font-weight="bold">gocryptfs Encrypted</text>
+    <text x="448" y="319" fill="#fff" font-size="12" font-style="italic">On /rhome or /bigdata</text>
+    <line x1="275" y1="330" x2="645" y2="330" stroke="#fff" stroke-width="0.8" stroke-opacity="0.3"/>
+    <text x="285" y="352" fill="#fff" font-size="13">AES-256-GCM encryption</text>
+    <text x="285" y="372" fill="#fff" font-size="13">Required for RESTRICTED data</text>
+    <text x="285" y="392" fill="#fff" font-size="13">RESTRICTED data only</text>
+    <text x="270" y="352" fill="#fff" font-size="12">🔐</text>
+    <text x="270" y="372" fill="#fff" font-size="12">⚠</text>
+    <text x="270" y="392" fill="#fff" font-size="12">🏷</text>
+  </g>
+
+  <!-- Card 4: /scratch (Orange) -->
+  <g filter="url(#shadow)">
+    <rect x="260" y="435" width="400" height="120" rx="8" fill="#FD7E14" stroke="#004B87" stroke-width="2"/>
+    <rect x="260" y="435" width="400" height="36" rx="8" fill="#E67110" stroke="none"/>
+    <rect x="260" y="455" width="400" height="16" fill="#E67110" stroke="none"/>
+    <text x="275" y="459" fill="#000" font-size="15" font-weight="bold">/scratch</text>
+    <text x="355" y="459" fill="#000" font-size="12" font-style="italic">SSD — Temporary</text>
+    <line x1="275" y1="470" x2="645" y2="470" stroke="#004B87" stroke-width="0.8" stroke-opacity="0.4"/>
+    <text x="285" y="492" fill="#000" font-size="13">Fast SSD storage</text>
+    <text x="285" y="512" fill="#000" font-size="13">Job-based persistence</text>
+    <text x="285" y="532" fill="#000" font-size="13">Deleted when job completes</text>
+    <text x="270" y="492" fill="#000" font-size="12">⚡</text>
+    <text x="270" y="512" fill="#000" font-size="12">⏳</text>
+    <text x="270" y="532" fill="#000" font-size="12">🗑</text>
+  </g>
+
+  <!-- Card 5: /tmpfs (Green) -->
+  <g filter="url(#shadow)">
+    <rect x="260" y="575" width="400" height="120" rx="8" fill="#28A745" stroke="#004B87" stroke-width="2"/>
+    <rect x="260" y="575" width="400" height="36" rx="8" fill="#239B3E" stroke="none"/>
+    <rect x="260" y="595" width="400" height="16" fill="#239B3E" stroke="none"/>
+    <text x="275" y="599" fill="#fff" font-size="15" font-weight="bold">/tmpfs</text>
+    <text x="340" y="599" fill="#fff" font-size="12" font-style="italic">RAM-backed</text>
+    <line x1="275" y1="610" x2="645" y2="610" stroke="#fff" stroke-width="0.8" stroke-opacity="0.3"/>
+    <text x="285" y="632" fill="#fff" font-size="13">Fastest access</text>
+    <text x="285" y="652" fill="#fff" font-size="13">Deleted when job ends</text>
+    <text x="285" y="672" fill="#fff" font-size="13">Limited capacity</text>
+    <text x="270" y="632" fill="#fff" font-size="12">🚀</text>
+    <text x="270" y="652" fill="#fff" font-size="12">⏳</text>
+    <text x="270" y="672" fill="#fff" font-size="12">📦</text>
+  </g>
+</svg>

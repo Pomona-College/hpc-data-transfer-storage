@@ -1,0 +1,69 @@
+---
+# The Carpentries Incubator Workbench configuration file
+
+# Metadata about this workshop
+title: 'Data Transfer and Storage Management — Pomona College HPC Workshop Series'
+subtitle: 'Managing data on Sagehen HPC cluster'
+description: 'Moving and storing research data on Sagehen: rsync, SFTP and FileZilla, storage tiers, quotas and backup strategy.'
+
+# Contact information
+contact: 'its-hpc@pomona.edu'
+url: 'https://pomona-college.github.io/hpc-data-transfer-storage/'
+source: 'https://github.com/Pomona-College/hpc-data-transfer-storage'
+license: 'CC-BY 4.0'
+keywords: 'Pomona College, HPC, research computing, storage, data transfer, rsync, sftp, sagehen'
+branch: 'main'
+
+# Workbench configuration
+carpentry: 'incubator'
+lang: 'en'
+workbench-beta: true
+
+# Lesson life cycle
+life_cycle: 'stable'
+created: '2026-03-05'
+
+# Episodes - ordered list of lesson content
+episodes:
+  - 01-storage-overview.md
+  - 02-checking-quotas.md
+  - 03-quota-strategies.md
+  - 04-ondemand-transfers.md
+  - 05-sftp-setup.md
+  - 06-filezilla-operations.md
+  - 07-rsync-basics.md
+  - 08-rsync-advanced.md
+  - 09-scratch-storage.md
+  - 10-tmpfs-storage.md
+  - 11-data-organization.md
+  - 12-backup-archival.md
+  - 13-transfer-selection.md
+  - 14-troubleshooting.md
+
+learners:
+  - setup.md
+  - reference.md
+
+instructors:
+  - instructor-notes.md
+
+profiles:
+  - learner-profiles.md
+
+# Extra pages beyond the standard episodes
+extras:
+  - learner-profiles.md
+  - instructor-notes.md
+  - reference.md
+
+# Standard pages
+instructors-guide: instructor-notes.md
+learner-profiles: learner-profiles.md
+setup: setup.md
+reference: reference.md
+links: links.md
+
+# Styling and presentation
+theme: 'github-light'
+dayfirst: false
+analytics: ~
