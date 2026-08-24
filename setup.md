@@ -218,7 +218,7 @@ mkdir -p ~/workshop_data/incoming ~/workshop_data/results
 2. Check Duo app is installed and updated
 3. Try again (may be delayed)
 4. Check your Duo enrollment: https://accounts.pomona.edu/
-5. Contact IT: its-help@pomona.edu
+5. Contact IT: servicedesk@pomona.edu
 
 ### FileZilla Won't Install
 
@@ -264,7 +264,7 @@ If you encounter setup issues:
 
 1. **Check email:** Setup instructions may have updates
 2. **Contact HPC Support:** its-hpc@pomona.edu
-3. **Contact IT:** its-help@pomona.edu (for account/Duo issues)
+3. **Contact IT:** servicedesk@pomona.edu (for account/Duo issues)
 
 ### During Workshop
 

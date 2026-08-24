@@ -306,7 +306,7 @@ find /rhome/<myusername> -size +1G -type f
 ## Support and Help
 
 - **HPC Support:** its-hpc@pomona.edu
-- **IT Help:** its-help@pomona.edu
+- **IT Help:** servicedesk@pomona.edu
 - **Emergency:** (during business hours) Pomona IT Help Desk
 - **Documentation:** Workshop materials and setup.md
 

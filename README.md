@@ -188,7 +188,7 @@ See [LICENSE.md](LICENSE.md) for full terms.
 
 - **HPC Support:** its-hpc@pomona.edu
 - **HPC Coordinator:** Andrew Wilson
-- **IT Help Desk:** its-help@pomona.edu
+- **IT Help Desk:** servicedesk@pomona.edu
 - **GitHub:** https://github.com/Pomona-College/hpc-data-transfer-storage
 
 ## Version Information

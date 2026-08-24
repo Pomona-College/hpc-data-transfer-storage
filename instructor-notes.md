@@ -346,7 +346,7 @@ Consider surveying:
 
 - Contact: its-hpc@pomona.edu
 - HPC Coordinator: Andrew Wilson
-- IT Help: its-help@pomona.edu
+- IT Help: servicedesk@pomona.edu
 
 ### Related Training
 
