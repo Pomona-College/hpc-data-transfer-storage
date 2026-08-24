@@ -162,7 +162,7 @@ If you use this workshop, please cite:
 ```
 Pomona College HPC Training Team. (2026). Data Transfer and Storage Management
 on Sagehen HPC Cluster. Workshop 12. Available at
-https://github.com/pomona-college-hpc/data-transfer-storage
+https://github.com/Pomona-College/hpc-data-transfer-storage
 ```
 
 ## License
@@ -189,7 +189,7 @@ See [LICENSE.md](LICENSE.md) for full terms.
 - **HPC Support:** its-hpc@pomona.edu
 - **HPC Coordinator:** Andrew Wilson
 - **IT Help Desk:** its-help@pomona.edu
-- **GitHub:** https://github.com/pomona-college-hpc/data-transfer-storage
+- **GitHub:** https://github.com/Pomona-College/hpc-data-transfer-storage
 
 ## Version Information
 

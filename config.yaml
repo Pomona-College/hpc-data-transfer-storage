@@ -8,8 +8,8 @@ description: 'Learn how to efficiently manage data storage and transfer files on
 
 # Contact information
 contact: 'its-hpc@pomona.edu'
-url: 'https://github.com/pomona-college-hpc/data-transfer-storage'
-source: 'https://github.com/pomona-college-hpc/data-transfer-storage'
+url: 'https://pomona-college.github.io/hpc-data-transfer-storage/'
+source: 'https://github.com/Pomona-College/hpc-data-transfer-storage'
 license: 'CC-BY 4.0'
 keywords: 'Pomona College, HPC, research computing, storage, data transfer, rsync, sftp, sagehen'
 branch: 'main'

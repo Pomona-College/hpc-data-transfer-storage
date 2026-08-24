@@ -102,8 +102,8 @@ community listed at <https://carpentries.org/connect/> including via social
 media, slack, newsletters, and email lists. You can also [reach us by
 email][contact].
 
-[repo]: https://github.com/pomona-college-hpc/data-transfer-storage
-[repo-issues]: https://github.com/pomona-college-hpc/data-transfer-storage/issues
+[repo]: https://github.com/Pomona-College/hpc-data-transfer-storage
+[repo-issues]: https://github.com/Pomona-College/hpc-data-transfer-storage/issues
 [contact]: mailto:its-hpc@pomona.edu
 [cp-site]: https://carpentries.org/
 [dc-issues]: https://github.com/issues?q=user%3Adatacarpentry
