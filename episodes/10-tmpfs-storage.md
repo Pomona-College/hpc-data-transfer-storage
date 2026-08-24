@@ -62,14 +62,14 @@ TMPFS=/tmpfs/$SLURM_JOB_USER/$SLURM_JOB_ID
 mkdir -p $TMPFS
 
 # Copy small input (must fit in available memory)
-cp /rhome/username/small_config.json $TMPFS/
+cp /rhome/<myusername>/small_config.json $TMPFS/
 
 # Build index in RAM-backed storage
-./build_index /rhome/username/reference.fasta -o $TMPFS/index/
+./build_index /rhome/<myusername>/reference.fasta -o $TMPFS/index/
 
 # Run analysis using fast in-memory data
-./analyze -index $TMPFS/index/ -query /rhome/username/queries.fasta \
-    -o /rhome/username/results/output.txt
+./analyze -index $TMPFS/index/ -query /rhome/<myusername>/queries.fasta \
+    -o /rhome/<myusername>/results/output.txt
 ```
 
 ::::::::::::::::::::::::::::::::::::: callout
@@ -96,7 +96,7 @@ Always ensure results are copied back before the job ends:
 set -e  # Exit on any error
 
 TMPFS=/tmpfs/$SLURM_JOB_USER/$SLURM_JOB_ID
-HOME_DIR=/rhome/username
+HOME_DIR=/rhome/<myusername>
 RESULTS=$HOME_DIR/results_$(date +%Y%m%d_%H%M%S)
 mkdir -p $TMPFS $RESULTS
 
@@ -126,7 +126,7 @@ cd /tmpfs/$SLURM_JOB_USER/$SLURM_JOB_ID
 # CORRECT: copy before job ends
 cd /tmpfs/$SLURM_JOB_USER/$SLURM_JOB_ID
 ./analysis > output.dat
-cp output.dat /rhome/username/results/
+cp output.dat /rhome/<myusername>/results/
 ```
 
 ### Exceeding memory allocation
@@ -160,13 +160,13 @@ TMPFS=/tmpfs/$SLURM_JOB_USER/$SLURM_JOB_ID
 mkdir -p $TMPFS
 
 # Copy index to fast RAM storage
-rsync -avhP /rhome/username/reference_index/ $TMPFS/index/
+rsync -avhP /rhome/<myusername>/reference_index/ $TMPFS/index/
 
 # Run analysis with RAM-backed index
 ./analyze -index $TMPFS/index/ -o $TMPFS/results.txt
 
 # Copy results back before job ends
-rsync -avhP $TMPFS/results.txt /rhome/username/results/
+rsync -avhP $TMPFS/results.txt /rhome/<myusername>/results/
 ```
 
 The 20 GB memory request covers the 5 GB index, 8 GB application, and 7 GB of overhead for the OS and filesystem.
@@ -184,3 +184,6 @@ The 20 GB memory request covers the 5 GB index, 8 GB application, and 7 GB of ov
 - Account for OS overhead when planning tmpfs memory usage
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
+
+<!-- highlight <labname>/<myusername> placeholders in code blocks; remove if the varnish theme handles this natively -->
+<script>(function(){var CSS='.sh-placeholder{color:#c2410c;font-weight:700}[data-bs-theme="dark"] .sh-placeholder,html.dark .sh-placeholder{color:#fdba74}@media (prefers-color-scheme: dark){[data-bs-theme="auto"] .sh-placeholder{color:#fdba74}}';var RX=/<labname>|<myusername>/g;function firstMatch(el){var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null),nodes=[],full='';while(w.nextNode()){nodes.push({n:w.currentNode,s:full.length});full+=w.currentNode.nodeValue;}RX.lastIndex=0;var m;while((m=RX.exec(full))){var s=m.index,e=s+m[0].length,inSpan=false,parts=[];for(var j=0;j<nodes.length;j++){var ns=nodes[j].s,ne=ns+nodes[j].n.nodeValue.length;if(ne<=s||ns>=e)continue;parts.push({node:nodes[j].n,a:Math.max(s-ns,0),b:Math.min(e-ns,nodes[j].n.nodeValue.length)});var p=nodes[j].n.parentNode;while(p&&p!==el){if(p.classList&&p.classList.contains('sh-placeholder')){inSpan=true;break;}p=p.parentNode;}}if(!inSpan&&parts.length)return parts;}return null;}function wrapParts(parts){for(var i=parts.length-1;i>=0;i--){var t=parts[i].node,txt=t.nodeValue,a=parts[i].a,b=parts[i].b;var span=document.createElement('span');span.className='sh-placeholder';span.textContent=txt.slice(a,b);var f=document.createDocumentFragment();if(a>0)f.appendChild(document.createTextNode(txt.slice(0,a)));f.appendChild(span);if(b<txt.length)f.appendChild(document.createTextNode(txt.slice(b)));t.parentNode.replaceChild(f,t);}}function run(){var st=document.createElement('style');st.textContent=CSS;document.head.appendChild(st);document.querySelectorAll('pre,code').forEach(function(el){var guard=0,parts;while((parts=firstMatch(el))&&guard++<500){wrapParts(parts);}});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}else{run();}})();</script>

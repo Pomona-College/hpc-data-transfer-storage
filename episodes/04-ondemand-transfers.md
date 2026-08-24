@@ -14,6 +14,7 @@ exercises: 10
 ::::::::::::::::::::::::::::::::::::: objectives
 
 After completing this episode, participants will be able to:
+
 - Access the OnDemand file manager interface
 - Upload and download files through the web browser
 - Create directories and organize files
@@ -48,7 +49,7 @@ The file manager shows your home directory by default with buttons for Home, New
 
 ## Uploading Files
 
-1. Navigate to the destination folder (e.g., `/rhome/username`)
+1. Navigate to the destination folder (e.g., `/rhome/<myusername>`)
 2. Click the **Upload** button
 3. Select file(s) from your computer
 4. Wait for the progress bar to complete
@@ -57,7 +58,7 @@ For multiple files, hold Ctrl (Windows) or Cmd (Mac) to select several at once. 
 
 For files larger than 500 MB, use rsync instead:
 ```bash
-rsync -avhP ~/my_large_file.tar.gz username@sagehen.hpc.pomona.edu:/rhome/username/
+rsync -avhP ~/my_large_file.tar.gz <myusername>@sagehen.hpc.pomona.edu:/rhome/<myusername>/
 ```
 
 ## Downloading Files
@@ -83,15 +84,15 @@ tar czf project_backup.tar.gz my_project/
 ## Challenge: Upload and Download
 
 1. Create a folder structure on Sagehen:
-   - `/rhome/username/workshop/data/`
-   - `/rhome/username/workshop/results/`
+   - `/rhome/<myusername>/workshop/data/`
+   - `/rhome/<myusername>/workshop/results/`
 2. Upload any file from your computer to the `data/` folder
 3. Refresh the browser (F5) and verify it appears
 4. Download the file back to your computer and confirm it matches
 
 ::::::::::::::::::::::::::::::::::::: solution
 
-After completing the challenge, you should see your uploaded file in the OnDemand file manager under `/rhome/username/workshop/data/` with the correct file size. The downloaded copy should be identical to the original.
+After completing the challenge, you should see your uploaded file in the OnDemand file manager under `/rhome/<myusername>/workshop/data/` with the correct file size. The downloaded copy should be identical to the original.
 
 If the file does not appear after upload, try refreshing the page. If upload fails, check that the file is under 2 GB and your quota is not exceeded.
 
@@ -107,3 +108,6 @@ If the file does not appear after upload, try refreshing the page. If upload fai
 - Use rsync for large files or batch operations
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
+
+<!-- highlight <labname>/<myusername> placeholders in code blocks; remove if the varnish theme handles this natively -->
+<script>(function(){var CSS='.sh-placeholder{color:#c2410c;font-weight:700}[data-bs-theme="dark"] .sh-placeholder,html.dark .sh-placeholder{color:#fdba74}@media (prefers-color-scheme: dark){[data-bs-theme="auto"] .sh-placeholder{color:#fdba74}}';var RX=/<labname>|<myusername>/g;function firstMatch(el){var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null),nodes=[],full='';while(w.nextNode()){nodes.push({n:w.currentNode,s:full.length});full+=w.currentNode.nodeValue;}RX.lastIndex=0;var m;while((m=RX.exec(full))){var s=m.index,e=s+m[0].length,inSpan=false,parts=[];for(var j=0;j<nodes.length;j++){var ns=nodes[j].s,ne=ns+nodes[j].n.nodeValue.length;if(ne<=s||ns>=e)continue;parts.push({node:nodes[j].n,a:Math.max(s-ns,0),b:Math.min(e-ns,nodes[j].n.nodeValue.length)});var p=nodes[j].n.parentNode;while(p&&p!==el){if(p.classList&&p.classList.contains('sh-placeholder')){inSpan=true;break;}p=p.parentNode;}}if(!inSpan&&parts.length)return parts;}return null;}function wrapParts(parts){for(var i=parts.length-1;i>=0;i--){var t=parts[i].node,txt=t.nodeValue,a=parts[i].a,b=parts[i].b;var span=document.createElement('span');span.className='sh-placeholder';span.textContent=txt.slice(a,b);var f=document.createDocumentFragment();if(a>0)f.appendChild(document.createTextNode(txt.slice(0,a)));f.appendChild(span);if(b<txt.length)f.appendChild(document.createTextNode(txt.slice(b)));t.parentNode.replaceChild(f,t);}}function run(){var st=document.createElement('style');st.textContent=CSS;document.head.appendChild(st);document.querySelectorAll('pre,code').forEach(function(el){var guard=0,parts;while((parts=firstMatch(el))&&guard++<500){wrapParts(parts);}});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}else{run();}})();</script>

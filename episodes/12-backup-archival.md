@@ -41,7 +41,7 @@ mkdir -p $BACKUP_DIR
 
 rsync -avhPr \
   --exclude='*.pyc' --exclude='__pycache__' --exclude='.git' \
-  username@sagehen.hpc.pomona.edu:/rhome/username/ \
+  <myusername>@sagehen.hpc.pomona.edu:/rhome/<myusername>/ \
   $BACKUP_DIR/
 
 echo "Backup complete: $(du -sh $BACKUP_DIR)"
@@ -58,7 +58,7 @@ crontab -e
 Use git for version-controlled code backup:
 
 ```bash
-cd /rhome/username/myproject
+cd /rhome/<myusername>/myproject
 git init
 git add code/
 git commit -m "Initial project"
@@ -72,15 +72,15 @@ When a project is finished, compress and move it:
 
 ```bash
 # Compress the project
-cd /rhome/username/projects
+cd /rhome/<myusername>/projects
 tar czf project_alpha.tar.gz project_alpha/
 
 # Move to lab archive
-mv project_alpha.tar.gz /bigdata/labname/archive/project_alpha_20260305.tar.gz
+mv project_alpha.tar.gz /bigdata/lab/<labname>/archive/project_alpha_20260305.tar.gz
 
 # Verify archive exists, then remove original
-ls -lh /bigdata/labname/archive/project_alpha_20260305.tar.gz
-rm -rf /rhome/username/projects/project_alpha/
+ls -lh /bigdata/lab/<labname>/archive/project_alpha_20260305.tar.gz
+rm -rf /rhome/<myusername>/projects/project_alpha/
 
 # Check quota improvement
 quota_check.sh
@@ -88,8 +88,8 @@ quota_check.sh
 
 To restore an archived project:
 ```bash
-cd /rhome/username/projects
-tar xzf /bigdata/labname/archive/project_alpha_20260305.tar.gz
+cd /rhome/<myusername>/projects
+tar xzf /bigdata/lab/<labname>/archive/project_alpha_20260305.tar.gz
 ```
 
 ## Safe Data Migration
@@ -98,21 +98,21 @@ When moving data between storage locations:
 
 ```bash
 # Step 1: Dry run
-rsync -avhPr --dry-run /rhome/username/old_project/ /bigdata/labname/old_project/
+rsync -avhPr --dry-run /rhome/<myusername>/old_project/ /bigdata/lab/<labname>/old_project/
 
 # Step 2: Transfer
-rsync -avhPr /rhome/username/old_project/ /bigdata/labname/old_project/
+rsync -avhPr /rhome/<myusername>/old_project/ /bigdata/lab/<labname>/old_project/
 
 # Step 3: Verify sizes match
-du --apparent-size -sh /rhome/username/old_project/
-du --apparent-size -sh /bigdata/labname/old_project/
+du --apparent-size -sh /rhome/<myusername>/old_project/
+du --apparent-size -sh /bigdata/lab/<labname>/old_project/
 
 # Step 4: Verify file count
-find /rhome/username/old_project/ -type f | wc -l
-find /bigdata/labname/old_project/ -type f | wc -l
+find /rhome/<myusername>/old_project/ -type f | wc -l
+find /bigdata/lab/<labname>/old_project/ -type f | wc -l
 
 # Step 5: Delete source only after verification
-rm -rf /rhome/username/old_project/
+rm -rf /rhome/<myusername>/old_project/
 ```
 
 ## Data Lifecycle Planning
@@ -132,7 +132,7 @@ Plan retention for each project: what to keep, where to store it, and when to ar
 
 ## Challenge: Create a Migration Plan
 
-You need to move a 50 GB project from `/rhome/username/old_project/` to `/bigdata/labname/archive/`. Write the commands you would use, including:
+You need to move a 50 GB project from `/rhome/<myusername>/old_project/` to `/bigdata/lab/<labname>/archive/`. Write the commands you would use, including:
 
 1. Verify source size
 2. Dry-run the transfer
@@ -144,22 +144,22 @@ You need to move a 50 GB project from `/rhome/username/old_project/` to `/bigdat
 
 ```bash
 # 1. Verify source size
-du --apparent-size -sh /rhome/username/old_project/
+du --apparent-size -sh /rhome/<myusername>/old_project/
 
 # 2. Dry run
-rsync -avhPr --dry-run /rhome/username/old_project/ /bigdata/labname/archive/old_project/
+rsync -avhPr --dry-run /rhome/<myusername>/old_project/ /bigdata/lab/<labname>/archive/old_project/
 
 # 3. Transfer
-rsync -avhPr /rhome/username/old_project/ /bigdata/labname/archive/old_project/
+rsync -avhPr /rhome/<myusername>/old_project/ /bigdata/lab/<labname>/archive/old_project/
 
 # 4. Verify (compare size and file count)
-du --apparent-size -sh /rhome/username/old_project/
-du --apparent-size -sh /bigdata/labname/archive/old_project/
-find /rhome/username/old_project/ -type f | wc -l
-find /bigdata/labname/archive/old_project/ -type f | wc -l
+du --apparent-size -sh /rhome/<myusername>/old_project/
+du --apparent-size -sh /bigdata/lab/<labname>/archive/old_project/
+find /rhome/<myusername>/old_project/ -type f | wc -l
+find /bigdata/lab/<labname>/archive/old_project/ -type f | wc -l
 
 # 5. Remove source (only after verification passes)
-rm -rf /rhome/username/old_project/
+rm -rf /rhome/<myusername>/old_project/
 quota_check.sh  # Confirm quota freed
 ```
 
@@ -178,3 +178,6 @@ Always verify before deleting. If sizes or file counts do not match, investigate
 - Plan data retention across the active, archive, and preservation stages
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
+
+<!-- highlight <labname>/<myusername> placeholders in code blocks; remove if the varnish theme handles this natively -->
+<script>(function(){var CSS='.sh-placeholder{color:#c2410c;font-weight:700}[data-bs-theme="dark"] .sh-placeholder,html.dark .sh-placeholder{color:#fdba74}@media (prefers-color-scheme: dark){[data-bs-theme="auto"] .sh-placeholder{color:#fdba74}}';var RX=/<labname>|<myusername>/g;function firstMatch(el){var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null),nodes=[],full='';while(w.nextNode()){nodes.push({n:w.currentNode,s:full.length});full+=w.currentNode.nodeValue;}RX.lastIndex=0;var m;while((m=RX.exec(full))){var s=m.index,e=s+m[0].length,inSpan=false,parts=[];for(var j=0;j<nodes.length;j++){var ns=nodes[j].s,ne=ns+nodes[j].n.nodeValue.length;if(ne<=s||ns>=e)continue;parts.push({node:nodes[j].n,a:Math.max(s-ns,0),b:Math.min(e-ns,nodes[j].n.nodeValue.length)});var p=nodes[j].n.parentNode;while(p&&p!==el){if(p.classList&&p.classList.contains('sh-placeholder')){inSpan=true;break;}p=p.parentNode;}}if(!inSpan&&parts.length)return parts;}return null;}function wrapParts(parts){for(var i=parts.length-1;i>=0;i--){var t=parts[i].node,txt=t.nodeValue,a=parts[i].a,b=parts[i].b;var span=document.createElement('span');span.className='sh-placeholder';span.textContent=txt.slice(a,b);var f=document.createDocumentFragment();if(a>0)f.appendChild(document.createTextNode(txt.slice(0,a)));f.appendChild(span);if(b<txt.length)f.appendChild(document.createTextNode(txt.slice(b)));t.parentNode.replaceChild(f,t);}}function run(){var st=document.createElement('style');st.textContent=CSS;document.head.appendChild(st);document.querySelectorAll('pre,code').forEach(function(el){var guard=0,parts;while((parts=firstMatch(el))&&guard++<500){wrapParts(parts);}});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}else{run();}})();</script>

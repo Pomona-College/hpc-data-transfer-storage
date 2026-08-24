@@ -8,8 +8,8 @@ title: 'Reference'
 
 | Location | Purpose | Quota | Backed Up | Notes |
 |----------|---------|-------|-----------|-------|
-| `/rhome/username` | Home directory | 100 GB | Yes (weekly) | Personal, not shareable within lab |
-| `/bigdata/labname` | Lab shared storage | 1 TB per lab | Yes (weekly) | Shared with all lab members |
+| `/rhome/<myusername>` | Home directory | 100 GB | Yes (weekly) | Personal, not shareable within lab |
+| `/bigdata/lab/<labname>` | Lab shared storage | 1 TB per lab | Yes (weekly) | Shared with all lab members |
 
 ### Temporary Storage
 
@@ -30,14 +30,14 @@ Output example:
 ```
 Filesystem                used   quota   limit   grace
 /rhome/afrancis           2.4G   25G     27.5G
-/bigdata/neuroscience     145G   1.0T    1.1T
+/bigdata/lab/neuroscience     145G   1.0T    1.1T
 ```
 
 ### Check individual directory sizes:
 
 ```bash
 du -sh /rhome/afrancis/
-du -sh /bigdata/neuroscience/project_alpha/
+du -sh /bigdata/lab/neuroscience/project_alpha/
 ```
 
 ### Monitor real-time storage usage during jobs:
@@ -60,7 +60,7 @@ scp afrancis@sagehen.hpc.pomona.edu:/rhome/afrancis/results.tar.gz ./
 **Upload to Sagehen from your computer:**
 
 ```bash
-scp large_dataset.tar.gz afrancis@sagehen.hpc.pomona.edu:/bigdata/neuroscience/
+scp large_dataset.tar.gz afrancis@sagehen.hpc.pomona.edu:/bigdata/lab/neuroscience/
 ```
 
 **Copy entire directories (recursive):**
@@ -76,19 +76,19 @@ Rsync only transfers changed files and is ideal for large datasets.
 **Basic sync (one-way, local to Sagehen):**
 
 ```bash
-rsync -av --progress local_folder/ afrancis@sagehen.hpc.pomona.edu:/bigdata/neuroscience/
+rsync -av --progress local_folder/ afrancis@sagehen.hpc.pomona.edu:/bigdata/lab/neuroscience/
 ```
 
 **Sync with deletion (mirror):**
 
 ```bash
-rsync -av --delete local_folder/ afrancis@sagehen.hpc.pomona.edu:/bigdata/neuroscience/
+rsync -av --delete local_folder/ afrancis@sagehen.hpc.pomona.edu:/bigdata/lab/neuroscience/
 ```
 
 **Sync from Sagehen to local (download):**
 
 ```bash
-rsync -av --progress afrancis@sagehen.hpc.pomona.edu:/bigdata/neuroscience/results/ ./local_results/
+rsync -av --progress afrancis@sagehen.hpc.pomona.edu:/bigdata/lab/neuroscience/results/ ./local_results/
 ```
 
 **Common flags:**
@@ -148,19 +148,19 @@ Select:
 **Sync from Google Drive to Sagehen:**
 
 ```bash
-rclone sync gdrive:/Research/Project1 sagehen:/bigdata/labname/Project1 --progress
+rclone sync gdrive:/Research/Project1 sagehen:/bigdata/lab/<labname>/Project1 --progress
 ```
 
 **Sync from Sagehen to AWS S3 (backup):**
 
 ```bash
-rclone sync sagehen:/bigdata/labname/data s3://my-research-bucket/backup --progress
+rclone sync sagehen:/bigdata/lab/<labname>/data s3://my-research-bucket/backup --progress
 ```
 
 **Dry-run to see what would be transferred:**
 
 ```bash
-rclone sync --dry-run gdrive:/Dataset sagehen:/bigdata/labname/Dataset
+rclone sync --dry-run gdrive:/Dataset sagehen:/bigdata/lab/<labname>/Dataset
 ```
 
 ## Data Archiving
@@ -198,7 +198,7 @@ tar -xJf archive.tar.xz
 ### Watch transfer progress with rsync:
 
 ```bash
-rsync -av --progress afrancis@sagehen.hpc.pomona.edu:/bigdata/neuroscience/large_file.bin ./
+rsync -av --progress afrancis@sagehen.hpc.pomona.edu:/bigdata/lab/neuroscience/large_file.bin ./
 ```
 
 ### Monitor bandwidth usage on Sagehen:
@@ -223,3 +223,6 @@ ifstat -i eth0 1  # Update every 1 second
 - **OnDemand:** https://ondemand.hpc.pomona.edu/
 - **Cluster Status:** Check email or contact support for maintenance windows
 - **Emergency Issues:** its-hpc@pomona.edu (include error messages and job IDs)
+
+<!-- highlight <labname>/<myusername> placeholders in code blocks; remove if the varnish theme handles this natively -->
+<script>(function(){var CSS='.sh-placeholder{color:#c2410c;font-weight:700}[data-bs-theme="dark"] .sh-placeholder,html.dark .sh-placeholder{color:#fdba74}@media (prefers-color-scheme: dark){[data-bs-theme="auto"] .sh-placeholder{color:#fdba74}}';var RX=/<labname>|<myusername>/g;function firstMatch(el){var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null),nodes=[],full='';while(w.nextNode()){nodes.push({n:w.currentNode,s:full.length});full+=w.currentNode.nodeValue;}RX.lastIndex=0;var m;while((m=RX.exec(full))){var s=m.index,e=s+m[0].length,inSpan=false,parts=[];for(var j=0;j<nodes.length;j++){var ns=nodes[j].s,ne=ns+nodes[j].n.nodeValue.length;if(ne<=s||ns>=e)continue;parts.push({node:nodes[j].n,a:Math.max(s-ns,0),b:Math.min(e-ns,nodes[j].n.nodeValue.length)});var p=nodes[j].n.parentNode;while(p&&p!==el){if(p.classList&&p.classList.contains('sh-placeholder')){inSpan=true;break;}p=p.parentNode;}}if(!inSpan&&parts.length)return parts;}return null;}function wrapParts(parts){for(var i=parts.length-1;i>=0;i--){var t=parts[i].node,txt=t.nodeValue,a=parts[i].a,b=parts[i].b;var span=document.createElement('span');span.className='sh-placeholder';span.textContent=txt.slice(a,b);var f=document.createDocumentFragment();if(a>0)f.appendChild(document.createTextNode(txt.slice(0,a)));f.appendChild(span);if(b<txt.length)f.appendChild(document.createTextNode(txt.slice(b)));t.parentNode.replaceChild(f,t);}}function run(){var st=document.createElement('style');st.textContent=CSS;document.head.appendChild(st);document.querySelectorAll('pre,code').forEach(function(el){var guard=0,parts;while((parts=firstMatch(el))&&guard++<500){wrapParts(parts);}});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}else{run();}})();</script>

@@ -4,9 +4,9 @@
 
 | Path | Type | Quota | Persistence | Speed | Use For |
 |------|------|-------|-------------|-------|---------|
-| `/rhome/username` | Home | Lab quota | Permanent | Normal | Personal files, home code |
-| `/bigdata/labname` | Lab shared | 1TB per lab | Permanent | Normal | Shared lab data |
-| `/scratch/$SLURM_JOB_ID` | Job temp | Unlimited | 30 days | Very fast | Job working data |
+| `/rhome/<myusername>` | Home | Lab quota | Permanent | Normal | Personal files, home code |
+| `/bigdata/lab/<labname>` | Lab shared | 1TB per lab | Permanent | Normal | Shared lab data |
+| `/scratch/$SLURM_JOB_ID` | Job temp | Unlimited | Deleted at job end | Very fast | Job working data |
 | `/tmpfs/$SLURM_JOB_ID` | RAM temp | Memory limit | Job lifetime | Fastest | In-memory working data |
 
 ## Quick Commands
@@ -18,44 +18,44 @@
 quota_check.sh
 
 # Check directory size (accurate for BeeGFS)
-du --apparent-size -sh /rhome/username
+du --apparent-size -sh /rhome/<myusername>
 
 # Find largest files
-find /rhome/username -type f -printf '%s %p\n' | sort -rn | head -10
+find /rhome/<myusername> -type f -printf '%s %p\n' | sort -rn | head -10
 ```
 
 ### File Transfer Commands
 
 ```bash
 # Upload single file
-rsync -avhP local_file user@sagehen:/rhome/username/
+rsync -avhP local_file user@sagehen:/rhome/<myusername>/
 
 # Upload directory
-rsync -avhPr ~/mydir/ user@sagehen:/rhome/username/mydir/
+rsync -avhPr ~/mydir/ user@sagehen:/rhome/<myusername>/mydir/
 
 # Download file
-rsync -avhP user@sagehen:/rhome/username/file.dat ~/
+rsync -avhP user@sagehen:/rhome/<myusername>/file.dat ~/
 
 # Download directory
-rsync -avhPr user@sagehen:/rhome/username/mydir/ ~/mydir/
+rsync -avhPr user@sagehen:/rhome/<myusername>/mydir/ ~/mydir/
 
 # Sync (incremental, only changed files)
-rsync -avhPr ~/mydir/ user@sagehen:/rhome/username/mydir/
+rsync -avhPr ~/mydir/ user@sagehen:/rhome/<myusername>/mydir/
 
 # Exclude patterns
-rsync -avhPr --exclude='*.pyc' --exclude='.git' ~/mydir/ user@sagehen:/rhome/username/mydir/
+rsync -avhPr --exclude='*.pyc' --exclude='.git' ~/mydir/ user@sagehen:/rhome/<myusername>/mydir/
 
 # Dry run (preview what would transfer)
-rsync -avhPr --dry-run ~/mydir/ user@sagehen:/rhome/username/mydir/
+rsync -avhPr --dry-run ~/mydir/ user@sagehen:/rhome/<myusername>/mydir/
 
 # With compression (slow networks)
-rsync -avhPrz ~/mydir/ user@sagehen:/rhome/username/mydir/
+rsync -avhPrz ~/mydir/ user@sagehen:/rhome/<myusername>/mydir/
 
 # Bandwidth limit (10 MB/s)
-rsync -avhPr --bwlimit=10m ~/mydir/ user@sagehen:/rhome/username/mydir/
+rsync -avhPr --bwlimit=10m ~/mydir/ user@sagehen:/rhome/<myusername>/mydir/
 
 # Delete files on remote not in local (CAREFUL!)
-rsync -avhPr --delete ~/mydir/ user@sagehen:/rhome/username/mydir/
+rsync -avhPr --delete ~/mydir/ user@sagehen:/rhome/<myusername>/mydir/
 ```
 
 ### OnDemand Access
@@ -63,7 +63,7 @@ rsync -avhPr --delete ~/mydir/ user@sagehen:/rhome/username/mydir/
 ```
 URL: https://ondemand.sagehen.hpc.pomona.edu
 Login: Pomona credentials + Duo
-Navigate: Files → Browse /rhome/username or /bigdata/labname
+Navigate: Files → Browse /rhome/<myusername> or /bigdata/lab/<labname>
 Upload: Click Upload button
 Download: Right-click file → Download
 ```
@@ -109,14 +109,14 @@ SCRATCH=/scratch/$SLURM_JOB_USER/$SLURM_JOB_ID
 mkdir -p $SCRATCH
 
 # Copy input
-rsync -avhP /rhome/username/input.dat $SCRATCH/
+rsync -avhP /rhome/<myusername>/input.dat $SCRATCH/
 
 # Compute
 cd $SCRATCH
 ./myanalysis input.dat
 
 # Copy results
-rsync -avhP output.dat /rhome/username/results/
+rsync -avhP output.dat /rhome/<myusername>/results/
 ```
 
 ### Use Tmpfs for In-Memory Data
@@ -134,7 +134,7 @@ cd $TMPFS
 ./analysis
 
 # Copy results before job ends!
-cp results.txt /rhome/username/
+cp results.txt /rhome/<myusername>/
 ```
 
 ## Disk Usage Examples
@@ -143,23 +143,23 @@ cp results.txt /rhome/username/
 
 ```bash
 # Top 10 largest files
-find /rhome/username -type f -exec ls -lh {} \; | sort -k5 -h | tail -10
+find /rhome/<myusername> -type f -exec ls -lh {} \; | sort -k5 -h | tail -10
 
 # Files larger than 100 MB
-find /rhome/username -size +100M -type f
+find /rhome/<myusername> -size +100M -type f
 ```
 
 ### Estimate directory size
 
 ```bash
 # Home directory
-du --apparent-size -sh /rhome/username
+du --apparent-size -sh /rhome/<myusername>
 
 # Lab storage
-du --apparent-size -sh /bigdata/labname
+du --apparent-size -sh /bigdata/lab/<labname>
 
 # With breakdown
-du --apparent-size -sh /rhome/username/* | sort -h
+du --apparent-size -sh /rhome/<myusername>/* | sort -h
 ```
 
 ### Monitor quota in real-time
@@ -209,7 +209,7 @@ Automated/scripted
 ## Data Organization Template
 
 ```
-/rhome/username/
+/rhome/<myusername>/
 ├── projects/
 │   ├── project_name/
 │   │   ├── data/
@@ -223,7 +223,7 @@ Automated/scripted
 │   └── old_projects/
 └── shared_resources/
 
-/bigdata/labname/
+/bigdata/lab/<labname>/
 ├── collaborative_projects/
 ├── lab_resources/
 └── archive/
@@ -236,7 +236,7 @@ Automated/scripted
 ```bash
 # Weekly backup of home directory
 rsync -avhPr --exclude='.git' \
-  user@sagehen:/rhome/username/ \
+  user@sagehen:/rhome/<myusername>/ \
   ~/backups/sagehen_backup_$(date +%Y%m%d)/
 ```
 
@@ -244,13 +244,13 @@ rsync -avhPr --exclude='.git' \
 
 ```bash
 # Compress
-tar czf project_2024.tar.gz /rhome/username/project_name/
+tar czf project_2024.tar.gz /rhome/<myusername>/project_name/
 
 # Move to archive
-mv project_2024.tar.gz /bigdata/labname/archive/
+mv project_2024.tar.gz /bigdata/lab/<labname>/archive/
 
 # Extract when needed
-tar xzf /bigdata/labname/archive/project_2024.tar.gz
+tar xzf /bigdata/lab/<labname>/archive/project_2024.tar.gz
 ```
 
 ## Troubleshooting Commands
@@ -262,7 +262,7 @@ tar xzf /bigdata/labname/archive/project_2024.tar.gz
 ping sagehen.hpc.pomona.edu
 
 # Check SSH
-ssh -v username@sagehen.hpc.pomona.edu
+ssh -v <myusername>@sagehen.hpc.pomona.edu
 # -v shows verbose output for debugging
 ```
 
@@ -270,13 +270,13 @@ ssh -v username@sagehen.hpc.pomona.edu
 
 ```bash
 # Verify remote file exists
-ssh username@sagehen.hpc.pomona.edu ls -lh /rhome/username/file.dat
+ssh <myusername>@sagehen.hpc.pomona.edu ls -lh /rhome/<myusername>/file.dat
 
 # Check quota
-ssh username@sagehen.hpc.pomona.edu quota_check.sh
+ssh <myusername>@sagehen.hpc.pomona.edu quota_check.sh
 
 # Try rsync with increased verbosity
-rsync -vvhP file.dat user@sagehen:/rhome/username/
+rsync -vvhP file.dat user@sagehen:/rhome/<myusername>/
 ```
 
 ### Quota issues
@@ -286,13 +286,13 @@ rsync -vvhP file.dat user@sagehen:/rhome/username/
 quota_check.sh
 
 # Find what's using space
-du --apparent-size -sh /rhome/username/* | sort -h
+du --apparent-size -sh /rhome/<myusername>/* | sort -h
 
 # Find old files
-find /rhome/username -atime +90 -type f
+find /rhome/<myusername> -atime +90 -type f
 
 # Find large files
-find /rhome/username -size +1G -type f
+find /rhome/<myusername> -size +1G -type f
 ```
 
 ## Performance Tips
@@ -331,3 +331,6 @@ find /rhome/username -size +1G -type f
 **Last Updated:** March 5, 2026
 **Sagehen Cluster:** BeeGFS parallel filesystem
 **License:** CC-BY 4.0
+
+<!-- highlight <labname>/<myusername> placeholders in code blocks; remove if the varnish theme handles this natively -->
+<script>(function(){var CSS='.sh-placeholder{color:#c2410c;font-weight:700}[data-bs-theme="dark"] .sh-placeholder,html.dark .sh-placeholder{color:#fdba74}@media (prefers-color-scheme: dark){[data-bs-theme="auto"] .sh-placeholder{color:#fdba74}}';var RX=/<labname>|<myusername>/g;function firstMatch(el){var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null),nodes=[],full='';while(w.nextNode()){nodes.push({n:w.currentNode,s:full.length});full+=w.currentNode.nodeValue;}RX.lastIndex=0;var m;while((m=RX.exec(full))){var s=m.index,e=s+m[0].length,inSpan=false,parts=[];for(var j=0;j<nodes.length;j++){var ns=nodes[j].s,ne=ns+nodes[j].n.nodeValue.length;if(ne<=s||ns>=e)continue;parts.push({node:nodes[j].n,a:Math.max(s-ns,0),b:Math.min(e-ns,nodes[j].n.nodeValue.length)});var p=nodes[j].n.parentNode;while(p&&p!==el){if(p.classList&&p.classList.contains('sh-placeholder')){inSpan=true;break;}p=p.parentNode;}}if(!inSpan&&parts.length)return parts;}return null;}function wrapParts(parts){for(var i=parts.length-1;i>=0;i--){var t=parts[i].node,txt=t.nodeValue,a=parts[i].a,b=parts[i].b;var span=document.createElement('span');span.className='sh-placeholder';span.textContent=txt.slice(a,b);var f=document.createDocumentFragment();if(a>0)f.appendChild(document.createTextNode(txt.slice(0,a)));f.appendChild(span);if(b<txt.length)f.appendChild(document.createTextNode(txt.slice(b)));t.parentNode.replaceChild(f,t);}}function run(){var st=document.createElement('style');st.textContent=CSS;document.head.appendChild(st);document.querySelectorAll('pre,code').forEach(function(el){var guard=0,parts;while((parts=firstMatch(el))&&guard++<500){wrapParts(parts);}});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}else{run();}})();</script>

@@ -50,7 +50,7 @@ Interface:
 
 **Upload 500 MB dataset at project start:**
 ```bash
-rsync -avhP ~/data.tar.gz username@sagehen.hpc.pomona.edu:/rhome/username/projects/
+rsync -avhP ~/data.tar.gz <myusername>@sagehen.hpc.pomona.edu:/rhome/<myusername>/projects/
 ```
 Method: rsync. Time: ~1 minute.
 
@@ -59,22 +59,22 @@ Use FileZilla for visual feedback and easy drag-and-drop of multiple small files
 
 **Download 2 GB results file:**
 ```bash
-rsync -avhP username@sagehen.hpc.pomona.edu:/rhome/username/results/output.h5 ~/Downloads/
+rsync -avhP <myusername>@sagehen.hpc.pomona.edu:/rhome/<myusername>/results/output.h5 ~/Downloads/
 ```
 Method: rsync. Time: 2-3 minutes.
 
 **Sync code between laptop and Sagehen daily:**
 ```bash
 # Push changes
-rsync -avhPr --exclude='.git' ~/myproject/ username@sagehen.hpc.pomona.edu:/rhome/username/myproject/
+rsync -avhPr --exclude='.git' ~/myproject/ <myusername>@sagehen.hpc.pomona.edu:/rhome/<myusername>/myproject/
 # Pull changes
-rsync -avhPr username@sagehen.hpc.pomona.edu:/rhome/username/myproject/ ~/myproject/
+rsync -avhPr <myusername>@sagehen.hpc.pomona.edu:/rhome/<myusername>/myproject/ ~/myproject/
 ```
 
 **Weekly backup of entire project:**
 ```bash
 rsync -avhPr --exclude='.git' \
-  username@sagehen.hpc.pomona.edu:/rhome/username/projects/myproject/ \
+  <myusername>@sagehen.hpc.pomona.edu:/rhome/<myusername>/projects/myproject/ \
   ~/backups/myproject_$(date +%Y%m%d)/
 ```
 
@@ -114,8 +114,8 @@ For each scenario, choose the best transfer method and explain why:
 ::::::::::::::::::::::::::::::::::::: solution
 
 1. **OnDemand** -- Small file, one-time, easiest method
-2. **rsync** -- Very large file, needs resume capability: `rsync -avhP dataset.tar.gz user@sagehen:/rhome/username/`
-3. **rsync** -- Many files, batch operation: `rsync -avhPr user@sagehen:/rhome/username/results/ ~/results/`
+2. **rsync** -- Very large file, needs resume capability: `rsync -avhP dataset.tar.gz user@sagehen:/rhome/<myusername>/`
+3. **rsync** -- Many files, batch operation: `rsync -avhPr user@sagehen:/rhome/<myusername>/results/ ~/results/`
 4. **rsync script via cron** -- Automated, recurring, needs to handle many files efficiently
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -130,3 +130,6 @@ For each scenario, choose the best transfer method and explain why:
 - Compressing data before transfer saves time regardless of method
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
+
+<!-- highlight <labname>/<myusername> placeholders in code blocks; remove if the varnish theme handles this natively -->
+<script>(function(){var CSS='.sh-placeholder{color:#c2410c;font-weight:700}[data-bs-theme="dark"] .sh-placeholder,html.dark .sh-placeholder{color:#fdba74}@media (prefers-color-scheme: dark){[data-bs-theme="auto"] .sh-placeholder{color:#fdba74}}';var RX=/<labname>|<myusername>/g;function firstMatch(el){var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null),nodes=[],full='';while(w.nextNode()){nodes.push({n:w.currentNode,s:full.length});full+=w.currentNode.nodeValue;}RX.lastIndex=0;var m;while((m=RX.exec(full))){var s=m.index,e=s+m[0].length,inSpan=false,parts=[];for(var j=0;j<nodes.length;j++){var ns=nodes[j].s,ne=ns+nodes[j].n.nodeValue.length;if(ne<=s||ns>=e)continue;parts.push({node:nodes[j].n,a:Math.max(s-ns,0),b:Math.min(e-ns,nodes[j].n.nodeValue.length)});var p=nodes[j].n.parentNode;while(p&&p!==el){if(p.classList&&p.classList.contains('sh-placeholder')){inSpan=true;break;}p=p.parentNode;}}if(!inSpan&&parts.length)return parts;}return null;}function wrapParts(parts){for(var i=parts.length-1;i>=0;i--){var t=parts[i].node,txt=t.nodeValue,a=parts[i].a,b=parts[i].b;var span=document.createElement('span');span.className='sh-placeholder';span.textContent=txt.slice(a,b);var f=document.createDocumentFragment();if(a>0)f.appendChild(document.createTextNode(txt.slice(0,a)));f.appendChild(span);if(b<txt.length)f.appendChild(document.createTextNode(txt.slice(b)));t.parentNode.replaceChild(f,t);}}function run(){var st=document.createElement('style');st.textContent=CSS;document.head.appendChild(st);document.querySelectorAll('pre,code').forEach(function(el){var guard=0,parts;while((parts=firstMatch(el))&&guard++<500){wrapParts(parts);}});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}else{run();}})();</script>

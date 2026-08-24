@@ -15,6 +15,7 @@ exercises: 10
 ::::::::::::::::::::::::::::::::::::: objectives
 
 After completing this episode, participants will be able to:
+
 - Describe the four main storage locations on Sagehen
 - Explain the persistence and availability of each filesystem
 - Choose the appropriate storage location for different use cases
@@ -25,16 +26,16 @@ After completing this episode, participants will be able to:
 
 Sagehen uses a **hierarchical storage system** designed to balance performance, reliability, and cost. The four main storage locations are:
 
-1. **`/rhome/username`** -- Home directory (persistent, lab-shared quota)
-2. **`/bigdata/labname`** -- Lab shared storage (persistent, 1TB quota per lab)
+1. **`/rhome/<myusername>`** -- Home directory (persistent, lab-shared quota)
+2. **`/bigdata/lab/<labname>`** -- Lab shared storage (persistent, 1TB quota per lab)
 3. **`/scratch/$SLURM_JOB_ID`** -- Job-local temporary SSD (deleted when job completes)
 4. **`/tmpfs/$SLURM_JOB_ID`** -- RAM-backed temporary storage (deleted when job completes)
 
 ```
 Sagehen Storage Architecture
 +-- Persistent Storage (survives job termination)
-|   +-- /rhome/username       (Home, BeeGFS, weekly snapshots)
-|   +-- /bigdata/labname      (Lab shared, BeeGFS, weekly snapshots)
+|   +-- /rhome/<myusername>       (Home, BeeGFS, weekly snapshots)
+|   +-- /bigdata/lab/<labname>      (Lab shared, BeeGFS, weekly snapshots)
 |
 +-- Temporary Storage (deleted when job completes)
     +-- /scratch/$SLURM_JOB_ID  (SSD-backed, very fast)
@@ -55,7 +56,7 @@ Use temporary storage for intermediate data during jobs to improve performance 5
 
 ## Persistent Storage
 
-### Home Directory: `/rhome/username`
+### Home Directory: `/rhome/<myusername>`
 
 Your personal storage space, accessible from all nodes and OnDemand.
 
@@ -65,7 +66,7 @@ Your personal storage space, accessible from all nodes and OnDemand.
 - **Filesystem**: BeeGFS distributed filesystem
 - **Best for**: Source code, config files, small datasets, job scripts
 
-### Lab Shared Storage: `/bigdata/labname`
+### Lab Shared Storage: `/bigdata/lab/<labname>`
 
 Shared storage for your entire lab group.
 
@@ -98,8 +99,8 @@ Fastest storage available, backed by node RAM. Deleted when job terminates. Limi
 Will this data survive beyond my current job?
     +-- YES
     |   +-- Will lab members need access?
-    |       +-- YES --> /bigdata/labname
-    |       +-- NO  --> /rhome/username
+    |       +-- YES --> /bigdata/lab/<labname>
+    |       +-- NO  --> /rhome/<myusername>
     +-- NO (temporary data)
         +-- Does data fit in allocated memory?
             +-- YES --> /tmpfs (fastest)
@@ -123,9 +124,9 @@ For each scenario, choose the best storage location and justify your answer:
 
 ::::::::::::::::::::::::::::::::::::: solution
 
-1. **`/bigdata/labname`** -- Needs lab-wide access and persistence
+1. **`/bigdata/lab/<labname>`** -- Needs lab-wide access and persistence
 2. **`/scratch`** for working data, copy results back to `/rhome` -- Fast I/O, too large for RAM
-3. **`/rhome/username`** -- Personal, small, needs permanent persistence
+3. **`/rhome/<myusername>`** -- Personal, small, needs permanent persistence
 4. **`/tmpfs`** -- Fits in allocated memory, fastest possible I/O for single-node work
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -140,3 +141,6 @@ For each scenario, choose the best storage location and justify your answer:
 - Choose storage based on persistence needs, access patterns, and performance requirements
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
+
+<!-- highlight <labname>/<myusername> placeholders in code blocks; remove if the varnish theme handles this natively -->
+<script>(function(){var CSS='.sh-placeholder{color:#c2410c;font-weight:700}[data-bs-theme="dark"] .sh-placeholder,html.dark .sh-placeholder{color:#fdba74}@media (prefers-color-scheme: dark){[data-bs-theme="auto"] .sh-placeholder{color:#fdba74}}';var RX=/<labname>|<myusername>/g;function firstMatch(el){var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null),nodes=[],full='';while(w.nextNode()){nodes.push({n:w.currentNode,s:full.length});full+=w.currentNode.nodeValue;}RX.lastIndex=0;var m;while((m=RX.exec(full))){var s=m.index,e=s+m[0].length,inSpan=false,parts=[];for(var j=0;j<nodes.length;j++){var ns=nodes[j].s,ne=ns+nodes[j].n.nodeValue.length;if(ne<=s||ns>=e)continue;parts.push({node:nodes[j].n,a:Math.max(s-ns,0),b:Math.min(e-ns,nodes[j].n.nodeValue.length)});var p=nodes[j].n.parentNode;while(p&&p!==el){if(p.classList&&p.classList.contains('sh-placeholder')){inSpan=true;break;}p=p.parentNode;}}if(!inSpan&&parts.length)return parts;}return null;}function wrapParts(parts){for(var i=parts.length-1;i>=0;i--){var t=parts[i].node,txt=t.nodeValue,a=parts[i].a,b=parts[i].b;var span=document.createElement('span');span.className='sh-placeholder';span.textContent=txt.slice(a,b);var f=document.createDocumentFragment();if(a>0)f.appendChild(document.createTextNode(txt.slice(0,a)));f.appendChild(span);if(b<txt.length)f.appendChild(document.createTextNode(txt.slice(b)));t.parentNode.replaceChild(f,t);}}function run(){var st=document.createElement('style');st.textContent=CSS;document.head.appendChild(st);document.querySelectorAll('pre,code').forEach(function(el){var guard=0,parts;while((parts=firstMatch(el))&&guard++<500){wrapParts(parts);}});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}else{run();}})();</script>

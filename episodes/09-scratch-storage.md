@@ -35,7 +35,7 @@ Scratch storage provides significant performance advantages because the data liv
 
 For a job reading 10 GB of data, this means completing in 30-50 seconds on scratch versus 200+ seconds on `/rhome`: a **4-7x speedup**. For machine learning, simulation, and any pipeline that re-reads the same files thousands of times during training, the cumulative savings are even larger.
 
-The performance gap matters most when many jobs are reading from `/bigdata` simultaneously. NFS bandwidth is shared. If five jobs on five different nodes are all reading from `/bigdata/lab/MYLAB/` at once, each gets a fraction of the available bandwidth. `/scratch` is local: each job has the full disk to itself.
+The performance gap matters most when many jobs are reading from `/bigdata` simultaneously. NFS bandwidth is shared. If five jobs on five different nodes are all reading from `/bigdata/lab/<labname>/` at once, each gets a fraction of the available bandwidth. `/scratch` is local: each job has the full disk to itself.
 
 ::::::::::::::::::::::::::::::::::::: callout
 
@@ -73,14 +73,14 @@ SCRATCH_DIR=/scratch/$SLURM_JOB_USER/$SLURM_JOB_ID
 mkdir -p $SCRATCH_DIR
 
 echo "=== Stage 1: Copy input data to scratch ==="
-rsync -avhP /rhome/username/input/*.dat $SCRATCH_DIR/
+rsync -avhP /rhome/<myusername>/input/*.dat $SCRATCH_DIR/
 
 echo "=== Stage 2: Run computation ==="
 cd $SCRATCH_DIR
 ./myanalysis *.dat
 
 echo "=== Stage 3: Copy results back ==="
-rsync -avhP $SCRATCH_DIR/output*.h5 /rhome/username/results/
+rsync -avhP $SCRATCH_DIR/output*.h5 /rhome/<myusername>/results/
 
 echo "=== Job complete ==="
 ```
@@ -121,12 +121,12 @@ SCRATCH_DIR=/scratch/$SLURM_JOB_USER/$SLURM_JOB_ID
 mkdir -p $SCRATCH_DIR
 cd $SCRATCH_DIR
 
-rsync -avhP /rhome/username/raw_data/ $SCRATCH_DIR/input/
+rsync -avhP /rhome/<myusername>/raw_data/ $SCRATCH_DIR/input/
 ./preprocess input/ -o preprocessed/
 ./analyze preprocessed/ -o analysis/
 
 # Copy all results back
-rsync -avhP analysis/ /rhome/username/results/analysis/
+rsync -avhP analysis/ /rhome/<myusername>/results/analysis/
 ```
 
 The intermediate `preprocessed/` directory never leaves scratch. It does not need to: the next stage reads it locally. This pattern is the single biggest performance win you can get from rewriting a multi-stage pipeline on HPC.
@@ -143,12 +143,12 @@ The intermediate `preprocessed/` directory never leaves scratch. It does not nee
 SCRATCH=/scratch/$SLURM_JOB_USER/$SLURM_JOB_ID
 mkdir -p $SCRATCH
 
-rsync -avhP /rhome/username/training_data.h5 $SCRATCH/
+rsync -avhP /rhome/<myusername>/training_data.h5 $SCRATCH/
 cd $SCRATCH
 python train.py --data training_data.h5 --output model.pkl
 
 # Save results to permanent storage
-rsync -avhP model.pkl /rhome/username/results/
+rsync -avhP model.pkl /rhome/<myusername>/results/
 ```
 
 For ML training in particular, scratch is essentially mandatory. PyTorch DataLoaders with `num_workers > 0` issue many parallel reads, and NFS handles parallel reads from one client poorly. Reading from local SSD avoids GPU starvation entirely.
@@ -183,7 +183,7 @@ Create two job scripts: one writing to `/rhome` and one to `/scratch`:
 #SBATCH --job-name=no_scratch
 #SBATCH --time=00:05:00
 
-cd /rhome/username
+cd /rhome/<myusername>
 time dd if=/dev/zero of=test_1gb.dat bs=1M count=1024
 rm test_1gb.dat
 ```
@@ -248,3 +248,6 @@ In both cases, `find /rhome/$USER /bigdata -name "analysis_summary.csv" -mtime -
 - ML training is essentially mandatory on scratch because of DataLoader parallel reads
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
+
+<!-- highlight <labname>/<myusername> placeholders in code blocks; remove if the varnish theme handles this natively -->
+<script>(function(){var CSS='.sh-placeholder{color:#c2410c;font-weight:700}[data-bs-theme="dark"] .sh-placeholder,html.dark .sh-placeholder{color:#fdba74}@media (prefers-color-scheme: dark){[data-bs-theme="auto"] .sh-placeholder{color:#fdba74}}';var RX=/<labname>|<myusername>/g;function firstMatch(el){var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null),nodes=[],full='';while(w.nextNode()){nodes.push({n:w.currentNode,s:full.length});full+=w.currentNode.nodeValue;}RX.lastIndex=0;var m;while((m=RX.exec(full))){var s=m.index,e=s+m[0].length,inSpan=false,parts=[];for(var j=0;j<nodes.length;j++){var ns=nodes[j].s,ne=ns+nodes[j].n.nodeValue.length;if(ne<=s||ns>=e)continue;parts.push({node:nodes[j].n,a:Math.max(s-ns,0),b:Math.min(e-ns,nodes[j].n.nodeValue.length)});var p=nodes[j].n.parentNode;while(p&&p!==el){if(p.classList&&p.classList.contains('sh-placeholder')){inSpan=true;break;}p=p.parentNode;}}if(!inSpan&&parts.length)return parts;}return null;}function wrapParts(parts){for(var i=parts.length-1;i>=0;i--){var t=parts[i].node,txt=t.nodeValue,a=parts[i].a,b=parts[i].b;var span=document.createElement('span');span.className='sh-placeholder';span.textContent=txt.slice(a,b);var f=document.createDocumentFragment();if(a>0)f.appendChild(document.createTextNode(txt.slice(0,a)));f.appendChild(span);if(b<txt.length)f.appendChild(document.createTextNode(txt.slice(b)));t.parentNode.replaceChild(f,t);}}function run(){var st=document.createElement('style');st.textContent=CSS;document.head.appendChild(st);document.querySelectorAll('pre,code').forEach(function(el){var guard=0,parts;while((parts=firstMatch(el))&&guard++<500){wrapParts(parts);}});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}else{run();}})();</script>

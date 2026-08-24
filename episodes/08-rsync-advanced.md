@@ -28,7 +28,7 @@ Skip files you do not want to transfer:
 
 ```bash
 rsync -avhPr --exclude='.git' --exclude='*.pyc' --exclude='__pycache__' \
-  ~/myproject/ username@sagehen.hpc.pomona.edu:/rhome/username/myproject/
+  ~/myproject/ <myusername>@sagehen.hpc.pomona.edu:/rhome/<myusername>/myproject/
 ```
 
 Common exclusions:
@@ -47,7 +47,7 @@ Transfer only matching file types by combining include and exclude:
 
 ```bash
 rsync -avhPr --include='*.txt' --exclude='*' \
-  ~/myproject/ username@sagehen.hpc.pomona.edu:/rhome/username/myproject/
+  ~/myproject/ <myusername>@sagehen.hpc.pomona.edu:/rhome/<myusername>/myproject/
 ```
 
 ## Dry Run (Preview)
@@ -55,7 +55,7 @@ rsync -avhPr --include='*.txt' --exclude='*' \
 See what rsync would do without actually transferring anything:
 
 ```bash
-rsync -avhPr --dry-run ~/myproject/ username@sagehen.hpc.pomona.edu:/rhome/username/myproject/
+rsync -avhPr --dry-run ~/myproject/ <myusername>@sagehen.hpc.pomona.edu:/rhome/<myusername>/myproject/
 ```
 
 Output includes `(DRY RUN)` and shows files that would transfer. Always use this before any destructive operation.
@@ -66,10 +66,10 @@ The `--delete` flag removes files from the destination that do not exist in the 
 
 ```bash
 # DANGEROUS: Always dry-run first!
-rsync -avhPr --delete --dry-run ~/myproject/ username@sagehen.hpc.pomona.edu:/rhome/username/myproject/
+rsync -avhPr --delete --dry-run ~/myproject/ <myusername>@sagehen.hpc.pomona.edu:/rhome/<myusername>/myproject/
 
 # If the dry-run output looks correct, run without --dry-run
-rsync -avhPr --delete ~/myproject/ username@sagehen.hpc.pomona.edu:/rhome/username/myproject/
+rsync -avhPr --delete ~/myproject/ <myusername>@sagehen.hpc.pomona.edu:/rhome/<myusername>/myproject/
 ```
 
 ::::::::::::::::::::::::::::::::::::: callout
@@ -85,7 +85,7 @@ Running `--delete` with an empty source directory will delete everything on the 
 For slow connections, compress data during transfer:
 
 ```bash
-rsync -avhPrz ~/myproject/ username@sagehen.hpc.pomona.edu:/rhome/username/myproject/
+rsync -avhPrz ~/myproject/ <myusername>@sagehen.hpc.pomona.edu:/rhome/<myusername>/myproject/
 ```
 
 Compression helps for text-heavy files but provides no benefit for already-compressed formats (images, videos, archives).
@@ -95,7 +95,7 @@ Compression helps for text-heavy files but provides no benefit for already-compr
 Avoid saturating your network by limiting transfer speed:
 
 ```bash
-rsync -avhPr --bwlimit=10m ~/myproject/ username@sagehen.hpc.pomona.edu:/rhome/username/myproject/
+rsync -avhPr --bwlimit=10m ~/myproject/ <myusername>@sagehen.hpc.pomona.edu:/rhome/<myusername>/myproject/
 ```
 
 Units: `k` = kilobytes/s, `m` = megabytes/s.
@@ -110,14 +110,14 @@ Use rsync to stage data into fast temporary storage during SLURM jobs:
 #SBATCH --time=04:00:00
 
 # Copy input to fast scratch
-rsync -avhP /rhome/username/input.dat /scratch/$SLURM_JOB_USER/$SLURM_JOB_ID/
+rsync -avhP /rhome/<myusername>/input.dat /scratch/$SLURM_JOB_USER/$SLURM_JOB_ID/
 
 # Run computation on scratch
 cd /scratch/$SLURM_JOB_USER/$SLURM_JOB_ID/
 ./myanalysis input.dat
 
 # Copy results back to permanent storage
-rsync -avhP output.dat /rhome/username/results/
+rsync -avhP output.dat /rhome/<myusername>/results/
 ```
 
 ## Common Mistakes
@@ -140,7 +140,7 @@ rsync -avhP output.dat /rhome/username/results/
    ```
 2. Dry-run an rsync excluding `.pyc` files:
    ```bash
-   rsync -avhPr --exclude='*.pyc' --dry-run ~/testproject/ username@sagehen.hpc.pomona.edu:/rhome/username/testproject/
+   rsync -avhPr --exclude='*.pyc' --dry-run ~/testproject/ <myusername>@sagehen.hpc.pomona.edu:/rhome/<myusername>/testproject/
    ```
 3. Verify that `main.pyc` is not listed in the dry-run output
 4. Run without `--dry-run` to actually transfer
@@ -161,3 +161,6 @@ The dry-run should show `data/data.txt` and `scripts/main.py` but not `scripts/m
 - rsync integrates well into SLURM job scripts for staging data to fast storage
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
+
+<!-- highlight <labname>/<myusername> placeholders in code blocks; remove if the varnish theme handles this natively -->
+<script>(function(){var CSS='.sh-placeholder{color:#c2410c;font-weight:700}[data-bs-theme="dark"] .sh-placeholder,html.dark .sh-placeholder{color:#fdba74}@media (prefers-color-scheme: dark){[data-bs-theme="auto"] .sh-placeholder{color:#fdba74}}';var RX=/<labname>|<myusername>/g;function firstMatch(el){var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null),nodes=[],full='';while(w.nextNode()){nodes.push({n:w.currentNode,s:full.length});full+=w.currentNode.nodeValue;}RX.lastIndex=0;var m;while((m=RX.exec(full))){var s=m.index,e=s+m[0].length,inSpan=false,parts=[];for(var j=0;j<nodes.length;j++){var ns=nodes[j].s,ne=ns+nodes[j].n.nodeValue.length;if(ne<=s||ns>=e)continue;parts.push({node:nodes[j].n,a:Math.max(s-ns,0),b:Math.min(e-ns,nodes[j].n.nodeValue.length)});var p=nodes[j].n.parentNode;while(p&&p!==el){if(p.classList&&p.classList.contains('sh-placeholder')){inSpan=true;break;}p=p.parentNode;}}if(!inSpan&&parts.length)return parts;}return null;}function wrapParts(parts){for(var i=parts.length-1;i>=0;i--){var t=parts[i].node,txt=t.nodeValue,a=parts[i].a,b=parts[i].b;var span=document.createElement('span');span.className='sh-placeholder';span.textContent=txt.slice(a,b);var f=document.createDocumentFragment();if(a>0)f.appendChild(document.createTextNode(txt.slice(0,a)));f.appendChild(span);if(b<txt.length)f.appendChild(document.createTextNode(txt.slice(b)));t.parentNode.replaceChild(f,t);}}function run(){var st=document.createElement('style');st.textContent=CSS;document.head.appendChild(st);document.querySelectorAll('pre,code').forEach(function(el){var guard=0,parts;while((parts=firstMatch(el))&&guard++<500){wrapParts(parts);}});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}else{run();}})();</script>

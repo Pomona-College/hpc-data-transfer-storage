@@ -26,7 +26,9 @@ After completing this episode, participants will be able to:
 
 The left panel shows your local computer; the right panel shows Sagehen. Double-click folders to enter them, or type a path directly in the path field.
 
-To access lab storage, type `/bigdata/labname` in the remote path field and press Enter.
+![FileZilla after Quickconnect: your computer on the left, your Sagehen home on the right (it appears as /bigdata/rhome/... — the same place /rhome points to).](fig/06-filezilla-connected-panels.png){alt='The FileZilla client connected to sagehen.hpc.pomona.edu over SFTP. The status log confirms the hostkey is trusted and the remote directory listing succeeded. The window is split into a local Windows file tree on the left and the remote Sagehen directory tree on the right.'}
+
+To access lab storage, type `/bigdata/lab/<labname>` in the remote path field and press Enter.
 
 ## Uploading Files
 
@@ -73,7 +75,7 @@ After upload, compare file sizes between local and remote:
 ls -lh myfile.dat
 
 # On Sagehen (via SSH)
-ls -lh /rhome/username/myfile.dat
+ls -lh /rhome/<myusername>/myfile.dat
 ```
 
 ::::::::::::::::::::::::::::::::::::: callout
@@ -109,7 +111,7 @@ Compression typically reduces text/CSV data 5-20x. Then transfer the compressed 
 
 ::::::::::::::::::::::::::::::::::::: solution
 
-Expected result: the file appears in `/rhome/username/filezilla_test/` with matching size. Transfer speed depends on your network -- typical range is 5-15 MB/s. The downloaded copy should be identical to the original.
+Expected result: the file appears in `/rhome/<myusername>/filezilla_test/` with matching size. Transfer speed depends on your network -- typical range is 5-15 MB/s. The downloaded copy should be identical to the original.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -123,3 +125,6 @@ Expected result: the file appears in `/rhome/username/filezilla_test/` with matc
 - Good for interactive transfers up to several hundred MB; use rsync for larger files
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
+
+<!-- highlight <labname>/<myusername> placeholders in code blocks; remove if the varnish theme handles this natively -->
+<script>(function(){var CSS='.sh-placeholder{color:#c2410c;font-weight:700}[data-bs-theme="dark"] .sh-placeholder,html.dark .sh-placeholder{color:#fdba74}@media (prefers-color-scheme: dark){[data-bs-theme="auto"] .sh-placeholder{color:#fdba74}}';var RX=/<labname>|<myusername>/g;function firstMatch(el){var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null),nodes=[],full='';while(w.nextNode()){nodes.push({n:w.currentNode,s:full.length});full+=w.currentNode.nodeValue;}RX.lastIndex=0;var m;while((m=RX.exec(full))){var s=m.index,e=s+m[0].length,inSpan=false,parts=[];for(var j=0;j<nodes.length;j++){var ns=nodes[j].s,ne=ns+nodes[j].n.nodeValue.length;if(ne<=s||ns>=e)continue;parts.push({node:nodes[j].n,a:Math.max(s-ns,0),b:Math.min(e-ns,nodes[j].n.nodeValue.length)});var p=nodes[j].n.parentNode;while(p&&p!==el){if(p.classList&&p.classList.contains('sh-placeholder')){inSpan=true;break;}p=p.parentNode;}}if(!inSpan&&parts.length)return parts;}return null;}function wrapParts(parts){for(var i=parts.length-1;i>=0;i--){var t=parts[i].node,txt=t.nodeValue,a=parts[i].a,b=parts[i].b;var span=document.createElement('span');span.className='sh-placeholder';span.textContent=txt.slice(a,b);var f=document.createDocumentFragment();if(a>0)f.appendChild(document.createTextNode(txt.slice(0,a)));f.appendChild(span);if(b<txt.length)f.appendChild(document.createTextNode(txt.slice(b)));t.parentNode.replaceChild(f,t);}}function run(){var st=document.createElement('style');st.textContent=CSS;document.head.appendChild(st);document.querySelectorAll('pre,code').forEach(function(el){var guard=0,parts;while((parts=firstMatch(el))&&guard++<500){wrapParts(parts);}});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}else{run();}})();</script>

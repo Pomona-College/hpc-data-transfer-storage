@@ -21,16 +21,19 @@ You'll need an SSH client to connect to the Sagehen cluster. Choose the option b
 ### Windows
 
 **Option A: PuTTY (Recommended for beginners)**
+
 1. Download PuTTY from https://www.putty.org/
 2. Run the installer and follow the prompts
 3. You can also install Pageant (comes with PuTTY) for SSH key management
 
 **Option B: OpenSSH (Windows 10+)**
+
 1. Open PowerShell as Administrator
 2. Run: `Get-WindowsCapability -Online | Where-Object Name -like 'OpenSSH*' | Add-WindowsCapability -Online`
 3. Verify installation: Open Command Prompt and type `ssh`
 
 **Option C: Windows Terminal + Git Bash**
+
 1. Install Windows Terminal from the Microsoft Store
 2. Install Git for Windows from https://git-scm.com/download/win
 3. Open Git Bash and test with `ssh`
@@ -68,11 +71,13 @@ ssh -V
 If not installed, use your package manager:
 
 **Debian/Ubuntu:**
+
 ```bash
 sudo apt-get install openssh-client
 ```
 
 **RHEL/CentOS:**
+
 ```bash
 sudo yum install openssh-clients
 ```
@@ -112,6 +117,7 @@ ssh-keygen -t ed25519 -C "your.email@pomona.edu"
 ```
 
 **Prompts:**
+
 - **File location:** Press Enter to accept the default (`~/.ssh/id_ed25519`)
 - **Passphrase:** Enter a strong passphrase or press Enter to skip (not recommended for security)
 
@@ -138,7 +144,7 @@ Copy the entire output (should start with `ssh-ed25519`).
 **Step 2:** Log into Sagehen with your password:
 
 ```bash
-ssh your.username@sagehen.hpc.pomona.edu
+ssh your.<myusername>@sagehen.hpc.pomona.edu
 ```
 
 Use your Pomona AD credentials. You'll be prompted for DUO MFA: approve it on your phone or use the Duo app.
@@ -168,7 +174,7 @@ exit
 Try logging in again without a password:
 
 ```bash
-ssh your.username@sagehen.hpc.pomona.edu
+ssh your.<myusername>@sagehen.hpc.pomona.edu
 ```
 
 If successful, you'll skip the password prompt (but may still be prompted for DUO MFA).
@@ -179,7 +185,7 @@ Before the workshop, verify that you can access the Sagehen cluster:
 
 1. **Connect via SSH:**
    ```bash
-   ssh your.username@sagehen.hpc.pomona.edu
+   ssh your.<myusername>@sagehen.hpc.pomona.edu
    ```
 
 2. **Approve DUO MFA** on your registered device.
@@ -192,7 +198,7 @@ Before the workshop, verify that you can access the Sagehen cluster:
 
 4. **Verify you can see the storage locations:**
    ```bash
-   ls /rhome/your.username
+   ls /rhome/<myusername>
    ls /bigdata/
    ```
 
@@ -203,11 +209,13 @@ Before the workshop, verify that you can access the Sagehen cluster:
 Having a few small test files will help during the workshop exercises:
 
 1. Create a local test directory:
+
    ```bash
    mkdir -p ~/sagehen-test-data
    ```
 
 2. Create some small test files:
+
    ```bash
    echo "Test file 1" > ~/sagehen-test-data/file1.txt
    echo "Test file 2" > ~/sagehen-test-data/file2.txt
@@ -226,23 +234,30 @@ Having a few small test files will help during the workshop exercises:
 ## Troubleshooting
 
 **Cannot connect to Sagehen?**
+
 - Verify your Pomona AD username and password
 - Check that you're on campus or connected to Pomona VPN
 - Confirm DUO MFA is set up on your account
 
 **DUO approval times out?**
+
 - Ensure Duo app is updated on your phone
 - Check your device's system time is synchronized
 - Contact its-hpc@pomona.edu for account issues
 
 **SSH keys not working?**
+
 - Verify permissions: `ls -la ~/.ssh/` should show 700 for the directory and 600 for files
-- Check that your public key was added correctly: `ssh -vvv your.username@sagehen.hpc.pomona.edu`
+- Check that your public key was added correctly: `ssh -vvv your.<myusername>@sagehen.hpc.pomona.edu`
 - Contact HPC support if issues persist
 
 **FileZilla connection issues?**
+
 - Host: `sagehen.hpc.pomona.edu`, Protocol: SFTP, Port: 22
 - Use your Pomona AD username
 - Try using your SSH key instead of password authentication
 
 If you encounter issues during setup, please reach out to its-hpc@pomona.edu before the workshop.
+
+<!-- highlight <labname>/<myusername> placeholders in code blocks; remove if the varnish theme handles this natively -->
+<script>(function(){var CSS='.sh-placeholder{color:#c2410c;font-weight:700}[data-bs-theme="dark"] .sh-placeholder,html.dark .sh-placeholder{color:#fdba74}@media (prefers-color-scheme: dark){[data-bs-theme="auto"] .sh-placeholder{color:#fdba74}}';var RX=/<labname>|<myusername>/g;function firstMatch(el){var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null),nodes=[],full='';while(w.nextNode()){nodes.push({n:w.currentNode,s:full.length});full+=w.currentNode.nodeValue;}RX.lastIndex=0;var m;while((m=RX.exec(full))){var s=m.index,e=s+m[0].length,inSpan=false,parts=[];for(var j=0;j<nodes.length;j++){var ns=nodes[j].s,ne=ns+nodes[j].n.nodeValue.length;if(ne<=s||ns>=e)continue;parts.push({node:nodes[j].n,a:Math.max(s-ns,0),b:Math.min(e-ns,nodes[j].n.nodeValue.length)});var p=nodes[j].n.parentNode;while(p&&p!==el){if(p.classList&&p.classList.contains('sh-placeholder')){inSpan=true;break;}p=p.parentNode;}}if(!inSpan&&parts.length)return parts;}return null;}function wrapParts(parts){for(var i=parts.length-1;i>=0;i--){var t=parts[i].node,txt=t.nodeValue,a=parts[i].a,b=parts[i].b;var span=document.createElement('span');span.className='sh-placeholder';span.textContent=txt.slice(a,b);var f=document.createDocumentFragment();if(a>0)f.appendChild(document.createTextNode(txt.slice(0,a)));f.appendChild(span);if(b<txt.length)f.appendChild(document.createTextNode(txt.slice(b)));t.parentNode.replaceChild(f,t);}}function run(){var st=document.createElement('style');st.textContent=CSS;document.head.appendChild(st);document.querySelectorAll('pre,code').forEach(function(el){var guard=0,parts;while((parts=firstMatch(el))&&guard++<500){wrapParts(parts);}});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}else{run();}})();</script>

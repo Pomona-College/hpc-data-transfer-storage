@@ -31,11 +31,11 @@ Run a monthly maintenance routine:
 quota_check.sh
 
 # Find old files (not accessed in 90 days)
-find /rhome/username -type f -atime +90 -exec ls -lh {} \;
+find /rhome/<myusername> -type f -atime +90 -exec ls -lh {} \;
 
 # Archive and remove old project
-tar czf /bigdata/labname/archive_2025_03.tar.gz /rhome/username/old_project/
-rm -rf /rhome/username/old_project/
+tar czf /bigdata/lab/<labname>/archive_2025_03.tar.gz /rhome/<myusername>/old_project/
+rm -rf /rhome/<myusername>/old_project/
 ```
 
 ## Compression
@@ -58,16 +58,16 @@ Remove backup and temporary files:
 
 ```bash
 # Find backup files
-find /rhome/username -name "*.bak" -o -name "*_old" -o -name "*~"
+find /rhome/<myusername> -name "*.bak" -o -name "*_old" -o -name "*~"
 
 # Remove them
-find /rhome/username -name "*.bak" -delete
+find /rhome/<myusername> -name "*.bak" -delete
 ```
 
 Avoid storing multiple manual copies of the same project. Use git version control instead:
 
 ```bash
-cd /rhome/username/project
+cd /rhome/<myusername>/project
 git init
 git add .
 git commit -m "Initial version"
@@ -100,8 +100,8 @@ watch -n 5 quota_check.sh
 Your lab's combined quota may be full even if your home looks fine. Run `quota_check.sh` to see the combined usage. Also check hidden directories:
 
 ```bash
-du --apparent-size -h /rhome/username/.cache
-du --apparent-size -h /rhome/username/.local
+du --apparent-size -h /rhome/<myusername>/.cache
+du --apparent-size -h /rhome/<myusername>/.local
 ```
 
 ### du reports different size than quota_check.sh
@@ -113,7 +113,7 @@ You likely forgot the `--apparent-size` flag. Without it, `du` reports block usa
 A running process may still hold the file handle open:
 
 ```bash
-lsof /rhome/username/largefile.dat
+lsof /rhome/<myusername>/largefile.dat
 kill <process_id>
 ```
 
@@ -123,7 +123,7 @@ kill <process_id>
 
 1. Pick a directory and measure its size:
    ```bash
-   du --apparent-size -sh /rhome/username/project1
+   du --apparent-size -sh /rhome/<myusername>/project1
    ```
 2. Calculate what portion of your 1TB quota it uses
 3. Identify at least one file or directory you could safely delete or compress
@@ -152,3 +152,6 @@ Actions to consider: delete `.bak` files, compress older project directories, mo
 - Hidden directories like `.cache` and `.local` can consume significant space
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
+
+<!-- highlight <labname>/<myusername> placeholders in code blocks; remove if the varnish theme handles this natively -->
+<script>(function(){var CSS='.sh-placeholder{color:#c2410c;font-weight:700}[data-bs-theme="dark"] .sh-placeholder,html.dark .sh-placeholder{color:#fdba74}@media (prefers-color-scheme: dark){[data-bs-theme="auto"] .sh-placeholder{color:#fdba74}}';var RX=/<labname>|<myusername>/g;function firstMatch(el){var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null),nodes=[],full='';while(w.nextNode()){nodes.push({n:w.currentNode,s:full.length});full+=w.currentNode.nodeValue;}RX.lastIndex=0;var m;while((m=RX.exec(full))){var s=m.index,e=s+m[0].length,inSpan=false,parts=[];for(var j=0;j<nodes.length;j++){var ns=nodes[j].s,ne=ns+nodes[j].n.nodeValue.length;if(ne<=s||ns>=e)continue;parts.push({node:nodes[j].n,a:Math.max(s-ns,0),b:Math.min(e-ns,nodes[j].n.nodeValue.length)});var p=nodes[j].n.parentNode;while(p&&p!==el){if(p.classList&&p.classList.contains('sh-placeholder')){inSpan=true;break;}p=p.parentNode;}}if(!inSpan&&parts.length)return parts;}return null;}function wrapParts(parts){for(var i=parts.length-1;i>=0;i--){var t=parts[i].node,txt=t.nodeValue,a=parts[i].a,b=parts[i].b;var span=document.createElement('span');span.className='sh-placeholder';span.textContent=txt.slice(a,b);var f=document.createDocumentFragment();if(a>0)f.appendChild(document.createTextNode(txt.slice(0,a)));f.appendChild(span);if(b<txt.length)f.appendChild(document.createTextNode(txt.slice(b)));t.parentNode.replaceChild(f,t);}}function run(){var st=document.createElement('style');st.textContent=CSS;document.head.appendChild(st);document.querySelectorAll('pre,code').forEach(function(el){var guard=0,parts;while((parts=firstMatch(el))&&guard++<500){wrapParts(parts);}});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}else{run();}})();</script>

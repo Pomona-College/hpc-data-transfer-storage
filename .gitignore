@@ -49,3 +49,15 @@ docs/
 # translation temp files
 po/*~
 
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Learner-generated test fixtures (created during the lesson)
+test_data.bin
+*.bin

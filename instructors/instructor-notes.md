@@ -59,7 +59,7 @@ title: 'Instructor Notes'
 |-------|----------|
 | Learners can't SSH into Sagehen | Have them pair with someone who can; demo from your screen |
 | DUO MFA timeouts | Show alternate authentication methods (SSH keys) |
-| Quota command doesn't show lab data | Explain that `/bigdata/` quota is lab-shared; use `du -sh /bigdata/labname/` |
+| Quota command doesn't show lab data | Explain that `/bigdata/` quota is lab-shared; use `du -sh /bigdata/lab/<labname>/` |
 | Confusion about `/scratch/$SLURM_JOB_ID` | Emphasize that this only exists during a job; submit a dummy job to show it |
 
 **Timing Tips:**
@@ -86,7 +86,7 @@ title: 'Instructor Notes'
 
 2. **Live demonstration** (~15 min):
    - Run `quota -s` and decode the output together
-   - Show how to find large files: `find /rhome/username -type f -size +100M`
+   - Show how to find large files: `find /rhome/<myusername> -type f -size +100M`
    - Demonstrate archiving: `tar -czf old_project.tar.gz old_project/`
    - Show compression savings: `du -sh old_project/` vs `du -sh old_project.tar.gz`
    - Demonstrate removal of temporary files
@@ -157,7 +157,7 @@ title: 'Instructor Notes'
 | OnDemand login fails | Check if they're on campus/VPN; verify Pomona AD credentials |
 | Browser doesn't support file drag-and-drop | Show alternative: click upload button and browse locally |
 | Large file upload is slow | Explain this is expected; recommend rsync for large transfers |
-| Can't see `/bigdata/` in OnDemand | Show how to navigate to `/bigdata/labname/` using path bar |
+| Can't see `/bigdata/` in OnDemand | Show how to navigate to `/bigdata/lab/<labname>/` using path bar |
 
 **Timing Tips:**
 - If OnDemand is unavailable (rare), skip and jump to SCP/Rsync; OnDemand is nice-to-have
@@ -304,7 +304,7 @@ title: 'Instructor Notes'
      ```bash
      #!/bin/bash
      #SBATCH -J analysis
-     #SBATCH -o /rhome/user/logs/analysis.log
+     #SBATCH -o /rhome/<myusername>/logs/analysis.log
 
      # Copy input data to scratch
      cp /bigdata/lab/input.tar.gz /scratch/$SLURM_JOB_ID/
@@ -315,7 +315,7 @@ title: 'Instructor Notes'
      ./process_data.sh
 
      # Copy results back to persistent storage
-     cp results.tar.gz /rhome/user/results/
+     cp results.tar.gz /rhome/<myusername>/results/
 
      # Scratch is cleaned up automatically when job ends
      ```
@@ -385,7 +385,7 @@ title: 'Instructor Notes'
    - Write a sample script that syncs `/rhome/` to backup:
      ```bash
      #!/bin/bash
-     rsync -av --log-file=/rhome/user/logs/sync.log /rhome/user/ /bigdata/backup/user_home/
+     rsync -av --log-file=/rhome/<myusername>/logs/sync.log /rhome/<myusername>/ /bigdata/lab/<labname>/backup/user_home/
      ```
    - Show how to schedule it: `crontab -e`
    - Discuss: "When should I sync? What if it fails?"
@@ -490,3 +490,6 @@ title: 'Instructor Notes'
 - "What would happen if you ran out of `/rhome/` quota mid-job?"
 
 These personalize the workshop and help you tailor content to your audience.
+
+<!-- highlight <labname>/<myusername> placeholders in code blocks; remove if the varnish theme handles this natively -->
+<script>(function(){var CSS='.sh-placeholder{color:#c2410c;font-weight:700}[data-bs-theme="dark"] .sh-placeholder,html.dark .sh-placeholder{color:#fdba74}@media (prefers-color-scheme: dark){[data-bs-theme="auto"] .sh-placeholder{color:#fdba74}}';var RX=/<labname>|<myusername>/g;function firstMatch(el){var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null),nodes=[],full='';while(w.nextNode()){nodes.push({n:w.currentNode,s:full.length});full+=w.currentNode.nodeValue;}RX.lastIndex=0;var m;while((m=RX.exec(full))){var s=m.index,e=s+m[0].length,inSpan=false,parts=[];for(var j=0;j<nodes.length;j++){var ns=nodes[j].s,ne=ns+nodes[j].n.nodeValue.length;if(ne<=s||ns>=e)continue;parts.push({node:nodes[j].n,a:Math.max(s-ns,0),b:Math.min(e-ns,nodes[j].n.nodeValue.length)});var p=nodes[j].n.parentNode;while(p&&p!==el){if(p.classList&&p.classList.contains('sh-placeholder')){inSpan=true;break;}p=p.parentNode;}}if(!inSpan&&parts.length)return parts;}return null;}function wrapParts(parts){for(var i=parts.length-1;i>=0;i--){var t=parts[i].node,txt=t.nodeValue,a=parts[i].a,b=parts[i].b;var span=document.createElement('span');span.className='sh-placeholder';span.textContent=txt.slice(a,b);var f=document.createDocumentFragment();if(a>0)f.appendChild(document.createTextNode(txt.slice(0,a)));f.appendChild(span);if(b<txt.length)f.appendChild(document.createTextNode(txt.slice(b)));t.parentNode.replaceChild(f,t);}}function run(){var st=document.createElement('style');st.textContent=CSS;document.head.appendChild(st);document.querySelectorAll('pre,code').forEach(function(el){var guard=0,parts;while((parts=firstMatch(el))&&guard++<500){wrapParts(parts);}});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}else{run();}})();</script>

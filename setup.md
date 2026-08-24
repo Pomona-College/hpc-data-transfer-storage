@@ -13,7 +13,7 @@ This workshop assumes you have:
 - A personal computer (Windows, macOS, or Linux)
 - Internet connection
 
-If you don't have a Sagehen account, request one at least one week before the workshop by emailing its-hpc@pomona.edu
+If you don't have a Sagehen account, request one at least one week before the workshop via the [HPC account request form](https://servicedesk.pomona.edu/support/catalog/items/83) (or by emailing its-hpc@pomona.edu)
 
 ## Software Installation
 
@@ -84,7 +84,7 @@ For OnDemand web interface in Episode 3.
 Test SSH connection to Sagehen:
 
 ```bash
-ssh username@sagehen.hpc.pomona.edu
+ssh <myusername>@sagehen.hpc.pomona.edu
 # Enter password when prompted
 # Complete Duo 2FA authentication
 # If successful, you'll see Sagehen login prompt
@@ -107,7 +107,7 @@ Test OnDemand web interface:
 Check your storage allocation:
 
 ```bash
-ssh username@sagehen.hpc.pomona.edu
+ssh <myusername>@sagehen.hpc.pomona.edu
 quota_check.sh
 # Should show your current usage and quota
 exit
@@ -157,7 +157,7 @@ Before the workshop, test one file transfer method:
 cd ~/test_data
 
 # Upload test file
-rsync -avhP small_file.txt username@sagehen.hpc.pomona.edu:/rhome/username/
+rsync -avhP small_file.txt <myusername>@sagehen.hpc.pomona.edu:/rhome/<myusername>/
 
 # You should see:
 # Connecting via SSH...
@@ -166,7 +166,7 @@ rsync -avhP small_file.txt username@sagehen.hpc.pomona.edu:/rhome/username/
 # File listed on remote
 
 # Verify on Sagehen
-ssh username@sagehen.hpc.pomona.edu ls -lh /rhome/username/small_file.txt
+ssh <myusername>@sagehen.hpc.pomona.edu ls -lh /rhome/<myusername>/small_file.txt
 ```
 
 ### Test FileZilla (If Installed)
@@ -283,3 +283,6 @@ To prepare for the workshop, consider reviewing:
 If you've completed these steps, you're ready for the workshop! See you there.
 
 Questions? Email its-hpc@pomona.edu
+
+<!-- highlight <labname>/<myusername> placeholders in code blocks; remove if the varnish theme handles this natively -->
+<script>(function(){var CSS='.sh-placeholder{color:#c2410c;font-weight:700}[data-bs-theme="dark"] .sh-placeholder,html.dark .sh-placeholder{color:#fdba74}@media (prefers-color-scheme: dark){[data-bs-theme="auto"] .sh-placeholder{color:#fdba74}}';var RX=/<labname>|<myusername>/g;function firstMatch(el){var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null),nodes=[],full='';while(w.nextNode()){nodes.push({n:w.currentNode,s:full.length});full+=w.currentNode.nodeValue;}RX.lastIndex=0;var m;while((m=RX.exec(full))){var s=m.index,e=s+m[0].length,inSpan=false,parts=[];for(var j=0;j<nodes.length;j++){var ns=nodes[j].s,ne=ns+nodes[j].n.nodeValue.length;if(ne<=s||ns>=e)continue;parts.push({node:nodes[j].n,a:Math.max(s-ns,0),b:Math.min(e-ns,nodes[j].n.nodeValue.length)});var p=nodes[j].n.parentNode;while(p&&p!==el){if(p.classList&&p.classList.contains('sh-placeholder')){inSpan=true;break;}p=p.parentNode;}}if(!inSpan&&parts.length)return parts;}return null;}function wrapParts(parts){for(var i=parts.length-1;i>=0;i--){var t=parts[i].node,txt=t.nodeValue,a=parts[i].a,b=parts[i].b;var span=document.createElement('span');span.className='sh-placeholder';span.textContent=txt.slice(a,b);var f=document.createDocumentFragment();if(a>0)f.appendChild(document.createTextNode(txt.slice(0,a)));f.appendChild(span);if(b<txt.length)f.appendChild(document.createTextNode(txt.slice(b)));t.parentNode.replaceChild(f,t);}}function run(){var st=document.createElement('style');st.textContent=CSS;document.head.appendChild(st);document.querySelectorAll('pre,code').forEach(function(el){var guard=0,parts;while((parts=firstMatch(el))&&guard++<500){wrapParts(parts);}});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}else{run();}})();</script>
