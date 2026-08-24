@@ -52,6 +52,12 @@
     <loc>https://pomona-college.github.io/hpc-data-transfer-storage/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://pomona-college.github.io/hpc-data-transfer-storage/aio.html</loc>
+  </url>
+  <url>
+    <loc>https://pomona-college.github.io/hpc-data-transfer-storage/images.html</loc>
+  </url>
+  <url>
     <loc>https://pomona-college.github.io/hpc-data-transfer-storage/index.html</loc>
   </url>
   <url>
@@ -106,10 +112,19 @@
     <loc>https://pomona-college.github.io/hpc-data-transfer-storage/instructor/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://pomona-college.github.io/hpc-data-transfer-storage/instructor/aio.html</loc>
+  </url>
+  <url>
+    <loc>https://pomona-college.github.io/hpc-data-transfer-storage/instructor/images.html</loc>
+  </url>
+  <url>
     <loc>https://pomona-college.github.io/hpc-data-transfer-storage/instructor/index.html</loc>
   </url>
   <url>
     <loc>https://pomona-college.github.io/hpc-data-transfer-storage/instructor/instructor-notes.html</loc>
+  </url>
+  <url>
+    <loc>https://pomona-college.github.io/hpc-data-transfer-storage/instructor/key-points.html</loc>
   </url>
   <url>
     <loc>https://pomona-college.github.io/hpc-data-transfer-storage/instructor/learner-profiles.html</loc>
@@ -125,6 +140,9 @@
   </url>
   <url>
     <loc>https://pomona-college.github.io/hpc-data-transfer-storage/instructor-notes.html</loc>
+  </url>
+  <url>
+    <loc>https://pomona-college.github.io/hpc-data-transfer-storage/key-points.html</loc>
   </url>
   <url>
     <loc>https://pomona-college.github.io/hpc-data-transfer-storage/learner-profiles.html</loc>
