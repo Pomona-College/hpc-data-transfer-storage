@@ -16,7 +16,7 @@ You should have a computer running Windows, macOS, or Linux with a stable intern
 
 You'll need an SSH client to connect to the Sagehen cluster. Choose the option below for your operating system:
 
-:::::::::::::::: solution
+::::::::::::::::  spoiler
 
 ### Windows
 
@@ -40,7 +40,7 @@ You'll need an SSH client to connect to the Sagehen cluster. Choose the option b
 
 :::::::::::::::::::::::::
 
-:::::::::::::::: solution
+::::::::::::::::  spoiler
 
 ### macOS
 
@@ -58,7 +58,7 @@ brew install openssh
 
 :::::::::::::::::::::::::
 
-:::::::::::::::: solution
+::::::::::::::::  spoiler
 
 ### Linux
 
