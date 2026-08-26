@@ -35,7 +35,7 @@ Scratch storage provides significant performance advantages because the data liv
 
 For a job reading 10 GB of data, this means completing in 30-50 seconds on scratch versus 200+ seconds on `/rhome`: a **4-7x speedup**. For machine learning, simulation, and any pipeline that re-reads the same files thousands of times during training, the cumulative savings are even larger.
 
-The performance gap matters most when many jobs are reading from `/bigdata` simultaneously. NFS bandwidth is shared. If five jobs on five different nodes are all reading from `/bigdata/lab/<labname>/` at once, each gets a fraction of the available bandwidth. `/scratch` is local: each job has the full disk to itself.
+The performance gap matters most when many jobs are reading from `/bigdata` simultaneously. BeeGFS spreads data across several storage servers, but that bandwidth is still shared between everyone using the filesystem. If five jobs on five different nodes are all reading from `/bigdata/lab/<labname>/` at once, each gets a fraction of the available bandwidth. `/scratch` is local: each job has the full disk to itself.
 
 ::::::::::::::::::::::::::::::::::::: callout
 
