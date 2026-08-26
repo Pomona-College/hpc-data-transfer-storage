@@ -17,7 +17,7 @@ exercises: 10
 After completing this episode, participants will be able to:
 
 - Explain rsync's advantages over other transfer methods
-- Use rsync to upload files to Sagehen
+- Use rsync to upload files to Sagehen HPC
 - Use rsync to download files from Sagehen
 - Choose appropriate flags for different transfer scenarios
 

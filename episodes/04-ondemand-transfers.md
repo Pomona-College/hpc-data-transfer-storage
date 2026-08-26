@@ -54,7 +54,7 @@ The file manager shows your home directory by default with buttons for Home, New
 3. Select file(s) from your computer
 4. Wait for the progress bar to complete
 
-For multiple files, hold Ctrl (Windows) or Cmd (Mac) to select several at once. To upload a directory structure, create the folders on Sagehen first, then upload files into each.
+For multiple files, hold Ctrl (Windows) or Cmd (Mac) to select several at once. To upload a directory structure, create the folders on Sagehen HPC first, then upload files into each.
 
 For files larger than 500 MB, use rsync instead:
 ```bash

@@ -8,7 +8,7 @@ exercises: 10
 
 - How do I transfer files using FileZilla's drag-and-drop interface?
 - How do I monitor transfer progress?
-- How do I manage files on Sagehen through FileZilla?
+- How do I manage files on Sagehen HPC through FileZilla?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -26,7 +26,7 @@ After completing this episode, participants will be able to:
 
 The left panel shows your local computer; the right panel shows Sagehen. Double-click folders to enter them, or type a path directly in the path field.
 
-![FileZilla after Quickconnect: your computer on the left, your Sagehen home on the right (it appears as /bigdata/rhome/... — the same place /rhome points to).](fig/06-filezilla-connected-panels.png){alt='The FileZilla client connected to sagehen.hpc.pomona.edu over SFTP. The status log confirms the hostkey is trusted and the remote directory listing succeeded. The window is split into a local Windows file tree on the left and the remote Sagehen directory tree on the right.'}
+![FileZilla after Quickconnect: your computer on the left, your Sagehen HPC home on the right (it appears as /bigdata/rhome/... — the same place /rhome points to).](fig/06-filezilla-connected-panels.png){alt='The FileZilla client connected to sagehen.hpc.pomona.edu over SFTP. The status log confirms the hostkey is trusted and the remote directory listing succeeded. The window is split into a local Windows file tree on the left and the remote Sagehen directory tree on the right.'}
 
 To access lab storage, type `/bigdata/lab/<labname>` in the remote path field and press Enter.
 

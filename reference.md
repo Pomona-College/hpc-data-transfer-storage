@@ -329,7 +329,7 @@ find /rhome/<myusername> -size +1G -type f
 ---
 
 **Last Updated:** March 5, 2026
-**Sagehen Cluster:** BeeGFS parallel filesystem
+**Sagehen HPC Cluster:** BeeGFS parallel filesystem
 **License:** CC-BY 4.0
 
 <!-- highlight <labname>/<myusername> placeholders in code blocks; remove if the varnish theme handles this natively -->

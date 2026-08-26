@@ -4,7 +4,7 @@
 # Metadata about this workshop
 title: 'Data Transfer and Storage Management — Pomona College HPC Workshop Series'
 subtitle: 'Managing data on Sagehen HPC cluster'
-description: 'Moving and storing research data on Sagehen: rsync, SFTP and FileZilla, storage tiers, quotas and backup strategy.'
+description: 'Moving and storing research data on Sagehen HPC: rsync, SFTP and FileZilla, storage tiers, quotas and backup strategy.'
 
 # Contact information
 contact: 'its-hpc@pomona.edu'

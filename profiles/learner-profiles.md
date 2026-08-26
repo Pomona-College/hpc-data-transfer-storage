@@ -25,7 +25,7 @@ The following learner profiles represent typical backgrounds and motivations for
 
 ### Specific Needs from Workshop
 
-- How to efficiently transfer 500 GB to Sagehen without losing data mid-transfer
+- How to efficiently transfer 500 GB to Sagehen HPC without losing data mid-transfer
 - Best practices for organizing genome analysis workflows across storage tiers
 - How to monitor storage usage during long SLURM jobs
 - Whether `/bigdata/` (shared lab storage) is appropriate for sensitive raw data

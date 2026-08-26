@@ -7,7 +7,7 @@ Welcome to Workshop 12: Data Transfer and Storage Management for Pomona College'
 This Carpentries Workbench workshop teaches researchers how to efficiently manage data on the Sagehen HPC cluster. Through seven comprehensive episodes, you'll learn storage locations, file transfer methods, quota management, and best practices for organizing research data.
 
 **Duration:** 4-5 hours
-**Target Audience:** Sagehen users of all experience levels
+**Target Audience:** Sagehen HPC users of all experience levels
 **Prerequisites:** Active Sagehen account, basic Linux familiarity
 
 ## Workshop Contents

@@ -39,7 +39,7 @@ After completing this episode, participants will be able to:
 
 ### Authentication Failed
 
-1. Verify Pomona credentials (not a separate Sagehen password)
+1. Verify Pomona credentials (not a separate Sagehen HPC password)
 2. Check caps lock
 3. Look for Duo notification on your phone
 4. Try SSH first to isolate the issue: `ssh <myusername>@sagehen.hpc.pomona.edu`

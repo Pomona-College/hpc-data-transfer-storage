@@ -177,7 +177,7 @@ The 20 GB memory request covers the 5 GB index, 8 GB application, and 7 GB of ov
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 
-- `/tmpfs` is RAM-backed storage providing the fastest I/O on Sagehen
+- `/tmpfs` is RAM-backed storage providing the fastest I/O on Sagehen HPC
 - Limited by job memory allocation and restricted to single-node jobs
 - Data on `/tmpfs` is deleted immediately when the job completes
 - Always copy results to permanent storage before the job ends

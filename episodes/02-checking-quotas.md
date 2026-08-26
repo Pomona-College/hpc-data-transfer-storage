@@ -6,7 +6,7 @@ exercises: 10
 
 :::::::::::::::::::::::::::::::::::::: questions
 
-- How much storage can I use on Sagehen?
+- How much storage can I use on Sagehen HPC?
 - How do I check my current storage usage?
 - Why does `du` give inaccurate results on BeeGFS?
 
@@ -22,7 +22,7 @@ After completing this episode, participants will be able to:
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Quota Structure on Sagehen
+## Quota Structure on Sagehen HPC
 
 Both `/rhome/<myusername>` and `/bigdata/lab/<labname>` share a **lab-based quota**:
 

@@ -13,7 +13,7 @@ This workshop assumes you have:
 - A personal computer (Windows, macOS, or Linux)
 - Internet connection
 
-If you don't have a Sagehen account, request one at least one week before the workshop via the [HPC account request form](https://servicedesk.pomona.edu/support/catalog/items/83) (or by emailing its-hpc@pomona.edu)
+If you don't have a Sagehen HPC account, request one at least one week before the workshop via the [HPC account request form](https://servicedesk.pomona.edu/support/catalog/items/83) (or by emailing its-hpc@pomona.edu)
 
 ## Software Installation
 
@@ -79,7 +79,7 @@ For OnDemand web interface in Episode 3.
 
 ## Account and Access Verification
 
-### 1. Verify Sagehen Account Access
+### 1. Verify Sagehen HPC Account Access
 
 Test SSH connection to Sagehen:
 

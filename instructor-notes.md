@@ -6,7 +6,7 @@ This 4-5 hour workshop teaches researchers how to efficiently manage data on the
 
 ## Target Audience
 
-- Pomona College researchers using Sagehen
+- Pomona College researchers using Sagehen HPC
 - Diverse backgrounds: biology, chemistry, physics, CS, engineering
 - Varying HPC experience: novice to experienced users
 - Mix of CLI and GUI preference
@@ -150,7 +150,7 @@ This workshop uses **active learning** with multiple modalities:
 
 ## Common Issues and Solutions
 
-### Issue: Participants Can't Access Sagehen
+### Issue: Participants Can't Access Sagehen HPC
 
 **Problem:** SSH connection fails, OnDemand login error
 
@@ -327,7 +327,7 @@ Consider surveying:
 
 ## Resources for Instructors
 
-### If You're New to Sagehen
+### If You're New to Sagehen HPC
 
 - Request account and hands-on access week before
 - Meet with HPC staff (Andrew Wilson) to learn infrastructure

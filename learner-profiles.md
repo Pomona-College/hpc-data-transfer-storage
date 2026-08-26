@@ -34,7 +34,7 @@ This workshop is designed for researchers at Pomona College who use the Sagehen 
 
 **Background:**
 - Physics faculty with active research group (5 students)
-- Has been using Sagehen for 2 years
+- Has been using Sagehen HPC for 2 years
 - Runs many parallel jobs generating output daily
 - Lab shares 1TB quota among all members
 - Uses command-line for most work
