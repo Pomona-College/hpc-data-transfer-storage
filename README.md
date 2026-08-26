@@ -179,6 +179,12 @@ See [LICENSE.md](LICENSE.md) for full terms.
 
 ## Acknowledgments
 
+**Andrew Wilson** — Director of Research Computing and Digital Scholarship,
+Pomona College. Workshop design and development.
+
+**Andrei Motchenko** — testing, editing, cleanup and screenshots across the
+Pomona College HPC Workshop Series.
+
 - Developed for Pomona College HPC Training Program
 - Sagehen HPC cluster managed by Pomona College IT
 - Based on The Carpentries teaching methodology
