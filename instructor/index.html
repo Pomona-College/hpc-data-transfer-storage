@@ -472,7 +472,7 @@ filesystem)</li>
 </div>
 <div class="section level2">
 <h2 id="workshop-structure">Workshop Structure<a class="anchor" aria-label="anchor" href="#workshop-structure"></a></h2>
-<p>This workshop consists of 7 episodes covering progressively more
+<p>This workshop consists of 14 episodes covering progressively more
 advanced topics:</p>
 <ol style="list-style-type: decimal"><li>
 <strong>Storage Hierarchy</strong> - Understand the filesystem
@@ -528,9 +528,9 @@ workshop series.</p>
  1. <a href="01-storage-overview.html">Storage Architecture Overview</a>
 </td>
 <td>
-What storage options are available on Sagehen?<br>Where should I store
-different types of data?<br>What are the differences between persistent
-and temporary storage?
+What storage options are available on Sagehen HPC?<br>Where should I
+store different types of data?<br>What are the differences between
+persistent and temporary storage?
 </td>
 </tr><tr><td>
 <span class="visually-hidden">Duration: </span>00h 30m
@@ -539,7 +539,7 @@ and temporary storage?
  2. <a href="02-checking-quotas.html">Checking and Managing Quotas</a>
 </td>
 <td>
-How much storage can I use on Sagehen?<br>How do I check my current
+How much storage can I use on Sagehen HPC?<br>How do I check my current
 storage usage?<br>Why does <code>du</code> give inaccurate results on
 BeeGFS?
 </td>
@@ -573,8 +573,8 @@ limitations of web-based file transfer?
 </td>
 <td>
 What is FileZilla and why use it for file transfers?<br>How do I
-install and configure FileZilla?<br>How do I connect to Sagehen with
-Duo authentication?
+install and configure FileZilla?<br>How do I connect to Sagehen HPC
+with Duo authentication?
 </td>
 </tr><tr><td>
 <span class="visually-hidden">Duration: </span>02h 25m
@@ -585,7 +585,7 @@ Duo authentication?
 <td>
 How do I transfer files using FileZilla’s drag-and-drop
 interface?<br>How do I monitor transfer progress?<br>How do I manage
-files on Sagehen through FileZilla?
+files on Sagehen HPC through FileZilla?
 </td>
 </tr><tr><td>
 <span class="visually-hidden">Duration: </span>02h 55m
@@ -640,8 +640,9 @@ scripts?<br>What are the limitations of tmpfs?
 Practices</a>
 </td>
 <td>
-How should I organize my data on Sagehen?<br>What naming conventions
-should I follow?<br>How do I share data effectively with collaborators?
+How should I organize my data on Sagehen HPC?<br>What naming
+conventions should I follow?<br>How do I share data effectively with
+collaborators?
 </td>
 </tr><tr><td>
 <span class="visually-hidden">Duration: </span>05h 45m
@@ -650,8 +651,9 @@ should I follow?<br>How do I share data effectively with collaborators?
 12. <a href="12-backup-archival.html">Backup and Archival Strategies</a>
 </td>
 <td>
-How do I back up my data on Sagehen?<br>When and how should I archive
-completed projects?<br>How do I migrate data between storage locations?
+How do I back up my data on Sagehen HPC?<br>When and how should I
+archive completed projects?<br>How do I migrate data between storage
+locations?
 </td>
 </tr><tr><td>
 <span class="visually-hidden">Duration: </span>06h 15m
@@ -686,314 +688,314 @@ Finish
 </tr></tbody></table><p>
       The actual schedule may vary slightly depending on the topics and exercises chosen by the instructor.
       </p>
-      </section><section id="setup"><section><h2 class="section-heading" id="pre-workshop-requirements">Pre-Workshop Requirements<a class="anchor" aria-label="anchor" href="#pre-workshop-requirements"></a></h2>
-<hr class="half-width"><p>This workshop teaches you how to efficiently transfer data to and
-from the Sagehen HPC cluster and manage your storage allocations. Before
-the workshop, please ensure you have completed the following setup
-steps.</p>
-</section><section><h2 class="section-heading" id="system-requirements">System Requirements<a class="anchor" aria-label="anchor" href="#system-requirements"></a></h2>
-<hr class="half-width"><p>You should have a computer running Windows, macOS, or Linux with a
-stable internet connection. Administrative privileges may be required
-for software installation.</p>
-</section><section><h2 class="section-heading" id="software-installation">Software Installation<a class="anchor" aria-label="anchor" href="#software-installation"></a></h2>
-<hr class="half-width"><div class="section level3">
+      </section><section id="setup"><div class="section level1">
+<h1 id="setup-instructions-for-data-transfer-and-storage-management-workshop">Setup Instructions for Data Transfer and Storage Management
+Workshop<a class="anchor" aria-label="anchor" href="#setup-instructions-for-data-transfer-and-storage-management-workshop"></a></h1>
+<div class="section level2">
+<h2 id="before-the-workshop">Before the Workshop<a class="anchor" aria-label="anchor" href="#before-the-workshop"></a></h2>
+<p>To get the most out of this workshop, please complete these setup
+steps before attending.</p>
+</div>
+<div class="section level2">
+<h2 id="prerequisites-1">Prerequisites<a class="anchor" aria-label="anchor" href="#prerequisites-1"></a></h2>
+<p>This workshop assumes you have:</p>
+<ul><li>An active Sagehen HPC cluster account</li>
+<li>Basic familiarity with Linux/Unix command-line interface</li>
+<li>A personal computer (Windows, macOS, or Linux)</li>
+<li>Internet connection</li>
+</ul><p>If you don’t have a Sagehen HPC account, request one at least one
+week before the workshop via the <a href="https://servicedesk.pomona.edu/support/catalog/items/83" class="external-link">HPC
+account request form</a> (or by emailing <a href="mailto:its-hpc@pomona.edu" class="email">its-hpc@pomona.edu</a>)</p>
+</div>
+<div class="section level2">
+<h2 id="software-installation">Software Installation<a class="anchor" aria-label="anchor" href="#software-installation"></a></h2>
+<div class="section level3">
 <h3 id="ssh-client">1. SSH Client<a class="anchor" aria-label="anchor" href="#ssh-client"></a></h3>
-<p>You’ll need an SSH client to connect to the Sagehen cluster. Choose
-the option below for your operating system:</p>
-<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
-  <h3 class="accordion-header" id="headingSpoiler1">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
-  Windows
-  </h3>
-</button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
-<div class="accordion-body">
-<p><strong>Option A: PuTTY (Recommended for beginners)</strong></p>
-<ol style="list-style-type: decimal"><li>Download PuTTY from <a href="https://www.putty.org/" class="external-link uri">https://www.putty.org/</a>
-</li>
-<li>Run the installer and follow the prompts</li>
-<li>You can also install Pageant (comes with PuTTY) for SSH key
-management</li>
-</ol><p><strong>Option B: OpenSSH (Windows 10+)</strong></p>
-<ol style="list-style-type: decimal"><li>Open PowerShell as Administrator</li>
-<li>Run:
-<code>Get-WindowsCapability -Online | Where-Object Name -like 'OpenSSH*' | Add-WindowsCapability -Online</code>
-</li>
-<li>Verify installation: Open Command Prompt and type
-<code>ssh</code>
-</li>
-</ol><p><strong>Option C: Windows Terminal + Git Bash</strong></p>
-<ol style="list-style-type: decimal"><li>Install Windows Terminal from the Microsoft Store</li>
-<li>Install Git for Windows from <a href="https://git-scm.com/download/win" class="external-link uri">https://git-scm.com/download/win</a>
-</li>
-<li>Open Git Bash and test with <code>ssh</code>
-</li>
-</ol></div>
-</div>
-</div>
-</div>
-<div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
-  <h3 class="accordion-header" id="headingSpoiler2">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
-  macOS
-  </h3>
-</button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
-<div class="accordion-body">
-<p>OpenSSH is built-in to macOS. Open Terminal and test your SSH
-installation:</p>
+<p><strong>macOS/Linux:</strong> SSH is pre-installed. Test by opening
+Terminal and running:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="fu">ssh</span> <span class="at">-V</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="fu">ssh</span> <span class="at">-V</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="co"># Should show OpenSSH version</span></span></code></pre>
 </div>
-<p>You should see output like
-<code>OpenSSH_8.6p1, LibreSSL 3.3.6</code>. If not, install it via
-Homebrew:</p>
+<p><strong>Windows:</strong> - Option A: Use Windows Subsystem for Linux
+(WSL 2) - Install from Microsoft Store - Or follow: <a href="https://docs.microsoft.com/en-us/windows/wsl/install" class="external-link uri">https://docs.microsoft.com/en-us/windows/wsl/install</a></p>
+<ul><li>Option B: Use Windows 10/11 built-in OpenSSH
+<ul><li>Settings → Apps → Optional Features</li>
+<li>Search “OpenSSH” and install</li>
+<li>Test in PowerShell: <code>ssh -V</code>
+</li>
+</ul></li>
+<li>Option C: Install PuTTY
+<ul><li>Download from <a href="https://www.putty.org/" class="external-link uri">https://www.putty.org/</a>
+</li>
+<li>Graphical SSH client for Windows</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="filezilla-optional-but-recommended">2. FileZilla (Optional but Recommended)<a class="anchor" aria-label="anchor" href="#filezilla-optional-but-recommended"></a></h3>
+<p>Used in Episode 4 for graphical file transfers.</p>
+<p><strong>Download:</strong> <a href="https://filezilla-project.org/download.php?type=client" class="external-link uri">https://filezilla-project.org/download.php?type=client</a></p>
+<p><strong>Installation:</strong> - Windows: Run .exe installer - macOS:
+Open .dmg and drag to Applications - Linux: Use package manager (apt,
+dnf, etc.)</p>
+</div>
+<div class="section level3">
+<h3 id="rsync">3. rsync<a class="anchor" aria-label="anchor" href="#rsync"></a></h3>
+<p>Used in Episode 5 for bulk file transfers.</p>
+<p><strong>macOS:</strong> Pre-installed. Test with:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="ex">brew</span> install openssh</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="fu">rsync</span> <span class="at">--version</span></span></code></pre>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div id="accordionSpoiler3" class="accordion spoiler-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler3" aria-expanded="false" aria-controls="collapseSpoiler3">
-  <h3 class="accordion-header" id="headingSpoiler3">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
-  Linux
-  </h3>
-</button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
-<div class="accordion-body">
-<p>SSH is typically pre-installed. Verify by opening a terminal and
-typing:</p>
+<p><strong>Linux:</strong> Pre-installed on most distributions. Test
+with:</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="fu">ssh</span> <span class="at">-V</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="fu">rsync</span> <span class="at">--version</span></span></code></pre>
 </div>
-<p>If not installed, use your package manager:</p>
-<p><strong>Debian/Ubuntu:</strong></p>
+<p><strong>Windows:</strong> - Install via WSL (recommended):
+<code>sudo apt-get install rsync</code> - Or use Cygwin with rsync
+package</p>
+</div>
+<div class="section level3">
+<h3 id="web-browser">4. Web Browser<a class="anchor" aria-label="anchor" href="#web-browser"></a></h3>
+<p>For OnDemand web interface in Episode 3. - Chrome, Firefox, Safari,
+or Edge (all supported) - Ensure JavaScript is enabled</p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="account-and-access-verification">Account and Access Verification<a class="anchor" aria-label="anchor" href="#account-and-access-verification"></a></h2>
+<div class="section level3">
+<h3 id="verify-sagehen-hpc-account-access">1. Verify Sagehen HPC Account Access<a class="anchor" aria-label="anchor" href="#verify-sagehen-hpc-account-access"></a></h3>
+<p>Test SSH connection to Sagehen:</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="fu">sudo</span> apt-get install openssh-client</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="fu">ssh</span> <span class="op">&lt;</span>myusername<span class="op">&gt;</span>@sagehen.hpc.pomona.edu</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1" aria-label="code-block-4-2"></a><span class="co"># Enter password when prompted</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1" aria-label="code-block-4-3"></a><span class="co"># Complete Duo 2FA authentication</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1" aria-label="code-block-4-4"></a><span class="co"># If successful, you'll see Sagehen login prompt</span></span></code></pre>
 </div>
-<p><strong>RHEL/CentOS:</strong></p>
+<p>Type <code>exit</code> to log out.</p>
+</div>
+<div class="section level3">
+<h3 id="verify-ondemand-access">2. Verify OnDemand Access<a class="anchor" aria-label="anchor" href="#verify-ondemand-access"></a></h3>
+<p>Test OnDemand web interface:</p>
+<ol style="list-style-type: decimal"><li>Open browser</li>
+<li>Navigate to: <a href="https://ondemand.sagehen.hpc.pomona.edu" class="external-link uri">https://ondemand.sagehen.hpc.pomona.edu</a>
+</li>
+<li>Login with Pomona credentials</li>
+<li>Complete Duo authentication</li>
+<li>You should see OnDemand dashboard</li>
+</ol></div>
+<div class="section level3">
+<h3 id="verify-quota">3. Verify Quota<a class="anchor" aria-label="anchor" href="#verify-quota"></a></h3>
+<p>Check your storage allocation:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="fu">sudo</span> yum install openssh-clients</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="fu">ssh</span> <span class="op">&lt;</span>myusername<span class="op">&gt;</span>@sagehen.hpc.pomona.edu</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1" aria-label="code-block-5-2"></a><span class="ex">quota_check.sh</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1" aria-label="code-block-5-3"></a><span class="co"># Should show your current usage and quota</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1" aria-label="code-block-5-4"></a><span class="bu">exit</span></span></code></pre>
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
+<div class="section level2">
+<h2 id="create-test-data">Create Test Data<a class="anchor" aria-label="anchor" href="#create-test-data"></a></h2>
 <div class="section level3">
-<h3 id="filezilla-sftpftp-file-manager">2. FileZilla (SFTP/FTP File Manager)<a class="anchor" aria-label="anchor" href="#filezilla-sftpftp-file-manager"></a></h3>
-<p>FileZilla provides a graphical interface for transferring files.
-Download it from <a href="https://filezilla-project.org/" class="external-link uri">https://filezilla-project.org/</a> and follow the
-installation wizard for your OS.</p>
-</div>
-<div class="section level3">
-<h3 id="rclone-cloud-remote-sync">3. Rclone (Cloud &amp; Remote Sync)<a class="anchor" aria-label="anchor" href="#rclone-cloud-remote-sync"></a></h3>
-<p>Rclone is a powerful command-line tool for syncing files with remote
-storage and Sagehen. Install it following the guide at <a href="https://rclone.org/install/" class="external-link uri">https://rclone.org/install/</a></p>
-<p>For <strong>Windows</strong>, <strong>macOS</strong>, and
-<strong>Linux</strong>, the simplest installation is:</p>
+<h3 id="option-1-create-sample-files-recommended">Option 1: Create Sample Files (Recommended)<a class="anchor" aria-label="anchor" href="#option-1-create-sample-files-recommended"></a></h3>
+<p>Create some test files for the workshops:</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="ex">curl</span> https://rclone.org/install.sh <span class="kw">|</span> <span class="fu">sudo</span> bash</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="co"># Create test directory</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1" aria-label="code-block-6-2"></a><span class="fu">mkdir</span> ~/test_data</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1" aria-label="code-block-6-3"></a><span class="bu">cd</span> ~/test_data</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1" aria-label="code-block-6-4"></a></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1" aria-label="code-block-6-5"></a><span class="co"># Create small test file (for FileZilla and OnDemand examples)</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1" aria-label="code-block-6-6"></a><span class="bu">echo</span> <span class="st">"This is a test file"</span> <span class="op">&gt;</span> small_file.txt</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1" aria-label="code-block-6-7"></a></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1" aria-label="code-block-6-8"></a><span class="co"># Create medium test file (for rsync examples)</span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1" aria-label="code-block-6-9"></a><span class="fu">dd</span> if=/dev/zero of=medium_file.bin bs=1M count=10</span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1" aria-label="code-block-6-10"></a><span class="co"># Creates 10 MB file</span></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1" aria-label="code-block-6-11"></a></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1" aria-label="code-block-6-12"></a><span class="co"># Create sample CSV data</span></span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1" aria-label="code-block-6-13"></a><span class="fu">cat</span> <span class="op">&gt;</span> sample_data.csv <span class="op">&lt;&lt; 'EOF'</span></span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1" aria-label="code-block-6-14"></a><span class="st">id,name,value</span></span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1" aria-label="code-block-6-15"></a><span class="st">1,sample_a,100</span></span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1" aria-label="code-block-6-16"></a><span class="st">2,sample_b,200</span></span>
+<span id="cb6-17"><a href="#cb6-17" tabindex="-1" aria-label="code-block-6-17"></a><span class="st">3,sample_c,300</span></span>
+<span id="cb6-18"><a href="#cb6-18" tabindex="-1" aria-label="code-block-6-18"></a><span class="op">EOF</span></span></code></pre>
 </div>
-<p>On <strong>Windows</strong>, you can also use Chocolatey:</p>
+</div>
+<div class="section level3">
+<h3 id="option-2-use-existing-files">Option 2: Use Existing Files<a class="anchor" aria-label="anchor" href="#option-2-use-existing-files"></a></h3>
+<p>If you prefer, use any existing files on your computer: - Documents
+(PDF, text) - Data files (CSV, JSON) - Images (JPG, PNG)</p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="test-file-transfer">Test File Transfer<a class="anchor" aria-label="anchor" href="#test-file-transfer"></a></h2>
+<p>Before the workshop, test one file transfer method:</p>
+<div class="section level3">
+<h3 id="test-rsync-recommended">Test rsync (Recommended)<a class="anchor" aria-label="anchor" href="#test-rsync-recommended"></a></h3>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="ex">choco</span> install rclone</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="bu">cd</span> ~/test_data</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1" aria-label="code-block-7-2"></a></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1" aria-label="code-block-7-3"></a><span class="co"># Upload test file</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1" aria-label="code-block-7-4"></a><span class="fu">rsync</span> <span class="at">-avhP</span> small_file.txt <span class="op">&lt;</span>myusername<span class="op">&gt;</span>@sagehen.hpc.pomona.edu:/rhome/<span class="op">&lt;</span>myusername<span class="op">&gt;</span>/</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1" aria-label="code-block-7-5"></a></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1" aria-label="code-block-7-6"></a><span class="co"># You should see:</span></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1" aria-label="code-block-7-7"></a><span class="co"># Connecting via SSH...</span></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1" aria-label="code-block-7-8"></a><span class="co"># Duo prompt (approve on phone)</span></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1" aria-label="code-block-7-9"></a><span class="co"># Transfer progress</span></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1" aria-label="code-block-7-10"></a><span class="co"># File listed on remote</span></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1" aria-label="code-block-7-11"></a></span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1" aria-label="code-block-7-12"></a><span class="co"># Verify on Sagehen</span></span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1" aria-label="code-block-7-13"></a><span class="fu">ssh</span> <span class="op">&lt;</span>myusername<span class="op">&gt;</span>@sagehen.hpc.pomona.edu ls <span class="at">-lh</span> /rhome/<span class="op">&lt;</span>myusername<span class="op">&gt;</span>/small_file.txt</span></code></pre>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="ssh-key-setup">SSH Key Setup<a class="anchor" aria-label="anchor" href="#ssh-key-setup"></a></h2>
-<hr class="half-width"><p>A public-private SSH key pair allows password-free authentication and
-is required for unattended transfers.</p>
 <div class="section level3">
-<h3 id="generate-ssh-keys">Generate SSH Keys<a class="anchor" aria-label="anchor" href="#generate-ssh-keys"></a></h3>
-<p>If you don’t already have SSH keys, generate a new pair:</p>
+<h3 id="test-filezilla-if-installed">Test FileZilla (If Installed)<a class="anchor" aria-label="anchor" href="#test-filezilla-if-installed"></a></h3>
+<ol style="list-style-type: decimal"><li>Open FileZilla</li>
+<li>Enter in Quick Connect:
+<ul><li>Host: sagehen.hpc.pomona.edu</li>
+<li>Username: your_username</li>
+<li>Port: 22</li>
+</ul></li>
+<li>Click Quickconnect</li>
+<li>Approve Duo</li>
+<li>Should see home directory in right panel</li>
+</ol></div>
+<div class="section level3">
+<h3 id="test-ondemand">Test OnDemand<a class="anchor" aria-label="anchor" href="#test-ondemand"></a></h3>
+<ol style="list-style-type: decimal"><li>Navigate to: <a href="https://ondemand.sagehen.hpc.pomona.edu" class="external-link uri">https://ondemand.sagehen.hpc.pomona.edu</a>
+</li>
+<li>Click “Files”</li>
+<li>Should see your home directory</li>
+</ol></div>
+</div>
+<div class="section level2">
+<h2 id="recommended-directory-structure">Recommended Directory Structure<a class="anchor" aria-label="anchor" href="#recommended-directory-structure"></a></h2>
+<p>Before the workshop, create a project directory for workshop
+exercises:</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519 <span class="at">-C</span> <span class="st">"your.email@pomona.edu"</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/workshop_data/incoming ~/workshop_data/results</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1" aria-label="code-block-8-2"></a><span class="co"># incoming: For files we'll transfer INTO Sagehen</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1" aria-label="code-block-8-3"></a><span class="co"># results: Where we'll download results FROM Sagehen</span></span></code></pre>
 </div>
-<p><strong>Prompts:</strong></p>
-<ul><li>
-<strong>File location:</strong> Press Enter to accept the default
-(<code>~/.ssh/id_ed25519</code>)</li>
-<li>
-<strong>Passphrase:</strong> Enter a strong passphrase or press
-Enter to skip (not recommended for security)</li>
-</ul><p><strong>Verify your keys:</strong></p>
-<div class="codewrapper sourceCode" id="cb9">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="fu">ls</span> ~/.ssh/</span></code></pre>
 </div>
-<p>You should see <code>id_ed25519</code> (private key) and
-<code>id_ed25519.pub</code> (public key).</p>
+<div class="section level2">
+<h2 id="troubleshooting-setup">Troubleshooting Setup<a class="anchor" aria-label="anchor" href="#troubleshooting-setup"></a></h2>
+<div class="section level3">
+<h3 id="cannot-connect-via-ssh">Cannot Connect via SSH<a class="anchor" aria-label="anchor" href="#cannot-connect-via-ssh"></a></h3>
+<p><strong>Problem:</strong> “Connection refused” or “Network
+unreachable”</p>
+<p><strong>Solutions:</strong> 1. Verify Sagehen is not down (check
+email) 2. Check hostname: <code>sagehen.hpc.pomona.edu</code> 3. Check
+internet connection: <code>ping google.com</code> 4. If behind corporate
+firewall, port 22 may be blocked 5. Contact <a href="mailto:its-hpc@pomona.edu" class="email">its-hpc@pomona.edu</a>
+for help</p>
 </div>
 <div class="section level3">
-<h3 id="add-your-public-key-to-sagehen">Add Your Public Key to Sagehen<a class="anchor" aria-label="anchor" href="#add-your-public-key-to-sagehen"></a></h3>
-<p>Before the workshop, you should add your SSH public key to Sagehen.
-If your key is already configured (you’ve used Sagehen before), skip
-this step.</p>
-<p><strong>Step 1:</strong> Display your public key:</p>
-<div class="codewrapper sourceCode" id="cb10">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="fu">cat</span> ~/.ssh/id_ed25519.pub</span></code></pre>
+<h3 id="duo-authentication-not-working">Duo Authentication Not Working<a class="anchor" aria-label="anchor" href="#duo-authentication-not-working"></a></h3>
+<p><strong>Problem:</strong> No Duo prompt appears or authentication
+times out</p>
+<p><strong>Solutions:</strong> 1. Check phone is nearby and powered on
+2. Check Duo app is installed and updated 3. Try again (may be delayed)
+4. Check your Duo enrollment: <a href="https://accounts.pomona.edu/" class="external-link uri">https://accounts.pomona.edu/</a> 5. Contact IT: <a href="mailto:servicedesk@pomona.edu" class="email">servicedesk@pomona.edu</a></p>
 </div>
-<p>Copy the entire output (should start with
-<code>ssh-ed25519</code>).</p>
-<p><strong>Step 2:</strong> Log into Sagehen with your password:</p>
-<div class="codewrapper sourceCode" id="cb11">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a><span class="fu">ssh</span> your.<span class="op">&lt;</span>myusername<span class="op">&gt;</span>@sagehen.hpc.pomona.edu</span></code></pre>
+<div class="section level3">
+<h3 id="filezilla-wont-install">FileZilla Won’t Install<a class="anchor" aria-label="anchor" href="#filezilla-wont-install"></a></h3>
+<p><strong>Problem:</strong> Permission error or installation fails</p>
+<p><strong>Solutions:</strong> 1. Run installer as administrator
+(Windows) 2. For macOS, drag to Applications folder in a new Finder
+window 3. Use package manager instead (Linux) 4. FileZilla is optional;
+OnDemand and command-line work without it</p>
 </div>
-<p>Use your Pomona AD credentials. You’ll be prompted for DUO MFA:
-approve it on your phone or use the Duo app.</p>
-<p><strong>Step 3:</strong> Create the <code>.ssh</code> directory if it
-doesn’t exist:</p>
-<div class="codewrapper sourceCode" id="cb12">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/.ssh</span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1" aria-label="code-block-12-2"></a><span class="fu">chmod</span> 700 ~/.ssh</span></code></pre>
+<div class="section level3">
+<h3 id="rsync-not-found">rsync Not Found<a class="anchor" aria-label="anchor" href="#rsync-not-found"></a></h3>
+<p><strong>Problem:</strong> “command not found” when typing
+<code>rsync</code></p>
+<p><strong>Solutions:</strong> 1. <strong>macOS:</strong> Pre-installed,
+try full path: <code>/usr/bin/rsync</code> 2. <strong>Linux:</strong>
+Install with <code>sudo apt-get install rsync</code> or equivalent 3.
+<strong>Windows:</strong> Install WSL first, then rsync via WSL 4. rsync
+is optional; FileZilla works without it</p>
 </div>
-<p><strong>Step 4:</strong> Add your public key:</p>
-<div class="codewrapper sourceCode" id="cb13">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1" aria-label="code-block-13-1"></a><span class="bu">echo</span> <span class="st">"your-public-key-here"</span> <span class="op">&gt;&gt;</span> ~/.ssh/authorized_keys</span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1" aria-label="code-block-13-2"></a><span class="fu">chmod</span> 600 ~/.ssh/authorized_keys</span></code></pre>
 </div>
-<p>Paste the public key you copied in Step 1.</p>
-<p><strong>Step 5:</strong> Log out and test:</p>
-<div class="codewrapper sourceCode" id="cb14">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1" aria-label="code-block-14-1"></a><span class="bu">exit</span></span></code></pre>
-</div>
-<p>Try logging in again without a password:</p>
-<div class="codewrapper sourceCode" id="cb15">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1" aria-label="code-block-15-1"></a><span class="fu">ssh</span> your.<span class="op">&lt;</span>myusername<span class="op">&gt;</span>@sagehen.hpc.pomona.edu</span></code></pre>
-</div>
-<p>If successful, you’ll skip the password prompt (but may still be
-prompted for DUO MFA).</p>
-</div>
-</section><section><h2 class="section-heading" id="sagehen-access-test">Sagehen Access Test<a class="anchor" aria-label="anchor" href="#sagehen-access-test"></a></h2>
-<hr class="half-width"><p>Before the workshop, verify that you can access the Sagehen
-cluster:</p>
+<div class="section level2">
+<h2 id="bandwidth-and-network-notes">Bandwidth and Network Notes<a class="anchor" aria-label="anchor" href="#bandwidth-and-network-notes"></a></h2>
+<p>This workshop involves file transfers. If on a slow connection:</p>
+<ul><li>
+<strong>Slow connection?</strong> Download large test file overnight
+or before workshop</li>
+<li>
+<strong>Limited bandwidth?</strong> Skip large file transfer
+examples (instructor can demo)</li>
+<li>
+<strong>On cellular?</strong> Use WiFi for large transfers</li>
+</ul></div>
+<div class="section level2">
+<h2 id="what-to-bring">What to Bring<a class="anchor" aria-label="anchor" href="#what-to-bring"></a></h2>
+<ul><li>Laptop with SSH client (Windows, macOS, or Linux)</li>
+<li>Pomona account credentials</li>
+<li>Phone for Duo authentication</li>
+<li>Notes/notebook for recording commands</li>
+<li>Optional: FileZilla if you want to follow graphical examples</li>
+</ul></div>
+<div class="section level2">
+<h2 id="getting-help-1">Getting Help<a class="anchor" aria-label="anchor" href="#getting-help-1"></a></h2>
+<div class="section level3">
+<h3 id="before-workshop">Before Workshop<a class="anchor" aria-label="anchor" href="#before-workshop"></a></h3>
+<p>If you encounter setup issues:</p>
 <ol style="list-style-type: decimal"><li>
-<p><strong>Connect via SSH:</strong></p>
-<div class="codewrapper sourceCode" id="cb16">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1" aria-label="code-block-16-1"></a><span class="fu">ssh</span> your.<span class="op">&lt;</span>myusername<span class="op">&gt;</span>@sagehen.hpc.pomona.edu</span></code></pre>
-</div>
-</li>
-<li><p><strong>Approve DUO MFA</strong> on your registered
-device.</p></li>
+<strong>Check email:</strong> Setup instructions may have
+updates</li>
 <li>
-<p><strong>Check your home directory:</strong></p>
-<div class="codewrapper sourceCode" id="cb17">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1" aria-label="code-block-17-1"></a><span class="bu">pwd</span></span>
-<span id="cb17-2"><a href="#cb17-2" tabindex="-1" aria-label="code-block-17-2"></a><span class="ex">quota</span> <span class="at">-s</span></span></code></pre>
-</div>
+<strong>Contact HPC Support:</strong> <a href="mailto:its-hpc@pomona.edu" class="email">its-hpc@pomona.edu</a>
 </li>
 <li>
-<p><strong>Verify you can see the storage locations:</strong></p>
-<div class="codewrapper sourceCode" id="cb18">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1" aria-label="code-block-18-1"></a><span class="fu">ls</span> /rhome/<span class="op">&lt;</span>myusername<span class="op">&gt;</span></span>
-<span id="cb18-2"><a href="#cb18-2" tabindex="-1" aria-label="code-block-18-2"></a><span class="fu">ls</span> /bigdata/</span></code></pre>
+<strong>Contact IT:</strong> <a href="mailto:servicedesk@pomona.edu" class="email">servicedesk@pomona.edu</a> (for account/Duo issues)</li>
+</ol></div>
+<div class="section level3">
+<h3 id="during-workshop">During Workshop<a class="anchor" aria-label="anchor" href="#during-workshop"></a></h3>
+<p>Instructors will help with any setup issues at the start of the
+workshop. Allow 15 minutes for everyone to verify access.</p>
 </div>
-</li>
-<li><p><strong>Test OnDemand access:</strong> Open <a href="https://ondemand.hpc.pomona.edu/" class="external-link uri">https://ondemand.hpc.pomona.edu/</a> in your browser and log
-in with your Pomona AD credentials.</p></li>
-</ol></section><section><h2 class="section-heading" id="prepare-example-data">Prepare Example Data<a class="anchor" aria-label="anchor" href="#prepare-example-data"></a></h2>
-<hr class="half-width"><p>Having a few small test files will help during the workshop
-exercises:</p>
+</div>
+<div class="section level2">
+<h2 id="optional-pre-workshop-review">Optional Pre-Workshop Review<a class="anchor" aria-label="anchor" href="#optional-pre-workshop-review"></a></h2>
+<p>To prepare for the workshop, consider reviewing:</p>
 <ol style="list-style-type: decimal"><li>
-<p>Create a local test directory:</p>
-<div class="codewrapper sourceCode" id="cb19">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1" aria-label="code-block-19-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/sagehen-test-data</span></code></pre>
-</div>
+<strong>Basic Linux commands:</strong> <a href="https://ubuntu.com/tutorials/command-line-for-beginners" class="external-link uri">https://ubuntu.com/tutorials/command-line-for-beginners</a>
 </li>
 <li>
-<p>Create some small test files:</p>
-<div class="codewrapper sourceCode" id="cb20">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1" aria-label="code-block-20-1"></a><span class="bu">echo</span> <span class="st">"Test file 1"</span> <span class="op">&gt;</span> ~/sagehen-test-data/file1.txt</span>
-<span id="cb20-2"><a href="#cb20-2" tabindex="-1" aria-label="code-block-20-2"></a><span class="bu">echo</span> <span class="st">"Test file 2"</span> <span class="op">&gt;</span> ~/sagehen-test-data/file2.txt</span>
-<span id="cb20-3"><a href="#cb20-3" tabindex="-1" aria-label="code-block-20-3"></a><span class="fu">dd</span> if=/dev/zero of=~/sagehen-test-data/sample-10mb.bin bs=1M count=10</span></code></pre>
-</div>
-</li>
-<li><p>Keep this directory handy for the workshop exercises.</p></li>
-</ol></section><section><h2 class="section-heading" id="helpful-resources">Helpful Resources<a class="anchor" aria-label="anchor" href="#helpful-resources"></a></h2>
-<hr class="half-width"><ul><li>
-<strong>Sagehen Documentation:</strong> <a href="https://sagehen.hpc.pomona.edu/docs/" class="external-link uri">https://sagehen.hpc.pomona.edu/docs/</a> (once you’ve
-accessed Sagehen)</li>
-<li>
-<strong>HPC Support:</strong> <a href="mailto:its-hpc@pomona.edu" class="email">its-hpc@pomona.edu</a>
+<strong>SSH explained:</strong> <a href="https://www.ssh.com/ssh/command" class="external-link uri">https://www.ssh.com/ssh/command</a>
 </li>
 <li>
-<strong>OnDemand Portal:</strong> <a href="https://ondemand.hpc.pomona.edu/" class="external-link uri">https://ondemand.hpc.pomona.edu/</a>
+<strong>File transfer concepts:</strong> <a href="https://en.wikipedia.org/wiki/Secure_file_transfer_protocol" class="external-link uri">https://en.wikipedia.org/wiki/Secure_file_transfer_protocol</a>
 </li>
-<li>
-<strong>SSH Key Security:</strong> <a href="https://wiki.archlinux.org/title/SSH_keys" class="external-link uri">https://wiki.archlinux.org/title/SSH_keys</a>
-</li>
-</ul></section><section><h2 class="section-heading" id="troubleshooting">Troubleshooting<a class="anchor" aria-label="anchor" href="#troubleshooting"></a></h2>
-<hr class="half-width"><p><strong>Cannot connect to Sagehen?</strong></p>
-<ul><li>Verify your Pomona AD username and password</li>
-<li>Check that you’re on campus or connected to Pomona VPN</li>
-<li>Confirm DUO MFA is set up on your account</li>
-</ul><p><strong>DUO approval times out?</strong></p>
-<ul><li>Ensure Duo app is updated on your phone</li>
-<li>Check your device’s system time is synchronized</li>
-<li>Contact <a href="mailto:its-hpc@pomona.edu" class="email">its-hpc@pomona.edu</a> for account issues</li>
-</ul><p><strong>SSH keys not working?</strong></p>
-<ul><li>Verify permissions: <code>ls -la ~/.ssh/</code> should show 700 for
-the directory and 600 for files</li>
-<li>Check that your public key was added correctly:
-<code>ssh -vvv your.&lt;myusername&gt;@sagehen.hpc.pomona.edu</code>
-</li>
-<li>Contact HPC support if issues persist</li>
-</ul><p><strong>FileZilla connection issues?</strong></p>
-<ul><li>Host: <code>sagehen.hpc.pomona.edu</code>, Protocol: SFTP, Port:
-22</li>
-<li>Use your Pomona AD username</li>
-<li>Try using your SSH key instead of password authentication</li>
-</ul><p>If you encounter issues during setup, please reach out to <a href="mailto:its-hpc@pomona.edu" class="email">its-hpc@pomona.edu</a>
-before the workshop.</p>
+</ol></div>
+<div class="section level2">
+<h2 id="ready">Ready?<a class="anchor" aria-label="anchor" href="#ready"></a></h2>
+<p>If you’ve completed these steps, you’re ready for the workshop! See
+you there.</p>
+<p>Questions? Email <a href="mailto:its-hpc@pomona.edu" class="email">its-hpc@pomona.edu</a></p>
 <!-- highlight <labname>/<myusername> placeholders in code blocks; remove if the varnish theme handles this natively -->
-<script>(function(){var CSS='.sh-placeholder{color:#c2410c;font-weight:700}[data-bs-theme="dark"] .sh-placeholder,html.dark .sh-placeholder{color:#fdba74}@media (prefers-color-scheme: dark){[data-bs-theme="auto"] .sh-placeholder{color:#fdba74}}';var RX=/<labname>|<myusername>/g;function firstMatch(el){var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null),nodes=[],full='';while(w.nextNode()){nodes.push({n:w.currentNode,s:full.length});full+=w.currentNode.nodeValue;}RX.lastIndex=0;var m;while((m=RX.exec(full))){var s=m.index,e=s+m[0].length,inSpan=false,parts=[];for(var j=0;j<nodes.length;j++){var ns=nodes[j].s,ne=ns+nodes[j].n.nodeValue.length;if(ne<=s||ns>=e)continue;parts.push({node:nodes[j].n,a:Math.max(s-ns,0),b:Math.min(e-ns,nodes[j].n.nodeValue.length)});var p=nodes[j].n.parentNode;while(p&&p!==el){if(p.classList&&p.classList.contains('sh-placeholder')){inSpan=true;break;}p=p.parentNode;}}if(!inSpan&&parts.length)return parts;}return null;}function wrapParts(parts){for(var i=parts.length-1;i>=0;i--){var t=parts[i].node,txt=t.nodeValue,a=parts[i].a,b=parts[i].b;var span=document.createElement('span');span.className='sh-placeholder';span.textContent=txt.slice(a,b);var f=document.createDocumentFragment();if(a>0)f.appendChild(document.createTextNode(txt.slice(0,a)));f.appendChild(span);if(b<txt.length)f.appendChild(document.createTextNode(txt.slice(b)));t.parentNode.replaceChild(f,t);}}function run(){var st=document.createElement('style');st.textContent=CSS;document.head.appendChild(st);document.querySelectorAll('pre,code').forEach(function(el){var guard=0,parts;while((parts=firstMatch(el))&&guard++<500){wrapParts(parts);}});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}else{run();}})();</script></section></section></main><nav class="bottom-pagination mx-md-4" aria-label="Next Chapter"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
+<script>(function(){var CSS='.sh-placeholder{color:#c2410c;font-weight:700}[data-bs-theme="dark"] .sh-placeholder,html.dark .sh-placeholder{color:#fdba74}@media (prefers-color-scheme: dark){[data-bs-theme="auto"] .sh-placeholder{color:#fdba74}}';var RX=/<labname>|<myusername>/g;function firstMatch(el){var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null),nodes=[],full='';while(w.nextNode()){nodes.push({n:w.currentNode,s:full.length});full+=w.currentNode.nodeValue;}RX.lastIndex=0;var m;while((m=RX.exec(full))){var s=m.index,e=s+m[0].length,inSpan=false,parts=[];for(var j=0;j<nodes.length;j++){var ns=nodes[j].s,ne=ns+nodes[j].n.nodeValue.length;if(ne<=s||ns>=e)continue;parts.push({node:nodes[j].n,a:Math.max(s-ns,0),b:Math.min(e-ns,nodes[j].n.nodeValue.length)});var p=nodes[j].n.parentNode;while(p&&p!==el){if(p.classList&&p.classList.contains('sh-placeholder')){inSpan=true;break;}p=p.parentNode;}}if(!inSpan&&parts.length)return parts;}return null;}function wrapParts(parts){for(var i=parts.length-1;i>=0;i--){var t=parts[i].node,txt=t.nodeValue,a=parts[i].a,b=parts[i].b;var span=document.createElement('span');span.className='sh-placeholder';span.textContent=txt.slice(a,b);var f=document.createDocumentFragment();if(a>0)f.appendChild(document.createTextNode(txt.slice(0,a)));f.appendChild(span);if(b<txt.length)f.appendChild(document.createTextNode(txt.slice(b)));t.parentNode.replaceChild(f,t);}}function run(){var st=document.createElement('style');st.textContent=CSS;document.head.appendChild(st);document.querySelectorAll('pre,code').forEach(function(el){var guard=0,parts;while((parts=firstMatch(el))&&guard++<500){wrapParts(parts);}});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}else{run();}})();</script></div>
+</div>
+
+      </section></main><nav class="bottom-pagination mx-md-4" aria-label="Next Chapter"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link float-end" href="../instructor/01-storage-overview.html" rel="next">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
@@ -1044,8 +1046,8 @@ before the workshop.</p>
   "url": "https://pomona-college.github.io/hpc-data-transfer-storage/instructor/index.html",
   "identifier": "https://pomona-college.github.io/hpc-data-transfer-storage/instructor/index.html",
   "dateCreated": "2026-03-05",
-  "dateModified": "2026-08-26",
-  "datePublished": "2026-08-26"
+  "dateModified": "2026-08-27",
+  "datePublished": "2026-08-27"
 }
 
   </script><script>

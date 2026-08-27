@@ -386,7 +386,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Using Scratch Storage in Jobs</h1>
-        <p>Last updated on 2026-08-24 |
+        <p>Last updated on 2026-08-27 |
 
         <a href="https://github.com/Pomona-College/hpc-data-transfer-storage/edit/main/episodes/09-scratch-storage.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -439,12 +439,15 @@ seconds on scratch versus 200+ seconds on <code>/rhome</code>: a
 pipeline that re-reads the same files thousands of times during
 training, the cumulative savings are even larger.</p>
 <p>The performance gap matters most when many jobs are reading from
-<code>/bigdata</code> simultaneously. NFS bandwidth is shared. If five
-jobs on five different nodes are all reading from
-<code>/bigdata/lab/&lt;labname&gt;/</code> at once, each gets a fraction
-of the available bandwidth. <code>/scratch</code> is local: each job has
-the full disk to itself.</p>
-<div id="scratch-is-non-persistent" class="callout">
+<code>/bigdata</code> simultaneously. BeeGFS spreads data across several
+storage servers, but that bandwidth is still shared between everyone
+using the filesystem. If five jobs on five different nodes are all
+reading from <code>/bigdata/lab/&lt;labname&gt;/</code> at once, each
+gets a fraction of the available bandwidth. <code>/scratch</code> is
+local: each job has the full disk to itself.</p>
+<figure><img src="fig/03-job-data-flow.png" alt="A five-step flow through a job. The job starts, inputs are copied from /bigdata to /scratch, computation reads and writes /scratch, results are copied back from /scratch to /bigdata, and then the job ends and /scratch is wiped. A warning states that anything still only on /scratch when the job ends is gone, so results must be copied back before the script exits, including on failure." class="figure mx-auto d-block"><div class="figcaption">Copy in, work on the fast local disk, copy out
+before the job ends.</div>
+</figure><div id="scratch-is-non-persistent" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
@@ -654,7 +657,7 @@ minutes’ warning before the timeout.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Typical results:</p>
 <pre><code>Without scratch: real 0m12.456s
@@ -691,7 +694,7 @@ time.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Explanation 1: the script wrote to
 <code>/scratch/$USER/$SLURM_JOB_ID/</code> but never copied the result
@@ -796,8 +799,8 @@ DataLoader parallel reads</li>
   "url": "https://pomona-college.github.io/hpc-data-transfer-storage/09-scratch-storage.html",
   "identifier": "https://pomona-college.github.io/hpc-data-transfer-storage/09-scratch-storage.html",
   "dateCreated": "2026-03-05",
-  "dateModified": "2026-08-24",
-  "datePublished": "2026-08-26"
+  "dateModified": "2026-08-27",
+  "datePublished": "2026-08-27"
 }
 
   </script><script>

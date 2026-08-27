@@ -448,7 +448,7 @@
         
 <section id="aio-01-storage-overview"><p>Content from <a href="01-storage-overview.html">Storage Architecture Overview</a></p>
 <hr>
-<p>Last updated on 2026-08-24 |
+<p>Last updated on 2026-08-27 |
 
         <a href="https://github.com/Pomona-College/hpc-data-transfer-storage/edit/main/episodes/01-storage-overview.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -462,7 +462,7 @@
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>What storage options are available on Sagehen?</li>
+<li>What storage options are available on Sagehen HPC?</li>
 <li>Where should I store different types of data?</li>
 <li>What are the differences between persistent and temporary
 storage?</li>
@@ -485,7 +485,7 @@ storage?</li>
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="sagehens-storage-system">Sagehen’s Storage System<a class="anchor" aria-label="anchor" href="#sagehens-storage-system"></a>
+<section><h2 class="section-heading" id="sagehen-hpcs-storage-system">Sagehen HPC’s Storage System<a class="anchor" aria-label="anchor" href="#sagehen-hpcs-storage-system"></a>
 </h2>
 <hr class="half-width">
 <p>Sagehen uses a <strong>hierarchical storage system</strong> designed
@@ -513,7 +513,9 @@ temporary storage (deleted when job completes)</li>
 +-- Temporary Storage (deleted when job completes)
     +-- /scratch/$SLURM_JOB_ID  (SSD-backed, very fast)
     +-- /tmpfs/$SLURM_JOB_ID    (RAM-backed, fastest)</code></pre>
-<div id="storage-performance-tiers" class="callout">
+<figure><img src="fig/01-storage-hierarchy.png" alt="Storage on Sagehen HPC in two groups. Persistent and backed up: /rhome with 100 GB per user for scripts, code and small inputs, and /bigdata/lab per lab with 1 TB shared for large datasets and results to keep. Temporary and deleted when the job ends: /scratch, node-local SSD used for working files during a job, and /tmpfs, RAM-backed and fastest at about 1 GB per job." class="figure mx-auto d-block"><div class="figcaption">Two tiers are backed up and two vanish when the
+job ends.</div>
+</figure><div id="storage-performance-tiers" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
@@ -703,7 +705,7 @@ performance requirements</li>
 <!-- highlight <labname>/<myusername> placeholders in code blocks; remove if the varnish theme handles this natively -->
 <script>(function(){var CSS='.sh-placeholder{color:#c2410c;font-weight:700}[data-bs-theme="dark"] .sh-placeholder,html.dark .sh-placeholder{color:#fdba74}@media (prefers-color-scheme: dark){[data-bs-theme="auto"] .sh-placeholder{color:#fdba74}}';var RX=/<labname>|<myusername>/g;function firstMatch(el){var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null),nodes=[],full='';while(w.nextNode()){nodes.push({n:w.currentNode,s:full.length});full+=w.currentNode.nodeValue;}RX.lastIndex=0;var m;while((m=RX.exec(full))){var s=m.index,e=s+m[0].length,inSpan=false,parts=[];for(var j=0;j<nodes.length;j++){var ns=nodes[j].s,ne=ns+nodes[j].n.nodeValue.length;if(ne<=s||ns>=e)continue;parts.push({node:nodes[j].n,a:Math.max(s-ns,0),b:Math.min(e-ns,nodes[j].n.nodeValue.length)});var p=nodes[j].n.parentNode;while(p&&p!==el){if(p.classList&&p.classList.contains('sh-placeholder')){inSpan=true;break;}p=p.parentNode;}}if(!inSpan&&parts.length)return parts;}return null;}function wrapParts(parts){for(var i=parts.length-1;i>=0;i--){var t=parts[i].node,txt=t.nodeValue,a=parts[i].a,b=parts[i].b;var span=document.createElement('span');span.className='sh-placeholder';span.textContent=txt.slice(a,b);var f=document.createDocumentFragment();if(a>0)f.appendChild(document.createTextNode(txt.slice(0,a)));f.appendChild(span);if(b<txt.length)f.appendChild(document.createTextNode(txt.slice(b)));t.parentNode.replaceChild(f,t);}}function run(){var st=document.createElement('style');st.textContent=CSS;document.head.appendChild(st);document.querySelectorAll('pre,code').forEach(function(el){var guard=0,parts;while((parts=firstMatch(el))&&guard++<500){wrapParts(parts);}});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}else{run();}})();</script></section></section><section id="aio-02-checking-quotas"><p>Content from <a href="02-checking-quotas.html">Checking and Managing Quotas</a></p>
 <hr>
-<p>Last updated on 2026-08-24 |
+<p>Last updated on 2026-08-27 |
 
         <a href="https://github.com/Pomona-College/hpc-data-transfer-storage/edit/main/episodes/02-checking-quotas.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -717,7 +719,7 @@ performance requirements</li>
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>How much storage can I use on Sagehen?</li>
+<li>How much storage can I use on Sagehen HPC?</li>
 <li>How do I check my current storage usage?</li>
 <li>Why does <code>du</code> give inaccurate results on BeeGFS?</li>
 </ul>
@@ -738,7 +740,7 @@ Identify large files and directories consuming space</p>
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="quota-structure-on-sagehen">Quota Structure on Sagehen<a class="anchor" aria-label="anchor" href="#quota-structure-on-sagehen"></a>
+<section><h2 class="section-heading" id="quota-structure-on-sagehen-hpc">Quota Structure on Sagehen HPC<a class="anchor" aria-label="anchor" href="#quota-structure-on-sagehen-hpc"></a>
 </h2>
 <hr class="half-width">
 <p>Both <code>/rhome/&lt;myusername&gt;</code> and
@@ -767,7 +769,9 @@ contacting <a href="mailto:its-hpc@pomona.edu" class="email">its-hpc@pomona.edu<
     Total Used: 1024 GB (at limit!)</code></pre>
 <p>Temporary storage (<code>/scratch</code> and <code>/tmpfs</code>)
 does not count against your lab quota.</p>
-</section><section><h2 class="section-heading" id="using-quota_check-sh-recommended">Using quota_check.sh (Recommended)<a class="anchor" aria-label="anchor" href="#using-quota_check-sh-recommended"></a>
+<figure><img src="fig/02-storage-decision.png" alt="A decision tree for where data should live. If it does not need to survive the job, use /scratch, node-local SSD, or /tmpfs in RAM at about 1 GB, both deleted at job end. If it must survive and is shared with your lab, use /bigdata/lab with 1 TB shared and backed up. If it must survive but is yours alone, use /rhome with 100 GB backed up." class="figure mx-auto d-block"><div class="figcaption">One question decides it: does the data need to
+outlive the job?</div>
+</figure></section><section><h2 class="section-heading" id="using-quota_check-sh-recommended">Using quota_check.sh (Recommended)<a class="anchor" aria-label="anchor" href="#using-quota_check-sh-recommended"></a>
 </h2>
 <hr class="half-width">
 <p>Sagehen provides a dedicated script that accounts for BeeGFS:</p>
@@ -864,7 +868,7 @@ directory or lab storage?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Sample output:</p>
 <div class="codewrapper sourceCode" id="cb8">
@@ -1131,7 +1135,7 @@ can consume significant space</li>
 </div>
 </section></section><section id="aio-04-ondemand-transfers"><p>Content from <a href="04-ondemand-transfers.html">Transferring Files with OnDemand</a></p>
 <hr>
-<p>Last updated on 2026-08-24 |
+<p>Last updated on 2026-08-27 |
 
         <a href="https://github.com/Pomona-College/hpc-data-transfer-storage/edit/main/episodes/04-ondemand-transfers.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1214,7 +1218,7 @@ for Home, New File, New Dir, and Upload.</p>
 </ol>
 <p>For multiple files, hold Ctrl (Windows) or Cmd (Mac) to select
 several at once. To upload a directory structure, create the folders on
-Sagehen first, then upload files into each.</p>
+Sagehen HPC first, then upload files into each.</p>
 <p>For files larger than 500 MB, use rsync instead:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1315,7 +1319,7 @@ browsing</li>
 <!-- highlight <labname>/<myusername> placeholders in code blocks; remove if the varnish theme handles this natively -->
 <script>(function(){var CSS='.sh-placeholder{color:#c2410c;font-weight:700}[data-bs-theme="dark"] .sh-placeholder,html.dark .sh-placeholder{color:#fdba74}@media (prefers-color-scheme: dark){[data-bs-theme="auto"] .sh-placeholder{color:#fdba74}}';var RX=/<labname>|<myusername>/g;function firstMatch(el){var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null),nodes=[],full='';while(w.nextNode()){nodes.push({n:w.currentNode,s:full.length});full+=w.currentNode.nodeValue;}RX.lastIndex=0;var m;while((m=RX.exec(full))){var s=m.index,e=s+m[0].length,inSpan=false,parts=[];for(var j=0;j<nodes.length;j++){var ns=nodes[j].s,ne=ns+nodes[j].n.nodeValue.length;if(ne<=s||ns>=e)continue;parts.push({node:nodes[j].n,a:Math.max(s-ns,0),b:Math.min(e-ns,nodes[j].n.nodeValue.length)});var p=nodes[j].n.parentNode;while(p&&p!==el){if(p.classList&&p.classList.contains('sh-placeholder')){inSpan=true;break;}p=p.parentNode;}}if(!inSpan&&parts.length)return parts;}return null;}function wrapParts(parts){for(var i=parts.length-1;i>=0;i--){var t=parts[i].node,txt=t.nodeValue,a=parts[i].a,b=parts[i].b;var span=document.createElement('span');span.className='sh-placeholder';span.textContent=txt.slice(a,b);var f=document.createDocumentFragment();if(a>0)f.appendChild(document.createTextNode(txt.slice(0,a)));f.appendChild(span);if(b<txt.length)f.appendChild(document.createTextNode(txt.slice(b)));t.parentNode.replaceChild(f,t);}}function run(){var st=document.createElement('style');st.textContent=CSS;document.head.appendChild(st);document.querySelectorAll('pre,code').forEach(function(el){var guard=0,parts;while((parts=firstMatch(el))&&guard++<500){wrapParts(parts);}});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}else{run();}})();</script></section></section><section id="aio-05-sftp-setup"><p>Content from <a href="05-sftp-setup.html">SFTP Setup with FileZilla</a></p>
 <hr>
-<p>Last updated on 2026-08-24 |
+<p>Last updated on 2026-08-27 |
 
         <a href="https://github.com/Pomona-College/hpc-data-transfer-storage/edit/main/episodes/05-sftp-setup.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1331,7 +1335,7 @@ browsing</li>
 <ul>
 <li>What is FileZilla and why use it for file transfers?</li>
 <li>How do I install and configure FileZilla?</li>
-<li>How do I connect to Sagehen with Duo authentication?</li>
+<li>How do I connect to Sagehen HPC with Duo authentication?</li>
 </ul>
 </div>
 </div>
@@ -1406,7 +1410,7 @@ workflows.</p>
 <span id="cb1-5"><a href="#cb1-5" tabindex="-1" aria-label="code-block-1-5"></a><span class="fu">sudo</span> dnf install filezilla</span></code></pre>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="connecting-to-sagehen">Connecting to Sagehen<a class="anchor" aria-label="anchor" href="#connecting-to-sagehen"></a>
+</section><section><h2 class="section-heading" id="connecting-to-sagehen-hpc">Connecting to Sagehen HPC<a class="anchor" aria-label="anchor" href="#connecting-to-sagehen-hpc"></a>
 </h2>
 <hr class="half-width">
 <div class="section level3">
@@ -1461,13 +1465,13 @@ your password each time.</p>
 </ol>
 <p>If no Duo prompt appears, check your phone for delayed notifications,
 try reconnecting, or contact <a href="mailto:its-hpc@pomona.edu" class="email">its-hpc@pomona.edu</a>.</p>
-<div id="challenge-connect-to-sagehen" class="callout challenge">
+<div id="challenge-connect-to-sagehen-hpc" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <span class="callout-header">Challenge</span>
-<div id="challenge-connect-to-sagehen" class="callout-inner">
-<h3 class="callout-title">Challenge: Connect to Sagehen</h3>
+<div id="challenge-connect-to-sagehen-hpc" class="callout-inner">
+<h3 class="callout-title">Challenge: Connect to Sagehen HPC</h3>
 <div class="callout-content">
 <ol style="list-style-type: decimal">
 <li>Install FileZilla on your computer</li>
@@ -1524,7 +1528,7 @@ protocol</li>
 </div>
 </section></section><section id="aio-06-filezilla-operations"><p>Content from <a href="06-filezilla-operations.html">FileZilla File Operations</a></p>
 <hr>
-<p>Last updated on 2026-08-24 |
+<p>Last updated on 2026-08-27 |
 
         <a href="https://github.com/Pomona-College/hpc-data-transfer-storage/edit/main/episodes/06-filezilla-operations.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1541,7 +1545,7 @@ protocol</li>
 <li>How do I transfer files using FileZilla’s drag-and-drop
 interface?</li>
 <li>How do I monitor transfer progress?</li>
-<li>How do I manage files on Sagehen through FileZilla?</li>
+<li>How do I manage files on Sagehen HPC through FileZilla?</li>
 </ul>
 </div>
 </div>
@@ -1566,8 +1570,8 @@ delete, create directories)</p>
 Sagehen. Double-click folders to enter them, or type a path directly in
 the path field.</p>
 <figure><img src="fig/06-filezilla-connected-panels.png" alt="The FileZilla client connected to sagehen.hpc.pomona.edu over SFTP. The status log confirms the hostkey is trusted and the remote directory listing succeeded. The window is split into a local Windows file tree on the left and the remote Sagehen directory tree on the right." class="figure mx-auto d-block"><div class="figcaption">FileZilla after Quickconnect: your computer on
-the left, your Sagehen home on the right (it appears as /bigdata/rhome/…
-— the same place /rhome points to).</div>
+the left, your Sagehen HPC home on the right (it appears as
+/bigdata/rhome/… — the same place /rhome points to).</div>
 </figure><p>To access lab storage, type <code>/bigdata/lab/&lt;labname&gt;</code>
 in the remote path field and press Enter.</p>
 </section><section><h2 class="section-heading" id="uploading-files">Uploading Files<a class="anchor" aria-label="anchor" href="#uploading-files"></a>
@@ -1725,7 +1729,7 @@ for larger files</li>
 <!-- highlight <labname>/<myusername> placeholders in code blocks; remove if the varnish theme handles this natively -->
 <script>(function(){var CSS='.sh-placeholder{color:#c2410c;font-weight:700}[data-bs-theme="dark"] .sh-placeholder,html.dark .sh-placeholder{color:#fdba74}@media (prefers-color-scheme: dark){[data-bs-theme="auto"] .sh-placeholder{color:#fdba74}}';var RX=/<labname>|<myusername>/g;function firstMatch(el){var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null),nodes=[],full='';while(w.nextNode()){nodes.push({n:w.currentNode,s:full.length});full+=w.currentNode.nodeValue;}RX.lastIndex=0;var m;while((m=RX.exec(full))){var s=m.index,e=s+m[0].length,inSpan=false,parts=[];for(var j=0;j<nodes.length;j++){var ns=nodes[j].s,ne=ns+nodes[j].n.nodeValue.length;if(ne<=s||ns>=e)continue;parts.push({node:nodes[j].n,a:Math.max(s-ns,0),b:Math.min(e-ns,nodes[j].n.nodeValue.length)});var p=nodes[j].n.parentNode;while(p&&p!==el){if(p.classList&&p.classList.contains('sh-placeholder')){inSpan=true;break;}p=p.parentNode;}}if(!inSpan&&parts.length)return parts;}return null;}function wrapParts(parts){for(var i=parts.length-1;i>=0;i--){var t=parts[i].node,txt=t.nodeValue,a=parts[i].a,b=parts[i].b;var span=document.createElement('span');span.className='sh-placeholder';span.textContent=txt.slice(a,b);var f=document.createDocumentFragment();if(a>0)f.appendChild(document.createTextNode(txt.slice(0,a)));f.appendChild(span);if(b<txt.length)f.appendChild(document.createTextNode(txt.slice(b)));t.parentNode.replaceChild(f,t);}}function run(){var st=document.createElement('style');st.textContent=CSS;document.head.appendChild(st);document.querySelectorAll('pre,code').forEach(function(el){var guard=0,parts;while((parts=firstMatch(el))&&guard++<500){wrapParts(parts);}});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}else{run();}})();</script></section></section><section id="aio-07-rsync-basics"><p>Content from <a href="07-rsync-basics.html">Introduction to rsync</a></p>
 <hr>
-<p>Last updated on 2026-08-24 |
+<p>Last updated on 2026-08-27 |
 
         <a href="https://github.com/Pomona-College/hpc-data-transfer-storage/edit/main/episodes/07-rsync-basics.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1753,7 +1757,7 @@ for larger files</li>
 <p>After completing this episode, participants will be able to:</p>
 <ul>
 <li>Explain rsync’s advantages over other transfer methods</li>
-<li>Use rsync to upload files to Sagehen</li>
+<li>Use rsync to upload files to Sagehen HPC</li>
 <li>Use rsync to download files from Sagehen</li>
 <li>Choose appropriate flags for different transfer scenarios</li>
 </ul>
@@ -1993,7 +1997,7 @@ stopped.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Expected output:</p>
 <pre><code>test_data.bin
@@ -2238,7 +2242,7 @@ output</p></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The dry-run should show <code>data/data.txt</code> and
 <code>scripts/main.py</code> but not <code>scripts/main.pyc</code>. The
@@ -2272,7 +2276,7 @@ fast storage</li>
 <!-- highlight <labname>/<myusername> placeholders in code blocks; remove if the varnish theme handles this natively -->
 <script>(function(){var CSS='.sh-placeholder{color:#c2410c;font-weight:700}[data-bs-theme="dark"] .sh-placeholder,html.dark .sh-placeholder{color:#fdba74}@media (prefers-color-scheme: dark){[data-bs-theme="auto"] .sh-placeholder{color:#fdba74}}';var RX=/<labname>|<myusername>/g;function firstMatch(el){var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null),nodes=[],full='';while(w.nextNode()){nodes.push({n:w.currentNode,s:full.length});full+=w.currentNode.nodeValue;}RX.lastIndex=0;var m;while((m=RX.exec(full))){var s=m.index,e=s+m[0].length,inSpan=false,parts=[];for(var j=0;j<nodes.length;j++){var ns=nodes[j].s,ne=ns+nodes[j].n.nodeValue.length;if(ne<=s||ns>=e)continue;parts.push({node:nodes[j].n,a:Math.max(s-ns,0),b:Math.min(e-ns,nodes[j].n.nodeValue.length)});var p=nodes[j].n.parentNode;while(p&&p!==el){if(p.classList&&p.classList.contains('sh-placeholder')){inSpan=true;break;}p=p.parentNode;}}if(!inSpan&&parts.length)return parts;}return null;}function wrapParts(parts){for(var i=parts.length-1;i>=0;i--){var t=parts[i].node,txt=t.nodeValue,a=parts[i].a,b=parts[i].b;var span=document.createElement('span');span.className='sh-placeholder';span.textContent=txt.slice(a,b);var f=document.createDocumentFragment();if(a>0)f.appendChild(document.createTextNode(txt.slice(0,a)));f.appendChild(span);if(b<txt.length)f.appendChild(document.createTextNode(txt.slice(b)));t.parentNode.replaceChild(f,t);}}function run(){var st=document.createElement('style');st.textContent=CSS;document.head.appendChild(st);document.querySelectorAll('pre,code').forEach(function(el){var guard=0,parts;while((parts=firstMatch(el))&&guard++<500){wrapParts(parts);}});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}else{run();}})();</script></section></section><section id="aio-09-scratch-storage"><p>Content from <a href="09-scratch-storage.html">Using Scratch Storage in Jobs</a></p>
 <hr>
-<p>Last updated on 2026-08-24 |
+<p>Last updated on 2026-08-27 |
 
         <a href="https://github.com/Pomona-College/hpc-data-transfer-storage/edit/main/episodes/09-scratch-storage.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -2323,12 +2327,15 @@ seconds on scratch versus 200+ seconds on <code>/rhome</code>: a
 pipeline that re-reads the same files thousands of times during
 training, the cumulative savings are even larger.</p>
 <p>The performance gap matters most when many jobs are reading from
-<code>/bigdata</code> simultaneously. NFS bandwidth is shared. If five
-jobs on five different nodes are all reading from
-<code>/bigdata/lab/&lt;labname&gt;/</code> at once, each gets a fraction
-of the available bandwidth. <code>/scratch</code> is local: each job has
-the full disk to itself.</p>
-<div id="scratch-is-non-persistent" class="callout">
+<code>/bigdata</code> simultaneously. BeeGFS spreads data across several
+storage servers, but that bandwidth is still shared between everyone
+using the filesystem. If five jobs on five different nodes are all
+reading from <code>/bigdata/lab/&lt;labname&gt;/</code> at once, each
+gets a fraction of the available bandwidth. <code>/scratch</code> is
+local: each job has the full disk to itself.</p>
+<figure><img src="fig/03-job-data-flow.png" alt="A five-step flow through a job. The job starts, inputs are copied from /bigdata to /scratch, computation reads and writes /scratch, results are copied back from /scratch to /bigdata, and then the job ends and /scratch is wiped. A warning states that anything still only on /scratch when the job ends is gone, so results must be copied back before the script exits, including on failure." class="figure mx-auto d-block"><div class="figcaption">Copy in, work on the fast local disk, copy out
+before the job ends.</div>
+</figure><div id="scratch-is-non-persistent" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
@@ -2548,7 +2555,7 @@ minutes’ warning before the timeout.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Typical results:</p>
 <pre><code>Without scratch: real 0m12.456s
@@ -2585,7 +2592,7 @@ time.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Explanation 1: the script wrote to
 <code>/scratch/$USER/$SLURM_JOB_ID/</code> but never copied the result
@@ -2634,7 +2641,7 @@ DataLoader parallel reads</li>
 <!-- highlight <labname>/<myusername> placeholders in code blocks; remove if the varnish theme handles this natively -->
 <script>(function(){var CSS='.sh-placeholder{color:#c2410c;font-weight:700}[data-bs-theme="dark"] .sh-placeholder,html.dark .sh-placeholder{color:#fdba74}@media (prefers-color-scheme: dark){[data-bs-theme="auto"] .sh-placeholder{color:#fdba74}}';var RX=/<labname>|<myusername>/g;function firstMatch(el){var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null),nodes=[],full='';while(w.nextNode()){nodes.push({n:w.currentNode,s:full.length});full+=w.currentNode.nodeValue;}RX.lastIndex=0;var m;while((m=RX.exec(full))){var s=m.index,e=s+m[0].length,inSpan=false,parts=[];for(var j=0;j<nodes.length;j++){var ns=nodes[j].s,ne=ns+nodes[j].n.nodeValue.length;if(ne<=s||ns>=e)continue;parts.push({node:nodes[j].n,a:Math.max(s-ns,0),b:Math.min(e-ns,nodes[j].n.nodeValue.length)});var p=nodes[j].n.parentNode;while(p&&p!==el){if(p.classList&&p.classList.contains('sh-placeholder')){inSpan=true;break;}p=p.parentNode;}}if(!inSpan&&parts.length)return parts;}return null;}function wrapParts(parts){for(var i=parts.length-1;i>=0;i--){var t=parts[i].node,txt=t.nodeValue,a=parts[i].a,b=parts[i].b;var span=document.createElement('span');span.className='sh-placeholder';span.textContent=txt.slice(a,b);var f=document.createDocumentFragment();if(a>0)f.appendChild(document.createTextNode(txt.slice(0,a)));f.appendChild(span);if(b<txt.length)f.appendChild(document.createTextNode(txt.slice(b)));t.parentNode.replaceChild(f,t);}}function run(){var st=document.createElement('style');st.textContent=CSS;document.head.appendChild(st);document.querySelectorAll('pre,code').forEach(function(el){var guard=0,parts;while((parts=firstMatch(el))&&guard++<500){wrapParts(parts);}});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}else{run();}})();</script></section></section><section id="aio-10-tmpfs-storage"><p>Content from <a href="10-tmpfs-storage.html">Using tmpfs RAM Storage</a></p>
 <hr>
-<p>Last updated on 2026-08-24 |
+<p>Last updated on 2026-08-27 |
 
         <a href="https://github.com/Pomona-College/hpc-data-transfer-storage/edit/main/episodes/10-tmpfs-storage.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -2885,7 +2892,7 @@ application + overhead) 2. Copy the index to tmpfs 3. Run the analysis
 <ul>
 <li>
 <code>/tmpfs</code> is RAM-backed storage providing the fastest I/O
-on Sagehen</li>
+on Sagehen HPC</li>
 <li>Limited by job memory allocation and restricted to single-node
 jobs</li>
 <li>Data on <code>/tmpfs</code> is deleted immediately when the job
@@ -2901,7 +2908,7 @@ completes</li>
 </div>
 </section></section><section id="aio-11-data-organization"><p>Content from <a href="11-data-organization.html">Data Organization Best Practices</a></p>
 <hr>
-<p>Last updated on 2026-08-24 |
+<p>Last updated on 2026-08-27 |
 
         <a href="https://github.com/Pomona-College/hpc-data-transfer-storage/edit/main/episodes/11-data-organization.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -2915,7 +2922,7 @@ completes</li>
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>How should I organize my data on Sagehen?</li>
+<li>How should I organize my data on Sagehen HPC?</li>
 <li>What naming conventions should I follow?</li>
 <li>How do I share data effectively with collaborators?</li>
 </ul>
@@ -3064,7 +3071,7 @@ find key files</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Example structure:</p>
 <pre><code><span><span class="va">project_ml_classifier</span><span class="op">/</span></span>
@@ -3105,7 +3112,7 @@ with appropriate permissions</li>
 <!-- highlight <labname>/<myusername> placeholders in code blocks; remove if the varnish theme handles this natively -->
 <script>(function(){var CSS='.sh-placeholder{color:#c2410c;font-weight:700}[data-bs-theme="dark"] .sh-placeholder,html.dark .sh-placeholder{color:#fdba74}@media (prefers-color-scheme: dark){[data-bs-theme="auto"] .sh-placeholder{color:#fdba74}}';var RX=/<labname>|<myusername>/g;function firstMatch(el){var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null),nodes=[],full='';while(w.nextNode()){nodes.push({n:w.currentNode,s:full.length});full+=w.currentNode.nodeValue;}RX.lastIndex=0;var m;while((m=RX.exec(full))){var s=m.index,e=s+m[0].length,inSpan=false,parts=[];for(var j=0;j<nodes.length;j++){var ns=nodes[j].s,ne=ns+nodes[j].n.nodeValue.length;if(ne<=s||ns>=e)continue;parts.push({node:nodes[j].n,a:Math.max(s-ns,0),b:Math.min(e-ns,nodes[j].n.nodeValue.length)});var p=nodes[j].n.parentNode;while(p&&p!==el){if(p.classList&&p.classList.contains('sh-placeholder')){inSpan=true;break;}p=p.parentNode;}}if(!inSpan&&parts.length)return parts;}return null;}function wrapParts(parts){for(var i=parts.length-1;i>=0;i--){var t=parts[i].node,txt=t.nodeValue,a=parts[i].a,b=parts[i].b;var span=document.createElement('span');span.className='sh-placeholder';span.textContent=txt.slice(a,b);var f=document.createDocumentFragment();if(a>0)f.appendChild(document.createTextNode(txt.slice(0,a)));f.appendChild(span);if(b<txt.length)f.appendChild(document.createTextNode(txt.slice(b)));t.parentNode.replaceChild(f,t);}}function run(){var st=document.createElement('style');st.textContent=CSS;document.head.appendChild(st);document.querySelectorAll('pre,code').forEach(function(el){var guard=0,parts;while((parts=firstMatch(el))&&guard++<500){wrapParts(parts);}});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}else{run();}})();</script></section></section><section id="aio-12-backup-archival"><p>Content from <a href="12-backup-archival.html">Backup and Archival Strategies</a></p>
 <hr>
-<p>Last updated on 2026-08-24 |
+<p>Last updated on 2026-08-27 |
 
         <a href="https://github.com/Pomona-College/hpc-data-transfer-storage/edit/main/episodes/12-backup-archival.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -3119,7 +3126,7 @@ with appropriate permissions</li>
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>How do I back up my data on Sagehen?</li>
+<li>How do I back up my data on Sagehen HPC?</li>
 <li>When and how should I archive completed projects?</li>
 <li>How do I migrate data between storage locations?</li>
 </ul>
@@ -3277,7 +3284,7 @@ you would use, including:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3331,7 +3338,7 @@ stages</li>
 <!-- highlight <labname>/<myusername> placeholders in code blocks; remove if the varnish theme handles this natively -->
 <script>(function(){var CSS='.sh-placeholder{color:#c2410c;font-weight:700}[data-bs-theme="dark"] .sh-placeholder,html.dark .sh-placeholder{color:#fdba74}@media (prefers-color-scheme: dark){[data-bs-theme="auto"] .sh-placeholder{color:#fdba74}}';var RX=/<labname>|<myusername>/g;function firstMatch(el){var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null),nodes=[],full='';while(w.nextNode()){nodes.push({n:w.currentNode,s:full.length});full+=w.currentNode.nodeValue;}RX.lastIndex=0;var m;while((m=RX.exec(full))){var s=m.index,e=s+m[0].length,inSpan=false,parts=[];for(var j=0;j<nodes.length;j++){var ns=nodes[j].s,ne=ns+nodes[j].n.nodeValue.length;if(ne<=s||ns>=e)continue;parts.push({node:nodes[j].n,a:Math.max(s-ns,0),b:Math.min(e-ns,nodes[j].n.nodeValue.length)});var p=nodes[j].n.parentNode;while(p&&p!==el){if(p.classList&&p.classList.contains('sh-placeholder')){inSpan=true;break;}p=p.parentNode;}}if(!inSpan&&parts.length)return parts;}return null;}function wrapParts(parts){for(var i=parts.length-1;i>=0;i--){var t=parts[i].node,txt=t.nodeValue,a=parts[i].a,b=parts[i].b;var span=document.createElement('span');span.className='sh-placeholder';span.textContent=txt.slice(a,b);var f=document.createDocumentFragment();if(a>0)f.appendChild(document.createTextNode(txt.slice(0,a)));f.appendChild(span);if(b<txt.length)f.appendChild(document.createTextNode(txt.slice(b)));t.parentNode.replaceChild(f,t);}}function run(){var st=document.createElement('style');st.textContent=CSS;document.head.appendChild(st);document.querySelectorAll('pre,code').forEach(function(el){var guard=0,parts;while((parts=firstMatch(el))&&guard++<500){wrapParts(parts);}});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}else{run();}})();</script></section></section><section id="aio-13-transfer-selection"><p>Content from <a href="13-transfer-selection.html">Choosing a Transfer Method</a></p>
 <hr>
-<p>Last updated on 2026-08-24 |
+<p>Last updated on 2026-08-27 |
 
         <a href="https://github.com/Pomona-College/hpc-data-transfer-storage/edit/main/episodes/13-transfer-selection.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -3439,7 +3446,7 @@ files.</p>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="fu">rsync</span> <span class="at">-avhP</span> <span class="op">&lt;</span>myusername<span class="op">&gt;</span>@sagehen.hpc.pomona.edu:/rhome/<span class="op">&lt;</span>myusername<span class="op">&gt;</span>/results/output.h5 ~/Downloads/</span></code></pre>
 </div>
 <p>Method: rsync. Time: 2-3 minutes.</p>
-<p><strong>Sync code between laptop and Sagehen daily:</strong></p>
+<p><strong>Sync code between laptop and Sagehen HPC daily:</strong></p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -3562,7 +3569,7 @@ method</li>
 <!-- highlight <labname>/<myusername> placeholders in code blocks; remove if the varnish theme handles this natively -->
 <script>(function(){var CSS='.sh-placeholder{color:#c2410c;font-weight:700}[data-bs-theme="dark"] .sh-placeholder,html.dark .sh-placeholder{color:#fdba74}@media (prefers-color-scheme: dark){[data-bs-theme="auto"] .sh-placeholder{color:#fdba74}}';var RX=/<labname>|<myusername>/g;function firstMatch(el){var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null),nodes=[],full='';while(w.nextNode()){nodes.push({n:w.currentNode,s:full.length});full+=w.currentNode.nodeValue;}RX.lastIndex=0;var m;while((m=RX.exec(full))){var s=m.index,e=s+m[0].length,inSpan=false,parts=[];for(var j=0;j<nodes.length;j++){var ns=nodes[j].s,ne=ns+nodes[j].n.nodeValue.length;if(ne<=s||ns>=e)continue;parts.push({node:nodes[j].n,a:Math.max(s-ns,0),b:Math.min(e-ns,nodes[j].n.nodeValue.length)});var p=nodes[j].n.parentNode;while(p&&p!==el){if(p.classList&&p.classList.contains('sh-placeholder')){inSpan=true;break;}p=p.parentNode;}}if(!inSpan&&parts.length)return parts;}return null;}function wrapParts(parts){for(var i=parts.length-1;i>=0;i--){var t=parts[i].node,txt=t.nodeValue,a=parts[i].a,b=parts[i].b;var span=document.createElement('span');span.className='sh-placeholder';span.textContent=txt.slice(a,b);var f=document.createDocumentFragment();if(a>0)f.appendChild(document.createTextNode(txt.slice(0,a)));f.appendChild(span);if(b<txt.length)f.appendChild(document.createTextNode(txt.slice(b)));t.parentNode.replaceChild(f,t);}}function run(){var st=document.createElement('style');st.textContent=CSS;document.head.appendChild(st);document.querySelectorAll('pre,code').forEach(function(el){var guard=0,parts;while((parts=firstMatch(el))&&guard++<500){wrapParts(parts);}});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}else{run();}})();</script></section></section><section id="aio-14-troubleshooting"><p>Content from <a href="14-troubleshooting.html">Troubleshooting and Review</a></p>
 <hr>
-<p>Last updated on 2026-08-24 |
+<p>Last updated on 2026-08-27 |
 
         <a href="https://github.com/Pomona-College/hpc-data-transfer-storage/edit/main/episodes/14-troubleshooting.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -3625,7 +3632,7 @@ work</p>
 <h3 id="authentication-failed">Authentication Failed<a class="anchor" aria-label="anchor" href="#authentication-failed"></a>
 </h3>
 <ol style="list-style-type: decimal">
-<li>Verify Pomona credentials (not a separate Sagehen password)</li>
+<li>Verify Pomona credentials (not a separate Sagehen HPC password)</li>
 <li>Check caps lock</li>
 <li>Look for Duo notification on your phone</li>
 <li>Try SSH first to isolate the issue:
@@ -3772,7 +3779,7 @@ the file listing</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li><p><strong>Problem</strong>: Using <code>du</code> without
@@ -3868,8 +3875,8 @@ results back</li>
   "url": "https://pomona-college.github.io/hpc-data-transfer-storage/aio.html",
   "identifier": "https://pomona-college.github.io/hpc-data-transfer-storage/aio.html",
   "dateCreated": "2026-03-05",
-  "dateModified": "2026-08-26",
-  "datePublished": "2026-08-26"
+  "dateModified": "2026-08-27",
+  "datePublished": "2026-08-27"
 }
 
   </script><script>

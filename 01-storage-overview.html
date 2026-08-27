@@ -199,7 +199,7 @@
 
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
-        <ul><li><a href="#sagehens-storage-system">Sagehen’s Storage System</a></li>
+        <ul><li><a href="#sagehen-hpcs-storage-system">Sagehen HPC’s Storage System</a></li>
 <li><a href="#persistent-storage">Persistent Storage</a></li>
 <li><a href="#temporary-storage">Temporary Storage</a></li>
 <li><a href="#choosing-the-right-location">Choosing the Right Location</a></li>
@@ -385,7 +385,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Storage Architecture Overview</h1>
-        <p>Last updated on 2026-08-24 |
+        <p>Last updated on 2026-08-27 |
 
         <a href="https://github.com/Pomona-College/hpc-data-transfer-storage/edit/main/episodes/01-storage-overview.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -404,7 +404,7 @@
 <div class="card-body">
 <div class="inner">
 <h3 class="card-title">Questions</h3>
-<ul><li>What storage options are available on Sagehen?</li>
+<ul><li>What storage options are available on Sagehen HPC?</li>
 <li>Where should I store different types of data?</li>
 <li>What are the differences between persistent and temporary
 storage?</li>
@@ -424,7 +424,7 @@ storage?</li>
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="sagehens-storage-system">Sagehen’s Storage System<a class="anchor" aria-label="anchor" href="#sagehens-storage-system"></a></h2>
+<section><h2 class="section-heading" id="sagehen-hpcs-storage-system">Sagehen HPC’s Storage System<a class="anchor" aria-label="anchor" href="#sagehen-hpcs-storage-system"></a></h2>
 <hr class="half-width"><p>Sagehen uses a <strong>hierarchical storage system</strong> designed
 to balance performance, reliability, and cost. The four main storage
 locations are:</p>
@@ -448,7 +448,9 @@ temporary storage (deleted when job completes)</li>
 +-- Temporary Storage (deleted when job completes)
     +-- /scratch/$SLURM_JOB_ID  (SSD-backed, very fast)
     +-- /tmpfs/$SLURM_JOB_ID    (RAM-backed, fastest)</code></pre>
-<div id="storage-performance-tiers" class="callout">
+<figure><img src="fig/01-storage-hierarchy.png" alt="Storage on Sagehen HPC in two groups. Persistent and backed up: /rhome with 100 GB per user for scripts, code and small inputs, and /bigdata/lab per lab with 1 TB shared for large datasets and results to keep. Temporary and deleted when the job ends: /scratch, node-local SSD used for working files during a job, and /tmpfs, RAM-backed and fastest at about 1 GB per job." class="figure mx-auto d-block"><div class="figcaption">Two tiers are backed up and two vanish when the
+job ends.</div>
+</figure><div id="storage-performance-tiers" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
@@ -672,8 +674,8 @@ performance requirements</li>
   "url": "https://pomona-college.github.io/hpc-data-transfer-storage/01-storage-overview.html",
   "identifier": "https://pomona-college.github.io/hpc-data-transfer-storage/01-storage-overview.html",
   "dateCreated": "2026-03-05",
-  "dateModified": "2026-08-24",
-  "datePublished": "2026-08-26"
+  "dateModified": "2026-08-27",
+  "datePublished": "2026-08-27"
 }
 
   </script><script>

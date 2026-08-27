@@ -208,7 +208,7 @@
 
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
-        <ul><li><a href="#quota-structure-on-sagehen">Quota Structure on Sagehen</a></li>
+        <ul><li><a href="#quota-structure-on-sagehen-hpc">Quota Structure on Sagehen HPC</a></li>
 <li><a href="#using-quota_check.sh-recommended">Using quota_check.sh (Recommended)</a></li>
 <li><a href="#using-du-correctly-on-beegfs">Using du Correctly on BeeGFS</a></li>
 <li><a href="#finding-large-files-and-directories">Finding Large Files and Directories</a></li>
@@ -385,7 +385,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Checking and Managing Quotas</h1>
-        <p>Last updated on 2026-08-24 |
+        <p>Last updated on 2026-08-27 |
 
         <a href="https://github.com/Pomona-College/hpc-data-transfer-storage/edit/main/episodes/02-checking-quotas.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -406,7 +406,7 @@
 <div class="card-body">
 <div class="inner">
 <h3 class="card-title">Questions</h3>
-<ul><li>How much storage can I use on Sagehen?</li>
+<ul><li>How much storage can I use on Sagehen HPC?</li>
 <li>How do I check my current storage usage?</li>
 <li>Why does <code>du</code> give inaccurate results on BeeGFS?</li>
 </ul></div>
@@ -426,7 +426,7 @@ Identify large files and directories consuming space</p>
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="quota-structure-on-sagehen">Quota Structure on Sagehen<a class="anchor" aria-label="anchor" href="#quota-structure-on-sagehen"></a></h2>
+<section><h2 class="section-heading" id="quota-structure-on-sagehen-hpc">Quota Structure on Sagehen HPC<a class="anchor" aria-label="anchor" href="#quota-structure-on-sagehen-hpc"></a></h2>
 <hr class="half-width"><p>Both <code>/rhome/&lt;myusername&gt;</code> and
 <code>/bigdata/lab/&lt;labname&gt;</code> share a <strong>lab-based
 quota</strong>:</p>
@@ -451,7 +451,9 @@ contacting <a href="mailto:its-hpc@pomona.edu" class="email">its-hpc@pomona.edu<
     Total Used: 1024 GB (at limit!)</code></pre>
 <p>Temporary storage (<code>/scratch</code> and <code>/tmpfs</code>)
 does not count against your lab quota.</p>
-</section><section><h2 class="section-heading" id="using-quota_check-sh-recommended">Using quota_check.sh (Recommended)<a class="anchor" aria-label="anchor" href="#using-quota_check-sh-recommended"></a></h2>
+<figure><img src="../fig/02-storage-decision.png" alt="A decision tree for where data should live. If it does not need to survive the job, use /scratch, node-local SSD, or /tmpfs in RAM at about 1 GB, both deleted at job end. If it must survive and is shared with your lab, use /bigdata/lab with 1 TB shared and backed up. If it must survive but is yours alone, use /rhome with 100 GB backed up." class="figure mx-auto d-block"><div class="figcaption">One question decides it: does the data need to
+outlive the job?</div>
+</figure></section><section><h2 class="section-heading" id="using-quota_check-sh-recommended">Using quota_check.sh (Recommended)<a class="anchor" aria-label="anchor" href="#using-quota_check-sh-recommended"></a></h2>
 <hr class="half-width"><p>Sagehen provides a dedicated script that accounts for BeeGFS:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -538,7 +540,7 @@ directory or lab storage?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Sample output:</p>
 <div class="codewrapper sourceCode" id="cb8">
@@ -638,8 +640,8 @@ not count against quota</li>
   "url": "https://pomona-college.github.io/hpc-data-transfer-storage/instructor/02-checking-quotas.html",
   "identifier": "https://pomona-college.github.io/hpc-data-transfer-storage/instructor/02-checking-quotas.html",
   "dateCreated": "2026-03-05",
-  "dateModified": "2026-08-24",
-  "datePublished": "2026-08-26"
+  "dateModified": "2026-08-27",
+  "datePublished": "2026-08-27"
 }
 
   </script><script>

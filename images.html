@@ -447,9 +447,19 @@
         <h1>All Images</h1>
         
 <section id="01-storage-overview"><h2 class="section-heading"><a href="01-storage-overview.html">Storage Architecture Overview</a></h2>
-<hr class="half-width"></section><section id="02-checking-quotas"><h2 class="section-heading"><a href="02-checking-quotas.html">Checking and Managing Quotas</a></h2>
+<hr class="half-width">
+<h3 id="01-storage-overview-figure-1">Figure 1</h3>
+<p aria-hidden="true">Image 1 of 1: ‘Storage on Sagehen HPC in two groups. Persistent and backed up: /rhome with 100 GB per user for scripts, code and small inputs, and /bigdata/lab per lab with 1 TB shared for large datasets and results to keep. Temporary and deleted when the job ends: /scratch, node-local SSD used for working files during a job, and /tmpfs, RAM-backed and fastest at about 1 GB per job.’</p>
+<figure><img src="fig/01-storage-hierarchy.png" alt="Storage on Sagehen HPC in two groups. Persistent and backed up: /rhome with 100 GB per user for scripts, code and small inputs, and /bigdata/lab per lab with 1 TB shared for large datasets and results to keep. Temporary and deleted when the job ends: /scratch, node-local SSD used for working files during a job, and /tmpfs, RAM-backed and fastest at about 1 GB per job." class="figure mx-auto d-block"><div class="figcaption">Two tiers are backed up and two vanish when the
+job ends.</div>
+</figure><hr></section><section id="02-checking-quotas"><h2 class="section-heading"><a href="02-checking-quotas.html">Checking and Managing Quotas</a></h2>
 <hr class="half-width">
 <h3 id="02-checking-quotas-figure-1">Figure 1</h3>
+<p aria-hidden="true">Image 1 of 1: ‘A decision tree for where data should live. If it does not need to survive the job, use /scratch, node-local SSD, or /tmpfs in RAM at about 1 GB, both deleted at job end. If it must survive and is shared with your lab, use /bigdata/lab with 1 TB shared and backed up. If it must survive but is yours alone, use /rhome with 100 GB backed up.’</p>
+<figure><img src="fig/02-storage-decision.png" alt="A decision tree for where data should live. If it does not need to survive the job, use /scratch, node-local SSD, or /tmpfs in RAM at about 1 GB, both deleted at job end. If it must survive and is shared with your lab, use /bigdata/lab with 1 TB shared and backed up. If it must survive but is yours alone, use /rhome with 100 GB backed up." class="figure mx-auto d-block"><div class="figcaption">One question decides it: does the data need to
+outlive the job?</div>
+</figure><hr>
+<h3 id="02-checking-quotas-figure-2">Figure 2</h3>
 <p aria-hidden="true">Image 1 of 1: ‘Terminal output of quota_check.sh on Sagehen. A GROUP Quota section shows the lab group using 508.87 GiB of a 931.32 GiB limit with 1.16 million inodes and no inode limit. A User Quota section shows the individual user consuming 1.22 GiB with no per-user space limit shown. Both rows reference storage_pool_default.’</p>
 <figure><img src="fig/02-quota-check-output.png" alt="Terminal output of quota_check.sh on Sagehen. A GROUP Quota section shows the lab group using 508.87 GiB of a 931.32 GiB limit with 1.16 million inodes and no inode limit. A User Quota section shows the individual user consuming 1.22 GiB with no per-user space limit shown. Both rows reference storage_pool_default." class="figure mx-auto d-block"><div class="figcaption">
 <code>quota_check.sh</code> reports the lab’s
@@ -463,12 +473,17 @@ group limit is what’s enforced.</div>
 <h3 id="06-filezilla-operations-figure-1">Figure 1</h3>
 <p aria-hidden="true">Image 1 of 1: ‘The FileZilla client connected to sagehen.hpc.pomona.edu over SFTP. The status log confirms the hostkey is trusted and the remote directory listing succeeded. The window is split into a local Windows file tree on the left and the remote Sagehen directory tree on the right.’</p>
 <figure><img src="fig/06-filezilla-connected-panels.png" alt="The FileZilla client connected to sagehen.hpc.pomona.edu over SFTP. The status log confirms the hostkey is trusted and the remote directory listing succeeded. The window is split into a local Windows file tree on the left and the remote Sagehen directory tree on the right." class="figure mx-auto d-block"><div class="figcaption">FileZilla after Quickconnect: your computer on
-the left, your Sagehen home on the right (it appears as /bigdata/rhome/…
-— the same place /rhome points to).</div>
+the left, your Sagehen HPC home on the right (it appears as
+/bigdata/rhome/… — the same place /rhome points to).</div>
 </figure><hr></section><section id="07-rsync-basics"><h2 class="section-heading"><a href="07-rsync-basics.html">Introduction to rsync</a></h2>
 <hr class="half-width"></section><section id="08-rsync-advanced"><h2 class="section-heading"><a href="08-rsync-advanced.html">Advanced rsync Workflows</a></h2>
 <hr class="half-width"></section><section id="09-scratch-storage"><h2 class="section-heading"><a href="09-scratch-storage.html">Using Scratch Storage in Jobs</a></h2>
-<hr class="half-width"></section><section id="10-tmpfs-storage"><h2 class="section-heading"><a href="10-tmpfs-storage.html">Using tmpfs RAM Storage</a></h2>
+<hr class="half-width">
+<h3 id="09-scratch-storage-figure-1">Figure 1</h3>
+<p aria-hidden="true">Image 1 of 1: ‘A five-step flow through a job. The job starts, inputs are copied from /bigdata to /scratch, computation reads and writes /scratch, results are copied back from /scratch to /bigdata, and then the job ends and /scratch is wiped. A warning states that anything still only on /scratch when the job ends is gone, so results must be copied back before the script exits, including on failure.’</p>
+<figure><img src="fig/03-job-data-flow.png" alt="A five-step flow through a job. The job starts, inputs are copied from /bigdata to /scratch, computation reads and writes /scratch, results are copied back from /scratch to /bigdata, and then the job ends and /scratch is wiped. A warning states that anything still only on /scratch when the job ends is gone, so results must be copied back before the script exits, including on failure." class="figure mx-auto d-block"><div class="figcaption">Copy in, work on the fast local disk, copy out
+before the job ends.</div>
+</figure><hr></section><section id="10-tmpfs-storage"><h2 class="section-heading"><a href="10-tmpfs-storage.html">Using tmpfs RAM Storage</a></h2>
 <hr class="half-width"></section><section id="11-data-organization"><h2 class="section-heading"><a href="11-data-organization.html">Data Organization Best Practices</a></h2>
 <hr class="half-width"></section><section id="12-backup-archival"><h2 class="section-heading"><a href="12-backup-archival.html">Backup and Archival Strategies</a></h2>
 <hr class="half-width"></section><section id="13-transfer-selection"><h2 class="section-heading"><a href="13-transfer-selection.html">Choosing a Transfer Method</a></h2>
@@ -523,8 +538,8 @@ the left, your Sagehen home on the right (it appears as /bigdata/rhome/…
   "url": "https://pomona-college.github.io/hpc-data-transfer-storage/images.html",
   "identifier": "https://pomona-college.github.io/hpc-data-transfer-storage/images.html",
   "dateCreated": "2026-03-05",
-  "dateModified": "2026-08-26",
-  "datePublished": "2026-08-26"
+  "dateModified": "2026-08-27",
+  "datePublished": "2026-08-27"
 }
 
   </script><script>
