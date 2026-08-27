@@ -63,7 +63,7 @@ rsync -avhP <myusername>@sagehen.hpc.pomona.edu:/rhome/<myusername>/results/outp
 ```
 Method: rsync. Time: 2-3 minutes.
 
-**Sync code between laptop and Sagehen daily:**
+**Sync code between laptop and Sagehen HPC daily:**
 ```bash
 # Push changes
 rsync -avhPr --exclude='.git' ~/myproject/ <myusername>@sagehen.hpc.pomona.edu:/rhome/<myusername>/myproject/

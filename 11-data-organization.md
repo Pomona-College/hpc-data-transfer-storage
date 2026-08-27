@@ -6,7 +6,7 @@ exercises: 10
 
 :::::::::::::::::::::::::::::::::::::: questions
 
-- How should I organize my data on Sagehen?
+- How should I organize my data on Sagehen HPC?
 - What naming conventions should I follow?
 - How do I share data effectively with collaborators?
 

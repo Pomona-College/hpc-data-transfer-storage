@@ -121,7 +121,7 @@ title: 'Instructor Notes'
 
 **Key Concepts:**
 - Web-based file transfer without command line
-- GUI file browser on Sagehen
+- GUI file browser on Sagehen HPC
 - When to use OnDemand vs. command-line tools
 - Limitations of OnDemand for large transfers
 

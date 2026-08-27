@@ -1,263 +1,288 @@
----
-title: Setup
----
+# Setup Instructions for Data Transfer and Storage Management Workshop
 
-## Pre-Workshop Requirements
+## Before the Workshop
 
-This workshop teaches you how to efficiently transfer data to and from the Sagehen HPC cluster and manage your storage allocations. Before the workshop, please ensure you have completed the following setup steps.
+To get the most out of this workshop, please complete these setup steps before attending.
 
-## System Requirements
+## Prerequisites
 
-You should have a computer running Windows, macOS, or Linux with a stable internet connection. Administrative privileges may be required for software installation.
+This workshop assumes you have:
+
+- An active Sagehen HPC cluster account
+- Basic familiarity with Linux/Unix command-line interface
+- A personal computer (Windows, macOS, or Linux)
+- Internet connection
+
+If you don't have a Sagehen HPC account, request one at least one week before the workshop via the [HPC account request form](https://servicedesk.pomona.edu/support/catalog/items/83) (or by emailing its-hpc@pomona.edu)
 
 ## Software Installation
 
 ### 1. SSH Client
 
-You'll need an SSH client to connect to the Sagehen cluster. Choose the option below for your operating system:
-
-::::::::::::::::  spoiler
-
-### Windows
-
-**Option A: PuTTY (Recommended for beginners)**
-
-1. Download PuTTY from https://www.putty.org/
-2. Run the installer and follow the prompts
-3. You can also install Pageant (comes with PuTTY) for SSH key management
-
-**Option B: OpenSSH (Windows 10+)**
-
-1. Open PowerShell as Administrator
-2. Run: `Get-WindowsCapability -Online | Where-Object Name -like 'OpenSSH*' | Add-WindowsCapability -Online`
-3. Verify installation: Open Command Prompt and type `ssh`
-
-**Option C: Windows Terminal + Git Bash**
-
-1. Install Windows Terminal from the Microsoft Store
-2. Install Git for Windows from https://git-scm.com/download/win
-3. Open Git Bash and test with `ssh`
-
-:::::::::::::::::::::::::
-
-::::::::::::::::  spoiler
-
-### macOS
-
-OpenSSH is built-in to macOS. Open Terminal and test your SSH installation:
-
+**macOS/Linux:**
+SSH is pre-installed. Test by opening Terminal and running:
 ```bash
 ssh -V
+# Should show OpenSSH version
 ```
 
-You should see output like `OpenSSH_8.6p1, LibreSSL 3.3.6`. If not, install it via Homebrew:
+**Windows:**
+- Option A: Use Windows Subsystem for Linux (WSL 2)
+  - Install from Microsoft Store
+  - Or follow: https://docs.microsoft.com/en-us/windows/wsl/install
 
+- Option B: Use Windows 10/11 built-in OpenSSH
+  - Settings → Apps → Optional Features
+  - Search "OpenSSH" and install
+  - Test in PowerShell: `ssh -V`
+
+- Option C: Install PuTTY
+  - Download from https://www.putty.org/
+  - Graphical SSH client for Windows
+
+### 2. FileZilla (Optional but Recommended)
+
+Used in Episode 4 for graphical file transfers.
+
+**Download:** https://filezilla-project.org/download.php?type=client
+
+**Installation:**
+- Windows: Run .exe installer
+- macOS: Open .dmg and drag to Applications
+- Linux: Use package manager (apt, dnf, etc.)
+
+### 3. rsync
+
+Used in Episode 5 for bulk file transfers.
+
+**macOS:**
+Pre-installed. Test with:
 ```bash
-brew install openssh
+rsync --version
 ```
 
-:::::::::::::::::::::::::
-
-::::::::::::::::  spoiler
-
-### Linux
-
-SSH is typically pre-installed. Verify by opening a terminal and typing:
-
+**Linux:**
+Pre-installed on most distributions. Test with:
 ```bash
-ssh -V
+rsync --version
 ```
 
-If not installed, use your package manager:
+**Windows:**
+- Install via WSL (recommended): `sudo apt-get install rsync`
+- Or use Cygwin with rsync package
 
-**Debian/Ubuntu:**
+### 4. Web Browser
+
+For OnDemand web interface in Episode 3.
+- Chrome, Firefox, Safari, or Edge (all supported)
+- Ensure JavaScript is enabled
+
+## Account and Access Verification
+
+### 1. Verify Sagehen HPC Account Access
+
+Test SSH connection to Sagehen:
 
 ```bash
-sudo apt-get install openssh-client
+ssh <myusername>@sagehen.hpc.pomona.edu
+# Enter password when prompted
+# Complete Duo 2FA authentication
+# If successful, you'll see Sagehen login prompt
 ```
 
-**RHEL/CentOS:**
+Type `exit` to log out.
+
+### 2. Verify OnDemand Access
+
+Test OnDemand web interface:
+
+1. Open browser
+2. Navigate to: https://ondemand.sagehen.hpc.pomona.edu
+3. Login with Pomona credentials
+4. Complete Duo authentication
+5. You should see OnDemand dashboard
+
+### 3. Verify Quota
+
+Check your storage allocation:
 
 ```bash
-sudo yum install openssh-clients
-```
-
-:::::::::::::::::::::::::
-
-### 2. FileZilla (SFTP/FTP File Manager)
-
-FileZilla provides a graphical interface for transferring files. Download it from https://filezilla-project.org/ and follow the installation wizard for your OS.
-
-### 3. Rclone (Cloud & Remote Sync)
-
-Rclone is a powerful command-line tool for syncing files with remote storage and Sagehen. Install it following the guide at https://rclone.org/install/
-
-For **Windows**, **macOS**, and **Linux**, the simplest installation is:
-
-```bash
-curl https://rclone.org/install.sh | sudo bash
-```
-
-On **Windows**, you can also use Chocolatey:
-
-```bash
-choco install rclone
-```
-
-## SSH Key Setup
-
-A public-private SSH key pair allows password-free authentication and is required for unattended transfers.
-
-### Generate SSH Keys
-
-If you don't already have SSH keys, generate a new pair:
-
-```bash
-ssh-keygen -t ed25519 -C "your.email@pomona.edu"
-```
-
-**Prompts:**
-
-- **File location:** Press Enter to accept the default (`~/.ssh/id_ed25519`)
-- **Passphrase:** Enter a strong passphrase or press Enter to skip (not recommended for security)
-
-**Verify your keys:**
-
-```bash
-ls ~/.ssh/
-```
-
-You should see `id_ed25519` (private key) and `id_ed25519.pub` (public key).
-
-### Add Your Public Key to Sagehen
-
-Before the workshop, you should add your SSH public key to Sagehen. If your key is already configured (you've used Sagehen before), skip this step.
-
-**Step 1:** Display your public key:
-
-```bash
-cat ~/.ssh/id_ed25519.pub
-```
-
-Copy the entire output (should start with `ssh-ed25519`).
-
-**Step 2:** Log into Sagehen with your password:
-
-```bash
-ssh your.<myusername>@sagehen.hpc.pomona.edu
-```
-
-Use your Pomona AD credentials. You'll be prompted for DUO MFA: approve it on your phone or use the Duo app.
-
-**Step 3:** Create the `.ssh` directory if it doesn't exist:
-
-```bash
-mkdir -p ~/.ssh
-chmod 700 ~/.ssh
-```
-
-**Step 4:** Add your public key:
-
-```bash
-echo "your-public-key-here" >> ~/.ssh/authorized_keys
-chmod 600 ~/.ssh/authorized_keys
-```
-
-Paste the public key you copied in Step 1.
-
-**Step 5:** Log out and test:
-
-```bash
+ssh <myusername>@sagehen.hpc.pomona.edu
+quota_check.sh
+# Should show your current usage and quota
 exit
 ```
 
-Try logging in again without a password:
+## Create Test Data
+
+### Option 1: Create Sample Files (Recommended)
+
+Create some test files for the workshops:
 
 ```bash
-ssh your.<myusername>@sagehen.hpc.pomona.edu
+# Create test directory
+mkdir ~/test_data
+cd ~/test_data
+
+# Create small test file (for FileZilla and OnDemand examples)
+echo "This is a test file" > small_file.txt
+
+# Create medium test file (for rsync examples)
+dd if=/dev/zero of=medium_file.bin bs=1M count=10
+# Creates 10 MB file
+
+# Create sample CSV data
+cat > sample_data.csv << 'EOF'
+id,name,value
+1,sample_a,100
+2,sample_b,200
+3,sample_c,300
+EOF
 ```
 
-If successful, you'll skip the password prompt (but may still be prompted for DUO MFA).
+### Option 2: Use Existing Files
 
-## Sagehen Access Test
+If you prefer, use any existing files on your computer:
+- Documents (PDF, text)
+- Data files (CSV, JSON)
+- Images (JPG, PNG)
 
-Before the workshop, verify that you can access the Sagehen cluster:
+## Test File Transfer
 
-1. **Connect via SSH:**
-   ```bash
-   ssh your.<myusername>@sagehen.hpc.pomona.edu
-   ```
+Before the workshop, test one file transfer method:
 
-2. **Approve DUO MFA** on your registered device.
+### Test rsync (Recommended)
 
-3. **Check your home directory:**
-   ```bash
-   pwd
-   quota -s
-   ```
+```bash
+cd ~/test_data
 
-4. **Verify you can see the storage locations:**
-   ```bash
-   ls /rhome/<myusername>
-   ls /bigdata/
-   ```
+# Upload test file
+rsync -avhP small_file.txt <myusername>@sagehen.hpc.pomona.edu:/rhome/<myusername>/
 
-5. **Test OnDemand access:** Open https://ondemand.hpc.pomona.edu/ in your browser and log in with your Pomona AD credentials.
+# You should see:
+# Connecting via SSH...
+# Duo prompt (approve on phone)
+# Transfer progress
+# File listed on remote
 
-## Prepare Example Data
+# Verify on Sagehen
+ssh <myusername>@sagehen.hpc.pomona.edu ls -lh /rhome/<myusername>/small_file.txt
+```
 
-Having a few small test files will help during the workshop exercises:
+### Test FileZilla (If Installed)
 
-1. Create a local test directory:
+1. Open FileZilla
+2. Enter in Quick Connect:
+   - Host: sagehen.hpc.pomona.edu
+   - Username: your_username
+   - Port: 22
+3. Click Quickconnect
+4. Approve Duo
+5. Should see home directory in right panel
 
-   ```bash
-   mkdir -p ~/sagehen-test-data
-   ```
+### Test OnDemand
 
-2. Create some small test files:
+1. Navigate to: https://ondemand.sagehen.hpc.pomona.edu
+2. Click "Files"
+3. Should see your home directory
 
-   ```bash
-   echo "Test file 1" > ~/sagehen-test-data/file1.txt
-   echo "Test file 2" > ~/sagehen-test-data/file2.txt
-   dd if=/dev/zero of=~/sagehen-test-data/sample-10mb.bin bs=1M count=10
-   ```
+## Recommended Directory Structure
 
-3. Keep this directory handy for the workshop exercises.
+Before the workshop, create a project directory for workshop exercises:
 
-## Helpful Resources
+```bash
+mkdir -p ~/workshop_data/incoming ~/workshop_data/results
+# incoming: For files we'll transfer INTO Sagehen
+# results: Where we'll download results FROM Sagehen
+```
 
-- **Sagehen Documentation:** https://sagehen.hpc.pomona.edu/docs/ (once you've accessed Sagehen)
-- **HPC Support:** its-hpc@pomona.edu
-- **OnDemand Portal:** https://ondemand.hpc.pomona.edu/
-- **SSH Key Security:** https://wiki.archlinux.org/title/SSH_keys
+## Troubleshooting Setup
 
-## Troubleshooting
+### Cannot Connect via SSH
 
-**Cannot connect to Sagehen?**
+**Problem:** "Connection refused" or "Network unreachable"
 
-- Verify your Pomona AD username and password
-- Check that you're on campus or connected to Pomona VPN
-- Confirm DUO MFA is set up on your account
+**Solutions:**
+1. Verify Sagehen is not down (check email)
+2. Check hostname: `sagehen.hpc.pomona.edu`
+3. Check internet connection: `ping google.com`
+4. If behind corporate firewall, port 22 may be blocked
+5. Contact its-hpc@pomona.edu for help
 
-**DUO approval times out?**
+### Duo Authentication Not Working
 
-- Ensure Duo app is updated on your phone
-- Check your device's system time is synchronized
-- Contact its-hpc@pomona.edu for account issues
+**Problem:** No Duo prompt appears or authentication times out
 
-**SSH keys not working?**
+**Solutions:**
+1. Check phone is nearby and powered on
+2. Check Duo app is installed and updated
+3. Try again (may be delayed)
+4. Check your Duo enrollment: https://accounts.pomona.edu/
+5. Contact IT: servicedesk@pomona.edu
 
-- Verify permissions: `ls -la ~/.ssh/` should show 700 for the directory and 600 for files
-- Check that your public key was added correctly: `ssh -vvv your.<myusername>@sagehen.hpc.pomona.edu`
-- Contact HPC support if issues persist
+### FileZilla Won't Install
 
-**FileZilla connection issues?**
+**Problem:** Permission error or installation fails
 
-- Host: `sagehen.hpc.pomona.edu`, Protocol: SFTP, Port: 22
-- Use your Pomona AD username
-- Try using your SSH key instead of password authentication
+**Solutions:**
+1. Run installer as administrator (Windows)
+2. For macOS, drag to Applications folder in a new Finder window
+3. Use package manager instead (Linux)
+4. FileZilla is optional; OnDemand and command-line work without it
 
-If you encounter issues during setup, please reach out to its-hpc@pomona.edu before the workshop.
+### rsync Not Found
+
+**Problem:** "command not found" when typing `rsync`
+
+**Solutions:**
+1. **macOS:** Pre-installed, try full path: `/usr/bin/rsync`
+2. **Linux:** Install with `sudo apt-get install rsync` or equivalent
+3. **Windows:** Install WSL first, then rsync via WSL
+4. rsync is optional; FileZilla works without it
+
+## Bandwidth and Network Notes
+
+This workshop involves file transfers. If on a slow connection:
+
+- **Slow connection?** Download large test file overnight or before workshop
+- **Limited bandwidth?** Skip large file transfer examples (instructor can demo)
+- **On cellular?** Use WiFi for large transfers
+
+## What to Bring
+
+- Laptop with SSH client (Windows, macOS, or Linux)
+- Pomona account credentials
+- Phone for Duo authentication
+- Notes/notebook for recording commands
+- Optional: FileZilla if you want to follow graphical examples
+
+## Getting Help
+
+### Before Workshop
+
+If you encounter setup issues:
+
+1. **Check email:** Setup instructions may have updates
+2. **Contact HPC Support:** its-hpc@pomona.edu
+3. **Contact IT:** servicedesk@pomona.edu (for account/Duo issues)
+
+### During Workshop
+
+Instructors will help with any setup issues at the start of the workshop. Allow 15 minutes for everyone to verify access.
+
+## Optional Pre-Workshop Review
+
+To prepare for the workshop, consider reviewing:
+
+1. **Basic Linux commands:** https://ubuntu.com/tutorials/command-line-for-beginners
+2. **SSH explained:** https://www.ssh.com/ssh/command
+3. **File transfer concepts:** https://en.wikipedia.org/wiki/Secure_file_transfer_protocol
+
+## Ready?
+
+If you've completed these steps, you're ready for the workshop! See you there.
+
+Questions? Email its-hpc@pomona.edu
 
 <!-- highlight <labname>/<myusername> placeholders in code blocks; remove if the varnish theme handles this natively -->
 <script>(function(){var CSS='.sh-placeholder{color:#c2410c;font-weight:700}[data-bs-theme="dark"] .sh-placeholder,html.dark .sh-placeholder{color:#fdba74}@media (prefers-color-scheme: dark){[data-bs-theme="auto"] .sh-placeholder{color:#fdba74}}';var RX=/<labname>|<myusername>/g;function firstMatch(el){var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null),nodes=[],full='';while(w.nextNode()){nodes.push({n:w.currentNode,s:full.length});full+=w.currentNode.nodeValue;}RX.lastIndex=0;var m;while((m=RX.exec(full))){var s=m.index,e=s+m[0].length,inSpan=false,parts=[];for(var j=0;j<nodes.length;j++){var ns=nodes[j].s,ne=ns+nodes[j].n.nodeValue.length;if(ne<=s||ns>=e)continue;parts.push({node:nodes[j].n,a:Math.max(s-ns,0),b:Math.min(e-ns,nodes[j].n.nodeValue.length)});var p=nodes[j].n.parentNode;while(p&&p!==el){if(p.classList&&p.classList.contains('sh-placeholder')){inSpan=true;break;}p=p.parentNode;}}if(!inSpan&&parts.length)return parts;}return null;}function wrapParts(parts){for(var i=parts.length-1;i>=0;i--){var t=parts[i].node,txt=t.nodeValue,a=parts[i].a,b=parts[i].b;var span=document.createElement('span');span.className='sh-placeholder';span.textContent=txt.slice(a,b);var f=document.createDocumentFragment();if(a>0)f.appendChild(document.createTextNode(txt.slice(0,a)));f.appendChild(span);if(b<txt.length)f.appendChild(document.createTextNode(txt.slice(b)));t.parentNode.replaceChild(f,t);}}function run(){var st=document.createElement('style');st.textContent=CSS;document.head.appendChild(st);document.querySelectorAll('pre,code').forEach(function(el){var guard=0,parts;while((parts=firstMatch(el))&&guard++<500){wrapParts(parts);}});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}else{run();}})();</script>

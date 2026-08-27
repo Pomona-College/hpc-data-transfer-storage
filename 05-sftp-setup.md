@@ -8,7 +8,7 @@ exercises: 10
 
 - What is FileZilla and why use it for file transfers?
 - How do I install and configure FileZilla?
-- How do I connect to Sagehen with Duo authentication?
+- How do I connect to Sagehen HPC with Duo authentication?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -57,7 +57,7 @@ sudo apt-get install filezilla
 sudo dnf install filezilla
 ```
 
-## Connecting to Sagehen
+## Connecting to Sagehen HPC
 
 ### Quick Connect
 
@@ -96,7 +96,7 @@ If no Duo prompt appears, check your phone for delayed notifications, try reconn
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge: Connect to Sagehen
+## Challenge: Connect to Sagehen HPC
 
 1. Install FileZilla on your computer
 2. Connect using Quick Connect:

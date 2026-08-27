@@ -51,7 +51,7 @@ df -h /scratch/$SLURM_JOB_ID /tmpfs/$SLURM_JOB_ID
 
 ### SCP (Secure Copy) - Simple Point-to-Point
 
-**Download from Sagehen to your computer:**
+**Download from Sagehen HPC to your computer:**
 
 ```bash
 scp afrancis@sagehen.hpc.pomona.edu:/rhome/afrancis/results.tar.gz ./
@@ -201,7 +201,7 @@ tar -xJf archive.tar.xz
 rsync -av --progress afrancis@sagehen.hpc.pomona.edu:/bigdata/lab/neuroscience/large_file.bin ./
 ```
 
-### Monitor bandwidth usage on Sagehen:
+### Monitor bandwidth usage on Sagehen HPC:
 
 ```bash
 # SSH into Sagehen first

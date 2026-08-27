@@ -6,7 +6,7 @@ exercises: 10
 
 :::::::::::::::::::::::::::::::::::::: questions
 
-- How do I back up my data on Sagehen?
+- How do I back up my data on Sagehen HPC?
 - When and how should I archive completed projects?
 - How do I migrate data between storage locations?
 

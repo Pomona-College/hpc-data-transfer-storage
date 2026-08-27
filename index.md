@@ -74,7 +74,7 @@ After completing this workshop, you will be able to:
 
 ## Workshop Structure
 
-This workshop consists of 7 episodes covering progressively more advanced topics:
+This workshop consists of 14 episodes covering progressively more advanced topics:
 
 1. **Storage Hierarchy** - Understand the filesystem layout
 2. **Quotas Management** - Monitor and manage your storage

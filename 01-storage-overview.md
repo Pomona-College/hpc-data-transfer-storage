@@ -6,7 +6,7 @@ exercises: 10
 
 :::::::::::::::::::::::::::::::::::::: questions
 
-- What storage options are available on Sagehen?
+- What storage options are available on Sagehen HPC?
 - Where should I store different types of data?
 - What are the differences between persistent and temporary storage?
 
@@ -22,7 +22,7 @@ After completing this episode, participants will be able to:
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Sagehen's Storage System
+## Sagehen HPC's Storage System
 
 Sagehen uses a **hierarchical storage system** designed to balance performance, reliability, and cost. The four main storage locations are:
 
@@ -42,8 +42,9 @@ Sagehen Storage Architecture
     +-- /tmpfs/$SLURM_JOB_ID    (RAM-backed, fastest)
 ```
 
-::::::::::::::::::::::::::::::::::::: callout
+![Two tiers are backed up and two vanish when the job ends.](fig/01-storage-hierarchy.png){alt='Storage on Sagehen HPC in two groups. Persistent and backed up: /rhome with 100 GB per user for scripts, code and small inputs, and /bigdata/lab per lab with 1 TB shared for large datasets and results to keep. Temporary and deleted when the job ends: /scratch, node-local SSD used for working files during a job, and /tmpfs, RAM-backed and fastest at about 1 GB per job.'}
 
+::::::::::::::::::::::::::::::::::::: callout
 ## Storage Performance Tiers
 
 - **Fastest**: `/tmpfs` (RAM-backed, node-local)
