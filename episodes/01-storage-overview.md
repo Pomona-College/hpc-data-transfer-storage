@@ -44,6 +44,8 @@ Sagehen Storage Architecture
 
 ::::::::::::::::::::::::::::::::::::: callout
 
+![Two tiers are backed up and two vanish when the job ends.](fig/01-storage-hierarchy.png){alt='Storage on Sagehen HPC in two groups. Persistent and backed up: /rhome with 100 GB per user for scripts, code and small inputs, and /bigdata/lab per lab with 1 TB shared for large datasets and results to keep. Temporary and deleted when the job ends: /scratch, node-local SSD used for working files during a job, and /tmpfs, RAM-backed and fastest at about 1 GB per job.'}
+
 ## Storage Performance Tiers
 
 - **Fastest**: `/tmpfs` (RAM-backed, node-local)

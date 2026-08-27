@@ -42,6 +42,8 @@ Lab ABC (quota: 1TB = 1024GB)
 
 Temporary storage (`/scratch` and `/tmpfs`) does not count against your lab quota.
 
+![One question decides it: does the data need to outlive the job?](fig/02-storage-decision.png){alt='A decision tree for where data should live. If it does not need to survive the job, use /scratch, node-local SSD, or /tmpfs in RAM at about 1 GB, both deleted at job end. If it must survive and is shared with your lab, use /bigdata/lab with 1 TB shared and backed up. If it must survive but is yours alone, use /rhome with 100 GB backed up.'}
+
 ## Using quota_check.sh (Recommended)
 
 Sagehen provides a dedicated script that accounts for BeeGFS:

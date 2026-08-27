@@ -39,6 +39,8 @@ The performance gap matters most when many jobs are reading from `/bigdata` simu
 
 ::::::::::::::::::::::::::::::::::::: callout
 
+![Copy in, work on the fast local disk, copy out before the job ends.](fig/03-job-data-flow.png){alt='A five-step flow through a job. The job starts, inputs are copied from /bigdata to /scratch, computation reads and writes /scratch, results are copied back from /scratch to /bigdata, and then the job ends and /scratch is wiped. A warning states that anything still only on /scratch when the job ends is gone, so results must be copied back before the script exits, including on failure.'}
+
 ## Scratch Is Non-Persistent
 
 Data on `/scratch` is **deleted when your job completes**. Always copy results back to `/rhome` or `/bigdata` before the job ends. If you forget, your results are permanently lost.
